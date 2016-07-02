@@ -1,0 +1,96 @@
+﻿<UserControl x:Class="tvdc.Graph"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:System="clr-namespace:System;assembly=mscorlib"
+             xmlns:local="clr-namespace:tvdc"
+             mc:Ignorable="d" 
+             d:DesignHeight="100" d:DesignWidth="500" MouseMove="UserControl_MouseMove" MouseLeave="UserControl_MouseLeave">
+    
+    <Canvas x:Name="MainCanvas">
+        
+        <Panel.ZIndex>
+            <System:Int32>1</System:Int32>
+        </Panel.ZIndex>
+
+        <Line
+				X1="20" X2="{Binding ActualWidth, ElementName=MainCanvas}"
+				Y1="100" Stroke="White"
+				StrokeThickness="2"
+				VerticalAlignment="Top"
+				HorizontalAlignment="Left"
+				x:Name="GraphHorizontalLine" Y2="100" />
+
+        <Line
+				X1="20" X2="20"
+				Y1="0" Y2="100"
+				Stroke="White"
+				StrokeThickness="2"
+            />
+
+        <TextBlock HorizontalAlignment="Left" Canvas.Top="-5" Canvas.Left="{Binding lbl0LeftMargin}" Height="10" x:Name="lbl0" Text="{Binding lbl0Text}" Foreground="Gray" FontSize="8" TextAlignment="Right" />
+        <TextBlock HorizontalAlignment="Left" Canvas.Top="15" Canvas.Left="{Binding lbl20LeftMargin}" Height="10" x:Name="lbl20" Text="{Binding lbl20Text}" Foreground="Gray" FontSize="8" />
+        <TextBlock HorizontalAlignment="Left" Canvas.Top="35" Canvas.Left="{Binding lbl40LeftMargin}" Height="10" x:Name="lbl40" Text="{Binding lbl40Text}" Foreground="Gray" FontSize="8" />
+        <TextBlock HorizontalAlignment="Left" Canvas.Top="55" Canvas.Left="{Binding lbl60LeftMargin}" Height="10" x:Name="lbl60" Text="{Binding lbl60Text}" Foreground="Gray" FontSize="8" />
+        <TextBlock HorizontalAlignment="Left" Canvas.Top="75" Canvas.Left="{Binding lbl80LeftMargin}" Height="10" x:Name="lbl80" Text="{Binding lbl80Text}" Foreground="Gray" FontSize="8" />
+        <TextBlock HorizontalAlignment="Left" Canvas.Top="93" Canvas.Left="9" Height="10" x:Name="lbl100" Text="0" Foreground="Gray" FontSize="8" />
+
+
+        <Line
+				X1="15" X2="{Binding ActualWidth, ElementName=MainCanvas}"
+				Y1="80" Y2="80"
+				Stroke="Gray"
+				StrokeThickness="0.1" />
+
+        <Line
+				X1="15" X2="{Binding ActualWidth, ElementName=MainCanvas}"
+				Y1="60" Y2="60"
+				Stroke="Gray"
+				StrokeThickness="0.1" />
+
+        <Line
+				X1="15" X2="{Binding ActualWidth, ElementName=MainCanvas}"
+				Y1="40" Y2="40"
+				Stroke="Gray"
+				StrokeThickness="0.1" />
+
+        <Line
+				X1="15" X2="{Binding ActualWidth, ElementName=MainCanvas}"
+				Y1="20" Y2="20"
+				Stroke="Gray"
+				StrokeThickness="0.1" />
+
+        <Path
+				Data="{Binding linePathData}"
+				Stroke="Green" StrokeThickness="2"
+				x:Name="LinePath" />
+
+        <Path
+				Data="{Binding fillPathData}"
+				Fill="#2000AA00" x:Name="FillPath" />
+
+        <Border x:Name="InfoPanel" Canvas.Left="{Binding InfoPanelLeftMargin}" Canvas.Top="{Binding InfoPanelTopMargin}" Width="100"
+                    Height="50" Background="#99000000" Opacity="0" IsHitTestVisible="False">
+
+            <Border.Clip>
+                <PathGeometry Figures="{Binding InfoPanelClip}" />
+            </Border.Clip>
+
+            <Panel.ZIndex>
+                <System:Int32>2</System:Int32>
+            </Panel.ZIndex>
+
+            <Grid>
+                <Label x:Name="lblViewerInfoPanel"  Content="{Binding lblViewerText}" FontFamily="Segoe UI" FontSize="15" FontWeight="Bold" HorizontalAlignment="Center" Foreground="White" Margin="{Binding lblViewerMargin}"/>
+                    <Label x:Name="lblTimeInfoPanel" Content="{Binding lblTimeText}" FontFamily="Segoe UI" FontSize="12" VerticalAlignment="Bottom" HorizontalAlignment="Center" Foreground="White" Margin="{Binding lblTimeMargin}"/>
+            </Grid>
+        </Border>
+
+        <Ellipse x:Name="InfoEllipse" Canvas.Left="{Binding InfoEllipseLeftMargin}" Canvas.Top="{Binding InfoEllipseTopMargin}" Width="5" Height="5" Fill="White" Opacity="0">
+            <Ellipse.Effect>
+                <DropShadowEffect ShadowDepth="1" />
+            </Ellipse.Effect>
+        </Ellipse>
+    </Canvas>
+</UserControl>

@@ -1,0 +1,579 @@
+﻿<Window
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:tvdc"
+    xmlns:System="clr-namespace:System;assembly=mscorlib"
+    xmlns:ed="http://schemas.microsoft.com/expression/2010/drawing"
+    x:Class="tvdc.MainWindow"
+    Title="Twitch Viewer Display" Height="434" Width="850"
+    Icon="Resources/Twitch-tv-logo.png"
+    Background="{StaticResource WindowBackgroundBrush}"
+    MinWidth="650" MinHeight="300" Loaded="Window_Loaded" Closed="Window_Closed">
+
+    <!--DataContext="{Binding RelativeSource={RelativeSource Self}}"-->
+
+    <Window.Resources>
+
+        <LinearGradientBrush x:Key="errBrush" EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Offset="0" Color="Red" />
+            <GradientStop Offset="1" Color="#FFD20000" />
+        </LinearGradientBrush>
+
+        <LinearGradientBrush x:Key="joinBrush" EndPoint="0.5,1" StartPoint="0.5,0" Opacity="0.6">
+            <GradientStop Offset="0" Color="#B400B700" />
+            <GradientStop Offset="1" Color="#B4007C00" />
+        </LinearGradientBrush>
+
+        <LinearGradientBrush x:Key="partBrush" EndPoint="0.5,1" StartPoint="0.5,0" Opacity="0.6">
+            <GradientStop Offset="0" Color="#B4B70000" />
+            <GradientStop Offset="1" Color="#B47C0000" />
+        </LinearGradientBrush>
+
+        <ControlTemplate x:Key="Chat" TargetType='{x:Type ListViewItem}'>
+            <StackPanel Background="Transparent" Orientation="Horizontal">
+                <GridViewRowPresenter Content="{TemplateBinding Content}" Columns="{TemplateBinding GridView.ColumnCollection}"/>
+                <local:ChatRow Username="{Binding username}" Data="{Binding data}" Color="{Binding color}" IsMod="{Binding isMod}" />
+            </StackPanel>
+        </ControlTemplate>
+
+        <ControlTemplate x:Key="err" TargetType='{x:Type ListViewItem}'>
+            <StackPanel Background="{StaticResource errBrush}" Orientation="Horizontal">
+                <GridViewRowPresenter Content="{TemplateBinding Content}" Columns="{TemplateBinding GridView.ColumnCollection}"/>
+                <TextBlock Background="Transparent" Text="[E]" FontWeight="Bold" Margin="5,0,0,5"/>
+                <TextBlock Background="Transparent" Text="{Binding text}" Margin="5,0,0,5" />
+            </StackPanel>
+        </ControlTemplate>
+
+        <ControlTemplate x:Key="Join" TargetType='{x:Type ListViewItem}'>
+            <StackPanel Background="{StaticResource joinBrush}" Orientation="Horizontal">
+                <GridViewRowPresenter Content="{TemplateBinding Content}" Columns="{TemplateBinding GridView.ColumnCollection}"/>
+                <TextBlock Background="Transparent" Text="{Binding username}" FontWeight="Bold" Margin="5,0,0,5"/>
+                <TextBlock Background="Transparent" Text="{Binding text}" Margin="5,0,0,5" />
+            </StackPanel>
+        </ControlTemplate>
+
+        <ControlTemplate x:Key="Part" TargetType='{x:Type ListViewItem}'>
+            <StackPanel Background="{StaticResource partBrush}" Orientation="Horizontal">
+                <GridViewRowPresenter Content="{TemplateBinding Content}" Columns="{TemplateBinding GridView.ColumnCollection}"/>
+                <TextBlock Background="Transparent" Text="{Binding username}" FontWeight="Bold" Margin="5,0,0,5"/>
+                <TextBlock Background="Transparent" Text="{Binding text}" Margin="5,0,0,5" />
+            </StackPanel>
+        </ControlTemplate>
+
+        <ControlTemplate x:Key="IRC" TargetType='{x:Type ListViewItem}'>
+            <StackPanel Background="Transparent" Orientation="Horizontal">
+                <GridViewRowPresenter Content="{TemplateBinding Content}" Columns="{TemplateBinding GridView.ColumnCollection}"/>
+                <TextBlock Background="Transparent" Text="[IRC]" FontWeight="Bold" Margin="5,0,0,5"/>
+                <TextBlock Background="Transparent" Text="{Binding text}" Margin="5,0,0,5" />
+            </StackPanel>
+        </ControlTemplate>
+
+        <ControlTemplate x:Key="Mod" TargetType='{x:Type ListViewItem}'>
+            <StackPanel Background="Transparent" Orientation="Horizontal">
+                <GridViewRowPresenter Content="{TemplateBinding Content}" Columns="{TemplateBinding GridView.ColumnCollection}" />
+                <Path Width="20" Height="20" Data="m8.82226,14.37864l2.2436,2.36018l-2.76647,0.81874l-1.49251,-1.54652l-1.18612,0l-0.46684,0.49125l0.73588,0.77363l-3.12334,3.10177l-1.38323,-1.45555l0,0l0,0l-1.38323,-1.45555l2.94767,-3.28736l0.73519,0.77362l0.46684,-0.49052l0,-1.20519l-1.55614,-1.61275l0.86452,-2.9111l2.24291,2.36017l9.25521,-11.09347l4.40905,0l0,4.63956l-10.543,9.73908z" Fill="White" />
+                <TextBlock Background="Transparent" Text="{Binding displayName}" Margin="5,0,0,0" />
+            </StackPanel>
+        </ControlTemplate>
+
+        <ControlTemplate x:Key="User" TargetType='{x:Type ListViewItem}'>
+            <StackPanel Background="Transparent" Orientation="Horizontal">
+                <GridViewRowPresenter Content="{TemplateBinding Content}" Columns="{TemplateBinding GridView.ColumnCollection}" />
+                <TextBlock Background="Transparent" Text="{Binding displayName}" Margin="5,0,0,0" />
+            </StackPanel>
+        </ControlTemplate>
+
+        <Style x:Key="{x:Type ProgressBar}" TargetType="{x:Type ProgressBar}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ProgressBar}">
+                        <Grid Height="18" MinWidth="100" Background="Transparent">
+                            <Border x:Name="PART_Track" CornerRadius="6" BorderBrush="White" BorderThickness="1" Margin="2"/>
+                            <Border x:Name="PART_Indicator" CornerRadius="4" BorderThickness="1" HorizontalAlignment="Left" Background="White" Margin="6,5,0,5" BorderBrush="White" Padding="0" RenderTransformOrigin="0,0.5" >
+                                <Border.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform ScaleX="0.97"/>
+                                        <SkewTransform/>
+                                        <RotateTransform/>
+                                        <TranslateTransform/>
+                                    </TransformGroup>
+                                </Border.RenderTransform>
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="{x:Type ScrollBar}" TargetType="{x:Type ScrollBar}">
+            <Setter Property="OverridesDefaultStyle" Value="True" />
+            <Style.Triggers>
+                <Trigger Property="Orientation" Value="Vertical">
+                    <Setter Property="Width" Value="18" />
+                    <Setter Property="Height" Value="Auto" />
+                    <Setter Property="Template" Value="{DynamicResource sbVert}" />
+                </Trigger>
+                <Trigger Property="Orientation" Value="Horizontal">
+                    <Setter Property="Width" Value="Auto" />
+                    <Setter Property="Height" Value="18" />
+                    <Setter Property="Template" Value="{DynamicResource sbHori}" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <ControlTemplate x:Key="sbVert" TargetType="{x:Type ScrollBar}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition MaxHeight="18" />
+                    <RowDefinition Height="0.00001*" />
+                    <RowDefinition MaxHeight="18" />
+                </Grid.RowDefinitions>
+
+                <Border Grid.RowSpan="3" CornerRadius="4" BorderBrush="White" BorderThickness="0" />
+
+                <RepeatButton Grid.Row="0"
+        			Style="{DynamicResource ScrollBarLineButton}"
+        			Height="18"
+        			Command="ScrollBar.LineUpCommand"
+        			Content="M 0 4 L 8 4 L 4 0 Z" />
+
+                <RepeatButton Grid.Row="3"
+        			Style="{DynamicResource ScrollBarLineButton}"
+        			Height="18"
+        			Command="ScrollBar.LineDownCommand"
+        			Content="M 0 0 L 4 4 L 8 0 Z" />
+
+                <Track x:Name="PART_Track" Grid.Row="1" IsDirectionReversed="True">
+                    <Track.Thumb>
+                        <Thumb Margin="1,0,1,0">
+                            <Thumb.Style>
+                                <Style TargetType="{x:Type Thumb}">
+                                    <Setter Property="Focusable" Value="False" />
+                                    <Setter Property="Template" Value="{DynamicResource scrollBarThumb}" />
+                                </Style>
+                            </Thumb.Style>
+                        </Thumb>
+                    </Track.Thumb>
+                </Track>
+
+            </Grid>
+        </ControlTemplate>
+
+        <ControlTemplate x:Key="sbHori" TargetType="{x:Type ScrollBar}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition MaxWidth="18" />
+                    <ColumnDefinition Width="0.00001*" />
+                    <ColumnDefinition MaxWidth="18" />
+                </Grid.ColumnDefinitions>
+
+                <Border Grid.ColumnSpan="4" Background="Transparent"  BorderThickness="0" />
+
+                <RepeatButton Grid.Column="0"
+        			Style="{DynamicResource ScrollBarLineButton}"
+        			Width="18"
+        			Command="ScrollBar.LineLeftCommand"
+        			Content="M 4 0 L 4 8 L 0 4 Z" />
+
+                <RepeatButton Grid.Column="3"
+        			Style="{DynamicResource ScrollBarLineButton}"
+        			Width="18"
+        			Command="ScrollBar.LineRightCommand"
+        			Content="M 0 0 L 4 4 L 0 8 Z" />
+
+                <Track x:Name="PART_Track" Grid.Column="1" IsDirectionReversed="False">
+                    <Track.Thumb>
+                        <Thumb Margin="0,1,0,1">
+                            <Thumb.Style>
+                                <Style TargetType="{x:Type Thumb}">
+                                    <Setter Property="Focusable" Value="False" />
+                                    <Setter Property="Template" Value="{DynamicResource scrollBarThumb}" />
+                                </Style>
+                            </Thumb.Style>
+                        </Thumb>
+                    </Track.Thumb>
+                </Track>
+
+            </Grid>
+        </ControlTemplate>
+
+        <Style x:Key="ScrollBarLineButton" TargetType="{x:Type RepeatButton}">
+            <Setter Property="Focusable" Value="False" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type RepeatButton}">
+                        <Border x:Name="repbtnBorder" Margin="1" CornerRadius="2" BorderThickness="1" BorderBrush="White" Background="Transparent">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal">
+                                        <Storyboard>
+                                            <ColorAnimation To="Transparent" Duration="00:00:00.1"
+        										Storyboard.TargetName="repbtnBorder" Storyboard.TargetProperty="Background.(SolidColorBrush.Color)" />
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="MouseOver">
+                                        <Storyboard>
+                                            <ColorAnimation To="#40FFFFFF" Duration="00:00:00.1"
+        										Storyboard.TargetName="repbtnBorder" Storyboard.TargetProperty="Background.(SolidColorBrush.Color)" />
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <ColorAnimation To="#40000000" Duration="00:00:00.0"
+        										Storyboard.TargetName="repbtnBorder" Storyboard.TargetProperty="Background.(SolidColorBrush.Color)" />
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Path x:Name="repbtnPath" HorizontalAlignment="Center" VerticalAlignment="Center" Fill="White"
+        						Data="{Binding Content, RelativeSource={RelativeSource TemplatedParent}}" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <ControlTemplate x:Key="scrollBarThumb" TargetType="{x:Type Thumb}">
+            <Border BorderBrush="White" BorderThickness="1" CornerRadius="2" x:Name="thumbBorder" Background="#00000000">
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal">
+                            <Storyboard>
+                                <ColorAnimation To="Transparent" Duration="00:00:00.1"
+        							Storyboard.TargetName="thumbBorder" Storyboard.TargetProperty="Background.(SolidColorBrush.Color)" />
+                            </Storyboard>
+                        </VisualState>
+                        <VisualState x:Name="MouseOver">
+                            <Storyboard>
+                                <ColorAnimation To="#40FFFFFF" Duration="00:00:00.1"
+        							Storyboard.TargetName="thumbBorder" Storyboard.TargetProperty="Background.(SolidColorBrush.Color)" />
+                            </Storyboard>
+                        </VisualState>
+                        <VisualState x:Name="Pressed">
+                            <Storyboard>
+                                <ColorAnimation To="#40000000" Duration="00:00:00.0"
+        							Storyboard.TargetName="thumbBorder" Storyboard.TargetProperty="Background.(SolidColorBrush.Color)" />
+                            </Storyboard>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+            </Border>
+        </ControlTemplate>
+
+        <Style x:Key="{x:Static GridView.GridViewScrollViewerStyleKey}"
+       TargetType="{x:Type ScrollViewer}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ScrollViewer}">
+                        <Grid Background="{TemplateBinding Background}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <DockPanel Margin="{TemplateBinding Padding}">
+
+                                <ScrollContentPresenter x:Name="PART_ScrollContentPresenter"
+        							KeyboardNavigation.DirectionalNavigation="Local"
+        							CanContentScroll="True"
+        							CanHorizontallyScroll="False"
+        							CanVerticallyScroll="False" />
+
+                            </DockPanel>
+
+                            <ScrollBar x:Name="PART_HorizontalScrollBar" Orientation="Horizontal" 
+        						Grid.Row="1" Maximum="{TemplateBinding ScrollableWidth}"
+        						ViewportSize="{TemplateBinding ViewportWidth}"
+        						Value="{TemplateBinding HorizontalOffset}"
+        						Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}" />
+
+                            <ScrollBar x:Name="PART_VerticalScrollBar" Grid.Column="1"
+        						Maximum="{TemplateBinding ScrollableHeight}"
+        						ViewportSize="{TemplateBinding ViewportHeight}"
+        						Value="{TemplateBinding VerticalOffset}"
+        						Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}" />
+
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <ControlTemplate x:Key="btn">
+            <Grid x:Name="btnGrid" Background="#00000000">
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal">
+                            <Storyboard>
+                                <ColorAnimation From="#40FFFFFF" To="Transparent" Duration="00:00:00.1000000"
+        							Storyboard.TargetName="btnGrid" Storyboard.TargetProperty="(Panel.Background).Color"/>
+                            </Storyboard>
+                        </VisualState>
+                        <VisualState x:Name="MouseOver">
+                            <Storyboard>
+                                <ColorAnimation From="Transparent" To="#40FFFFFF" Duration="00:00:00.1000000"
+        							Storyboard.TargetName="btnGrid" Storyboard.TargetProperty="(Panel.Background).Color"/>
+                            </Storyboard>
+                        </VisualState>
+                        <VisualState x:Name="Disabled">
+                            <Storyboard>
+                                <ColorAnimation To="Gray" Duration="00:00:00.1000000"
+        							Storyboard.TargetName="btnlabel" Storyboard.TargetProperty="Foreground.Color" />
+                                <ColorAnimation To="Gray" Duration="00:00:00.1000000"
+        							Storyboard.TargetName="btnborder" Storyboard.TargetProperty="BorderBrush.Color" />
+                            </Storyboard>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+                <ContentPresenter RecognizesAccessKey="True" />
+                <Border BorderBrush="White" BorderThickness="1" CornerRadius="2" x:Name="btnborder"/>
+                <Label x:Name="btnlabel" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0" Content="{Binding Content, RelativeSource={RelativeSource TemplatedParent}}" Foreground="White" Margin="0,-2.5,0,0"/>
+            </Grid>
+        </ControlTemplate>
+
+    </Window.Resources>
+
+    <Grid>
+
+        <!--<Grid x:Name="loadingPanel" Width="300" Height="100" VerticalAlignment="Center" Margin="0,50,0,0"  HorizontalAlignment="Center" Opacity="0" IsHitTestVisible="False" SnapsToDevicePixels="True">
+
+            <Border BorderBrush="#FFFFFF" BorderThickness="1" CornerRadius="3" Panel.ZIndex="6" >
+                <Border.Effect>
+                    <DropShadowEffect/>
+                </Border.Effect>
+                <Border.Background>
+                    <LinearGradientBrush SpreadMethod="Pad">
+                        <GradientStop Offset="0" Color="#3A3C48" />
+                        <GradientStop Offset="1" Color="#131218" />
+                    </LinearGradientBrush>
+                </Border.Background>
+                <Grid>
+                    <ProgressBar Width="260" Height="25" Margin="20,20,20,20" VerticalAlignment="Bottom" HorizontalAlignment="Center" Value="{Binding loadingProgress}" SnapsToDevicePixels="True"/>
+                    <Label x:Name="lblLoadingStatus" Margin="20,20,20,20" VerticalAlignment="Top" HorizontalAlignment="Left" Content="{Binding loadingStatus}" Foreground="White" SnapsToDevicePixels="True"/>
+                </Grid>
+            </Border>
+            
+        </Grid>-->
+
+        <local:Graph Height="100" Margin="12,12,268,0" x:Name="ViewerGraph" VerticalAlignment="Top" Background="Transparent" />
+
+        <ListView Margin="12,152,0,15"
+			x:Name="viewersLB" Background="Transparent" HorizontalAlignment="Left" Width="156" Foreground="White" ItemsSource="{Binding viewerList, Mode=OneWay}" Focusable="False">
+
+            <ListView.Style>
+                <Style TargetType="{x:Type ListView}">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type ListView}">
+                                <Border x:Name="Border" BorderThickness="1" Background="Transparent" BorderBrush="White">
+                                    <ScrollViewer Style="{DynamicResource {x:Static GridView.GridViewScrollViewerStyleKey}}">
+                                        <ItemsPresenter />
+                                    </ScrollViewer>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </ListView.Style>
+
+            <ListView.ItemContainerStyle>
+                <Style TargetType="{x:Type ListViewItem}">
+                    <Setter Property="Template" Value="{StaticResource User}" />
+                    <Setter Property="Height" Value="20" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding isMod}" Value="true">
+                            <Setter Property="Template" Value="{StaticResource Mod}" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ListView.ItemContainerStyle>
+
+        </ListView>
+
+        <ListView Margin="174,152,12,44"
+			x:Name="eventList" Background="Transparent" Foreground="White" ItemsSource="{Binding chatEntryList}" Focusable="False" FontSize="{Binding chatSize}">
+
+            <ListView.Style>
+                <Style TargetType="{x:Type ListView}">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type ListView}">
+                                <Border x:Name="Border" BorderThickness="1" Background="Transparent" BorderBrush="White">
+                                    <ScrollViewer Style="{DynamicResource {x:Static GridView.GridViewScrollViewerStyleKey}}">
+                                        <ItemsPresenter />
+                                    </ScrollViewer>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </ListView.Style>
+
+            <ListView.ItemContainerStyle>
+                <Style TargetType="{x:Type ListViewItem}"  >
+                    <Setter Property="Template" Value="{StaticResource Chat}"/>
+                    <Style.Triggers>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding eventType}" Value="{x:Static local:ChatEntry+Type.CHAT}" />
+                                <Condition Binding="{Binding isMod}" Value="true" />
+                            </MultiDataTrigger.Conditions>
+                            <Setter Property="Template" Value="{StaticResource Chat}" />
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding eventType}" Value="{x:Static local:ChatEntry+Type.CHAT}" />
+                                <Condition Binding="{Binding isMod}" Value="false" />
+                            </MultiDataTrigger.Conditions>
+                            <Setter Property="Template" Value="{StaticResource Chat}" />
+                        </MultiDataTrigger>
+                        <DataTrigger Binding="{Binding eventType}" Value="{x:Static local:ChatEntry+Type.PART}">
+                            <Setter Property="Template" Value="{StaticResource Part}"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding eventType}" Value="{x:Static local:ChatEntry+Type.JOIN}">
+                            <Setter Property="Template" Value="{StaticResource Join}"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding eventType}" Value="{x:Static local:ChatEntry+Type.IRC}">
+                            <Setter Property="Template" Value="{StaticResource IRC}"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding eventType}" Value="{x:Static local:ChatEntry+Type.ERROR}">
+                            <Setter Property="Template" Value="{StaticResource err}"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ListView.ItemContainerStyle>
+
+        </ListView>
+
+        <TextBox Margin="174,0,12,15"
+			x:Name="tbChat" Background="Transparent"
+			AcceptsReturn="True" CaretBrush="White" BorderBrush="White"
+			Foreground="White" Height="23" VerticalAlignment="Bottom" TextChanged="tbChat_TextChanged" />
+
+        <Label Content="Viewers" Height="28" HorizontalAlignment="Left" Margin="12,118,0,0" x:Name="Label1" VerticalAlignment="Top" Width="156" FontFamily="Segoe UI Light" FontSize="20" Foreground="White" UseLayoutRounding="False" Padding="1" />
+        <Label Content="Chat" FontFamily="Segoe UI Light" FontSize="20" Foreground="White" Height="28" Margin="174,118,0,0" x:Name="lblChat" Padding="1" UseLayoutRounding="False" VerticalAlignment="Top" HorizontalAlignment="Left" Width="48" />
+        <Label Content="Viewers" FontFamily="Segoe UI Light" FontSize="14" Foreground="White" Height="20" HorizontalAlignment="Right" Margin="0,12,162,0" x:Name="Label3" Padding="1" UseLayoutRounding="False" VerticalAlignment="Top" Width="100" />
+        <Image Height="20" HorizontalAlignment="Right" Margin="0,38,242,0" x:Name="imgViewers" Stretch="Fill" VerticalAlignment="Top" Width="20" Source="Resources/viewers.png" />
+        <Label Content="{Binding viewerCount}" FontFamily="Segoe UI" FontSize="20" Foreground="White" Height="24.5" HorizontalAlignment="Right" Margin="0,33.5,167,0" x:Name="vc" Padding="0" UseLayoutRounding="False" VerticalAlignment="Top" Width="68.5" FontWeight="Normal" />
+        <Label Content="Followers" FontFamily="Segoe UI Light" FontSize="14" Foreground="White" Height="20" HorizontalAlignment="Right" Margin="0,64,162,0" x:Name="Label5" Padding="1" UseLayoutRounding="False" VerticalAlignment="Top" Width="100" />
+        <Image Height="22" HorizontalAlignment="Right" Margin="0,90,242,0" x:Name="imgFollowers" Stretch="Fill" VerticalAlignment="Top" Width="20" Source="Resources/followers.png" />
+        <Label Content="{Binding followerCount}" FontFamily="Segoe UI" FontSize="20" Foreground="White" Height="26" HorizontalAlignment="Right" Margin="0,86,167,0" x:Name="fc" Padding="0" UseLayoutRounding="False" VerticalAlignment="Top" Width="68.5" />
+        <Image Height="28" HorizontalAlignment="Left" Margin="290,120,0,0" x:Name="Image1" Stretch="Fill" VerticalAlignment="Top" Width="28" Source="Resources/settings18.png" Focusable="False" RenderTransformOrigin="0.5,0.5" Cursor="Hand" MouseLeftButtonDown="Image1_MouseLeftButtonDown">
+            <Image.RenderTransform>
+                <RotateTransform x:Name="settingsRotation" Angle="0" />
+            </Image.RenderTransform>
+            <Image.Triggers>
+                <EventTrigger RoutedEvent="UIElement.MouseEnter">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="settingsRotation" Storyboard.TargetProperty="Angle"
+								From="0"
+								To="45" RepeatBehavior="Forever" SpeedRatio="4" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+                <EventTrigger RoutedEvent="UIElement.MouseLeave">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="settingsRotation" Storyboard.TargetProperty="Angle"
+								To="0" SpeedRatio="4" DecelerationRatio="0.9" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Image.Triggers>
+        </Image>
+
+        <Button x:Name="btnChatBigger" Content="+" Margin="234,124,0,0" Width="20" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Click="btnChatBigger_Click">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Template" Value="{StaticResource btn}" />
+                </Style>
+            </Button.Style>
+        </Button>
+
+        <Button x:Name="btnChatSmaller" Content="-" Margin="261,124,0,0" Width="20" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Click="btnChatSmaller_Click">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Template" Value="{StaticResource btn}" />
+                </Style>
+            </Button.Style>
+        </Button>
+
+        <!--<Canvas Name="svg4188" Width="28" Height="28" Margin="323,120,491,256" Background="Transparent" Cursor="Hand" MouseLeftButtonDown="svg4188_MouseLeftButtonDown">
+            <Canvas.RenderTransform>
+                <RotateTransform x:Name="pollRotation" Angle="0" CenterX="14" CenterY="14" />
+            </Canvas.RenderTransform>
+            <Canvas.Resources/>
+            <Canvas Name="layer1">
+                <Canvas.RenderTransform>
+                    <TranslateTransform X="0" Y="-1024.3622"/>
+                </Canvas.RenderTransform>
+                <Ellipse xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Canvas.Left="6.9" Canvas.Top="1031.1" Width="14.3" Height="14.3" Name="path4146" Fill="White" StrokeThickness="0.06081363" Stroke="#FF000000" Opacity="1"/>
+                <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path4154" Fill="White">
+                    <Path.Data>
+                        <PathGeometry Figures="m 5.2812931 1040.9253 -3.924138 1.2399 c -2.7660015 -11.0955 5.7081875 -15.8495 9.7762519 -16.9116 l 0.836908 3.9489 c -3.2590624 0.6435 -8.7795804 4.9827 -6.6890219 11.7228 z" FillRule="evenodd"/>
+                    </Path.Data>
+                </Path>
+                <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path4156" Fill="White">
+                    <Path.Data>
+                        <PathGeometry Figures="m 15.981246 1029.2149 0.86789 -3.9675 c 3.825273 0.7078 12.611311 5.84 9.782458 16.9115 l -3.905538 -1.2273 c 1.322128 -4.9305 -0.700085 -9.9271 -6.74481 -11.7167 z" FillRule="evenodd"/>
+                    </Path.Data>
+                </Path>
+                <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path41564" Fill="White">
+                    <Path.Data>
+                        <PathGeometry Figures="m 20.775091 1044.4342 3.002043 2.7354 c -2.5257 2.9589 -11.363337 8.0017 -19.5371204 0.016 l 3.015775 -2.7686 c 3.6088594 3.6103 8.9470614 4.3573 13.5193024 0.017 z" FillRule="evenodd"/>
+                    </Path.Data>
+                </Path>
+            </Canvas>
+            <Canvas.Triggers>
+                <EventTrigger RoutedEvent="UIElement.MouseEnter">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="pollRotation" Storyboard.TargetProperty="Angle"
+								From="0"
+								To="120" RepeatBehavior="Forever" SpeedRatio="2" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+                <EventTrigger RoutedEvent="UIElement.MouseLeave">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="pollRotation" Storyboard.TargetProperty="Angle"
+								To="0" SpeedRatio="2" DecelerationRatio="0.9" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Canvas.Triggers>
+        </Canvas>-->
+
+        <local:FNFGraph x:Name="fnfgraph" userlist="{Binding viewerList}" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,25,5,0" Width="140"/>
+
+        <!--<ed:Arc x:Name="arcUnknown" ArcThickness="1" ArcThicknessUnit="Percent"
+                EndAngle="360" HorizontalAlignment="Right" Height="100" Margin="0,25,25,0"
+                Stretch="None" Stroke="White" StrokeThickness="0" StartAngle="240"
+                VerticalAlignment="Top" Width="100" Fill="Gray" />
+
+        <ed:Arc x:Name="arcNonfollower" ArcThickness="1" ArcThicknessUnit="Percent" EndAngle="240" HorizontalAlignment="Right" Height="100" Margin="0,25,25,0" Stretch="None" Stroke="White" StrokeThickness="1" StartAngle="120" VerticalAlignment="Top" Width="100">
+            <ed:Arc.Fill>
+                <RadialGradientBrush GradientOrigin="0.5,0.5" Center="0.5,0.5">
+                    <GradientStop Color="#CC6666" Offset="0" />
+                    <GradientStop Color="#AA0000" Offset="1.0" />
+                </RadialGradientBrush>
+            </ed:Arc.Fill>
+        </ed:Arc>
+
+        <ed:Arc x:Name="arcFollower" ArcThickness="1" ArcThicknessUnit="Percent" EndAngle="120" HorizontalAlignment="Right" Height="100" Margin="0,25,25,0" Stretch="None" Stroke="White" StrokeThickness="1" StartAngle="0" VerticalAlignment="Top" Width="100">
+            <ed:Arc.Fill>
+                <RadialGradientBrush GradientOrigin="0.5,0.5" Center="0.5,0.5">
+                    <GradientStop Color="#66CC66" Offset="0" />
+                    <GradientStop Color="#00AA00" Offset="1.0" />
+                </RadialGradientBrush>
+            </ed:Arc.Fill>
+        </ed:Arc>-->
+
+    </Grid>
+</Window>
