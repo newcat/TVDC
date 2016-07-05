@@ -1,15 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
-using System.IO;
 using System.Drawing;
 
 namespace tvdc
 {
-    class Emoticon
+    class Emoticon : IDisposable
     {
 
         public int id { get; private set; }
@@ -60,5 +55,9 @@ namespace tvdc
             img.Dispose();
         }
 
+        public void Dispose()
+        {
+            ((IDisposable)wc).Dispose();
+        }
     }
 }

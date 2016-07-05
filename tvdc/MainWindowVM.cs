@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
 using System.Runtime.CompilerServices;
 
 namespace tvdc
 {
-    class MainWindowVM : INotifyPropertyChanged
+    class MainWindowVM : INotifyPropertyChanged, IDisposable
     {
 
         //Support for INotifyPropertyChanged
@@ -253,6 +250,31 @@ namespace tvdc
             user = null;
 
         }
+
+        #region IDisposable Support
+        private bool disposedValue = false; // To detect redundant calls
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposedValue)
+            {
+                if (disposing)
+                {
+                    
+                }
+
+                viewerList = null;
+                chatEntryList = null;
+
+                disposedValue = true;
+            }
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+        }
+        #endregion
 
     }
 }

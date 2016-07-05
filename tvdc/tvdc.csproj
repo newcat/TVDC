@@ -86,9 +86,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ChatEntry.cs" />
-    <Compile Include="Emoticon.cs" />
-    <Compile Include="EmoticonManager.cs" />
+    <Compile Include="Models\ChatEntry.cs" />
+    <Compile Include="Models\Emoticon.cs" />
+    <Compile Include="SendMessageEventArgs.cs" />
+    <Compile Include="Static Stuff\EmoticonManager.cs" />
+    <Compile Include="IPlugin.cs" />
     <Compile Include="UserControls\FNFGraph.xaml.cs">
       <DependentUpon>FNFGraph.xaml</DependentUpon>
     </Compile>
@@ -97,8 +99,8 @@
     <Compile Include="Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
-    <Compile Include="TwitchColors.cs" />
-    <Compile Include="User.cs" />
+    <Compile Include="Static Stuff\TwitchColors.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="UserControls\Graph.xaml.cs">
       <DependentUpon>Graph.xaml</DependentUpon>
     </Compile>

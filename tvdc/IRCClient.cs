@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Net.Sockets;
 using System.Threading;
 using System.IO;
 
 namespace tvdc
 {
-    public class IRCClient
+    public class IRCClient : IDisposable
     {
 
         #region Events
@@ -426,6 +423,30 @@ namespace tvdc
             }
 
         }
+
+        #region IDisposable Support
+        private bool disposedValue = false; // To detect redundant calls
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposedValue)
+            {
+                if (disposing)
+                {
+                    tcpReader.Close();
+                    tcpWriter.Close();
+                    tcpStream.Close();
+                    tcpClient.Close();
+                }
+                disposedValue = true;
+            }
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+        }
+        #endregion
 
     }
 

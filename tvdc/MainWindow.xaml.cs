@@ -7,7 +7,6 @@ using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using tvdc.UserControls;
 
 namespace tvdc
 {
@@ -20,7 +19,7 @@ namespace tvdc
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window, IDisposable
     {
 
         private MainWindowVM vm = new MainWindowVM();
@@ -348,6 +347,31 @@ namespace tvdc
             }
 
         }
+
+        #region IDisposable Support
+        private bool disposedValue = false; // To detect redundant calls
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposedValue)
+            {
+                if (disposing)
+                {
+                    irc.Dispose();
+                    followerTimer.Dispose();
+                    viewerGraphTimer.Dispose();
+                    followerWC.Dispose();
+                    vm.Dispose();
+                }
+
+                disposedValue = true;
+            }
+        }
+        public void Dispose()
+        {
+            Dispose(true);
+        }
+        #endregion
 
         //private void svg4188_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         //{
