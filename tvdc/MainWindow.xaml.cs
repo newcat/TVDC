@@ -13,8 +13,8 @@ namespace tvdc
 
     //TODO: Fix that twitchnotify messages ("xxx just subscribed") are being treated as PRIVMSG which leads to crash
     //TODO: Fix that if there is text after an emoticon it sometimes doesn't get displayed
-    //TODO: Fix that sometimes emoticons aren't replaced correctly (e. g. there still was a "t" after the getRekt emoticon)
     //TODO: Replace poll window with poll plugin
+    //TODO: Add support for cheering
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -46,11 +46,11 @@ namespace tvdc
             DataContext = vm;
         }
 
-        private void init()
+        private async void init()
         {
 
             initialized = false;
-            
+
             if (Properties.Settings.Default.nick == "")
             {
                 Settings s = new Settings();
@@ -77,8 +77,12 @@ namespace tvdc
 
             vm.chatEntryList.CollectionChanged += ChatEntryList_CollectionChanged;
 
-            //Download emoticons
+            //Init emoticons
             EmoticonManager.initialize();
+
+            //Load badges and download sub badge
+            Badges.init();
+            await Badges.downloadSubBadge(channel);
 
             //Connect to IRC
             vm.chatEntryList.Add(new ChatEntry(ChatEntry.Type.IRC, "Connecting to IRC..."));
@@ -161,7 +165,7 @@ namespace tvdc
                 foreach (ChatEntry ce in removeList)
                 {
                     vm.chatEntryList_GetEntryReference(ce, out toRemove);
-                    toRemove.text = "<message deleted>";
+                    toRemove.tags = new Dictionary<string, string>() { { "message_deleted", "" } };
                 }
 
 
@@ -190,6 +194,9 @@ namespace tvdc
             if (e.tags.ContainsKey("user-type") && e.tags["user-type"] != null && e.tags["user-type"] != "")
                 u.isMod = true;
 
+            if (e.tags.ContainsKey("badges") && e.tags["badges"] != null)
+                u.badges = e.tags["badges"];
+
         }
 
         private void IRC_PrivmsgReceived(object sender, IRCClient.PrivmsgReceivedEventArgs e)
@@ -203,17 +210,7 @@ namespace tvdc
                 color = TwitchColors.getColorByUsername(e.username);
             }
 
-            bool isMod;
-            if ((e.tags.ContainsKey("user-type") && e.tags["user-type"] != "") ||
-                (vm.viewerList_GetUserByName(e.username) != null && vm.viewerList_GetUserByName(e.username).isMod))
-            {
-                isMod = true;
-            } else
-            {
-                isMod = false;
-            }
-
-            vm.chatEntryList_Add(new ChatEntry(ChatEntry.Type.CHAT, e.message, e.username, color, isMod, e));
+            vm.chatEntryList_Add(new ChatEntry(ChatEntry.Type.CHAT, e.message, e.username, color, e.tags));
         }
 
         private void IRC_ModeChanged(object sender, IRCClient.ModeChangedEventArgs e)
@@ -298,10 +295,12 @@ namespace tvdc
             s.Owner = this;
             if (s.ShowDialog() == true)
             {
+                followerTimer.Stop();
+                viewerGraphTimer.Stop();
                 irc.disconnect();
                 vm.chatEntryList_Clear();
                 vm.viewerList_Clear();
-                ViewerGraph.clearStops();
+                ViewerGraph.reset();
                 init();
             }
                 
@@ -340,9 +339,22 @@ namespace tvdc
                     tbChat.Text = "";
                     return;
                 }
-                irc.send(tbChat.Text.Replace(Environment.NewLine, "").Trim());
-                vm.chatEntryList_Add(new ChatEntry(ChatEntry.Type.CHAT, tbChat.Text.Replace(Environment.NewLine, "").Trim(), nick,
-                    vm.viewerList_GetUserByName(nick).color, vm.viewerList_GetUserByName(nick).isMod));
+                string text = tbChat.Text.Replace(Environment.NewLine, "").Trim();
+                User u = vm.viewerList_GetUserByName(nick);
+
+                irc.send(text);
+
+                Dictionary<string, string> tags = new Dictionary<string, string>();
+                tags.Add("emotes", "");
+                tags.Add("badges", u.badges);
+
+                if (u.isMod)
+                {
+                    tags.Add("mod", "1");
+                }
+
+                vm.chatEntryList_Add( new ChatEntry(ChatEntry.Type.CHAT, text, nick, u.color, tags));
+
                 tbChat.Text = "";
             }
 
@@ -372,23 +384,6 @@ namespace tvdc
             Dispose(true);
         }
         #endregion
-
-        //private void svg4188_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        //{
-        //    if (!pollWindow.isOpen)
-        //    {
-        //        pollWindow.Show();
-        //    } else
-        //    {
-        //        if (pollWindow.WindowState == WindowState.Normal)
-        //        {
-        //            pollWindow.WindowState = WindowState.Minimized;
-        //        } else
-        //        {
-        //            pollWindow.WindowState = WindowState.Normal;
-        //        }
-        //    }
-        //}
 
         //public void setLoadingPanelVisible(bool visible)
         //{

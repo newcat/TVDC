@@ -8,10 +8,9 @@
              d:DesignHeight="300" d:DesignWidth="300" x:Name="rootElement"
              DataContext="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListViewItem}}, Path=DataContext}">
     <StackPanel Orientation="Horizontal" x:Name="mainPanel" Margin="0,5,0,5">
-        <Path Width="20" Height="20" Data="m8.82226,14.37864l2.2436,2.36018l-2.76647,0.81874l-1.49251,-1.54652l-1.18612,0l-0.46684,0.49125l0.73588,0.77363l-3.12334,3.10177l-1.38323,-1.45555l0,0l0,0l-1.38323,-1.45555l2.94767,-3.28736l0.73519,0.77362l0.46684,-0.49052l0,-1.20519l-1.55614,-1.61275l0.86452,-2.9111l2.24291,2.36017l9.25521,-11.09347l4.40905,0l0,4.63956l-10.543,9.73908z"
-              Fill="White" x:Name="pathMod" Visibility="Collapsed"/>
+        
         <TextBlock Background="Transparent" x:Name="tbUsername" FontWeight="Bold" Text="{Binding username}"
-        			Margin="5,0,5,0" Foreground="{Binding color}" VerticalAlignment="Center">
+        			Margin="5,0,5,0" Foreground="{Binding color}" VerticalAlignment="Center" Tag="username">
             <TextBlock.Style>
                 <Style TargetType="{x:Type TextBlock}">
                     <Style.Triggers>

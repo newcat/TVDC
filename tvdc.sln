@@ -1,9 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tvdc", "tvdc\tvdc.csproj", "{BD9CC7C0-3D04-42B9-BA3C-40CA4F1B78F8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pollPlugin", "pollPlugin\pollPlugin.csproj", "{8CE76121-E353-4A06-A8E6-2DF560ED2228}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "plugin", "plugin\plugin.csproj", "{B857BA90-2B28-4138-B0D2-27213281EE21}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{BD9CC7C0-3D04-42B9-BA3C-40CA4F1B78F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BD9CC7C0-3D04-42B9-BA3C-40CA4F1B78F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BD9CC7C0-3D04-42B9-BA3C-40CA4F1B78F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8CE76121-E353-4A06-A8E6-2DF560ED2228}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CE76121-E353-4A06-A8E6-2DF560ED2228}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CE76121-E353-4A06-A8E6-2DF560ED2228}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CE76121-E353-4A06-A8E6-2DF560ED2228}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B857BA90-2B28-4138-B0D2-27213281EE21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B857BA90-2B28-4138-B0D2-27213281EE21}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B857BA90-2B28-4138-B0D2-27213281EE21}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B857BA90-2B28-4138-B0D2-27213281EE21}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -29,10 +29,12 @@
             <GradientStop Offset="1" Color="#B47C0000" />
         </LinearGradientBrush>
 
+        
+        <!-- Control Templates for the chat box -->
         <ControlTemplate x:Key="Chat" TargetType='{x:Type ListViewItem}'>
             <StackPanel Background="Transparent" Orientation="Horizontal">
                 <GridViewRowPresenter Content="{TemplateBinding Content}" Columns="{TemplateBinding GridView.ColumnCollection}"/>
-                <local:ChatRow Username="{Binding username}" Data="{Binding data}" Color="{Binding color}" IsMod="{Binding isMod}" />
+                <local:ChatRow Tags="{Binding tags}"/>
             </StackPanel>
         </ControlTemplate>
 
@@ -68,6 +70,8 @@
             </StackPanel>
         </ControlTemplate>
 
+        
+        <!-- Control Templates for the viewers listbox -->
         <ControlTemplate x:Key="Mod" TargetType='{x:Type ListViewItem}'>
             <StackPanel Background="Transparent" Orientation="Horizontal">
                 <GridViewRowPresenter Content="{TemplateBinding Content}" Columns="{TemplateBinding GridView.ColumnCollection}" />
@@ -83,6 +87,8 @@
             </StackPanel>
         </ControlTemplate>
 
+        
+        <!-- Progress Bar Style -->
         <Style x:Key="{x:Type ProgressBar}" TargetType="{x:Type ProgressBar}">
             <Setter Property="Template">
                 <Setter.Value>
@@ -105,6 +111,8 @@
             </Setter>
         </Style>
 
+        
+        <!-- Scroll Bar Style -->
         <Style x:Key="{x:Type ScrollBar}" TargetType="{x:Type ScrollBar}">
             <Setter Property="OverridesDefaultStyle" Value="True" />
             <Style.Triggers>
@@ -303,6 +311,8 @@
             </Setter>
         </Style>
 
+        
+        <!-- Button Style -->
         <ControlTemplate x:Key="btn">
             <Grid x:Name="btnGrid" Background="#00000000">
                 <VisualStateManager.VisualStateGroups>
@@ -503,77 +513,7 @@
             </Button.Style>
         </Button>
 
-        <!--<Canvas Name="svg4188" Width="28" Height="28" Margin="323,120,491,256" Background="Transparent" Cursor="Hand" MouseLeftButtonDown="svg4188_MouseLeftButtonDown">
-            <Canvas.RenderTransform>
-                <RotateTransform x:Name="pollRotation" Angle="0" CenterX="14" CenterY="14" />
-            </Canvas.RenderTransform>
-            <Canvas.Resources/>
-            <Canvas Name="layer1">
-                <Canvas.RenderTransform>
-                    <TranslateTransform X="0" Y="-1024.3622"/>
-                </Canvas.RenderTransform>
-                <Ellipse xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Canvas.Left="6.9" Canvas.Top="1031.1" Width="14.3" Height="14.3" Name="path4146" Fill="White" StrokeThickness="0.06081363" Stroke="#FF000000" Opacity="1"/>
-                <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path4154" Fill="White">
-                    <Path.Data>
-                        <PathGeometry Figures="m 5.2812931 1040.9253 -3.924138 1.2399 c -2.7660015 -11.0955 5.7081875 -15.8495 9.7762519 -16.9116 l 0.836908 3.9489 c -3.2590624 0.6435 -8.7795804 4.9827 -6.6890219 11.7228 z" FillRule="evenodd"/>
-                    </Path.Data>
-                </Path>
-                <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path4156" Fill="White">
-                    <Path.Data>
-                        <PathGeometry Figures="m 15.981246 1029.2149 0.86789 -3.9675 c 3.825273 0.7078 12.611311 5.84 9.782458 16.9115 l -3.905538 -1.2273 c 1.322128 -4.9305 -0.700085 -9.9271 -6.74481 -11.7167 z" FillRule="evenodd"/>
-                    </Path.Data>
-                </Path>
-                <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path41564" Fill="White">
-                    <Path.Data>
-                        <PathGeometry Figures="m 20.775091 1044.4342 3.002043 2.7354 c -2.5257 2.9589 -11.363337 8.0017 -19.5371204 0.016 l 3.015775 -2.7686 c 3.6088594 3.6103 8.9470614 4.3573 13.5193024 0.017 z" FillRule="evenodd"/>
-                    </Path.Data>
-                </Path>
-            </Canvas>
-            <Canvas.Triggers>
-                <EventTrigger RoutedEvent="UIElement.MouseEnter">
-                    <BeginStoryboard>
-                        <Storyboard>
-                            <DoubleAnimation Storyboard.TargetName="pollRotation" Storyboard.TargetProperty="Angle"
-								From="0"
-								To="120" RepeatBehavior="Forever" SpeedRatio="2" />
-                        </Storyboard>
-                    </BeginStoryboard>
-                </EventTrigger>
-                <EventTrigger RoutedEvent="UIElement.MouseLeave">
-                    <BeginStoryboard>
-                        <Storyboard>
-                            <DoubleAnimation Storyboard.TargetName="pollRotation" Storyboard.TargetProperty="Angle"
-								To="0" SpeedRatio="2" DecelerationRatio="0.9" />
-                        </Storyboard>
-                    </BeginStoryboard>
-                </EventTrigger>
-            </Canvas.Triggers>
-        </Canvas>-->
-
         <local:FNFGraph x:Name="fnfgraph" userlist="{Binding viewerList}" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,25,5,0" Width="140"/>
-
-        <!--<ed:Arc x:Name="arcUnknown" ArcThickness="1" ArcThicknessUnit="Percent"
-                EndAngle="360" HorizontalAlignment="Right" Height="100" Margin="0,25,25,0"
-                Stretch="None" Stroke="White" StrokeThickness="0" StartAngle="240"
-                VerticalAlignment="Top" Width="100" Fill="Gray" />
-
-        <ed:Arc x:Name="arcNonfollower" ArcThickness="1" ArcThicknessUnit="Percent" EndAngle="240" HorizontalAlignment="Right" Height="100" Margin="0,25,25,0" Stretch="None" Stroke="White" StrokeThickness="1" StartAngle="120" VerticalAlignment="Top" Width="100">
-            <ed:Arc.Fill>
-                <RadialGradientBrush GradientOrigin="0.5,0.5" Center="0.5,0.5">
-                    <GradientStop Color="#CC6666" Offset="0" />
-                    <GradientStop Color="#AA0000" Offset="1.0" />
-                </RadialGradientBrush>
-            </ed:Arc.Fill>
-        </ed:Arc>
-
-        <ed:Arc x:Name="arcFollower" ArcThickness="1" ArcThicknessUnit="Percent" EndAngle="120" HorizontalAlignment="Right" Height="100" Margin="0,25,25,0" Stretch="None" Stroke="White" StrokeThickness="1" StartAngle="0" VerticalAlignment="Top" Width="100">
-            <ed:Arc.Fill>
-                <RadialGradientBrush GradientOrigin="0.5,0.5" Center="0.5,0.5">
-                    <GradientStop Color="#66CC66" Offset="0" />
-                    <GradientStop Color="#00AA00" Offset="1.0" />
-                </RadialGradientBrush>
-            </ed:Arc.Fill>
-        </ed:Arc>-->
 
     </Grid>
 </Window>

@@ -15,13 +15,13 @@ namespace tvdc
         /// <summary>
         /// The icon that will be displayed in the bar with all the plugin icons (right of the settings icon).
         /// </summary>
-        /// <returns>The image to be drawn.</returns>
+        /// <returns>The image to be drawn (Size 28x28)</returns>
         Image getMenuIcon();
 
         /// <summary>
         /// The icon that will be displayed if the user hovers over the menu icon.
         /// </summary>
-        /// <returns>The image to be drawn.</returns>
+        /// <returns>The image to be drawn (Size 28x28)</returns>
         Image getMenuIconHover();
 
         void IconClicked();

@@ -88,9 +88,8 @@
     </ApplicationDefinition>
     <Compile Include="Models\ChatEntry.cs" />
     <Compile Include="Models\Emoticon.cs" />
-    <Compile Include="SendMessageEventArgs.cs" />
+    <Compile Include="Static Stuff\Badges.cs" />
     <Compile Include="Static Stuff\EmoticonManager.cs" />
-    <Compile Include="IPlugin.cs" />
     <Compile Include="UserControls\FNFGraph.xaml.cs">
       <DependentUpon>FNFGraph.xaml</DependentUpon>
     </Compile>
@@ -186,7 +185,9 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="FodyWeavers.xml" />
+    <Resource Include="FodyWeavers.xml">
+      <SubType>Designer</SubType>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Twitch-tv-logo.ico" />
@@ -202,6 +203,27 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\admin-alpha.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\broadcaster-alpha.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\globalmod-alpha.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mod-alpha.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\staff-alpha.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\turbo-alpha.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\admin_alpha.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Fody.1.28.3\build\Fody.targets" Condition="Exists('..\packages\Fody.1.28.3\build\Fody.targets')" />

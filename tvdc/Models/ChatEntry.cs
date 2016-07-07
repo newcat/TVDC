@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Collections.Generic;
 
 namespace tvdc
 {
@@ -10,8 +11,7 @@ namespace tvdc
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
         {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         public enum Type
@@ -33,13 +33,13 @@ namespace tvdc
             }
         }
 
-        private IRCClient.PrivmsgReceivedEventArgs _data;
-        public IRCClient.PrivmsgReceivedEventArgs data
+        private Dictionary<string, string> _tags;
+        public Dictionary<string, string> tags
         {
-            get { return _data; }
+            get { return _tags; }
             set
             {
-                _data = value;
+                _tags = value;
                 NotifyPropertyChanged();
             }
         }
@@ -48,15 +48,26 @@ namespace tvdc
         public bool isMod { get; set; }
         public Guid eventID { get; }
 
-        public ChatEntry(Type eventType, string text, string username = "", string color = "", bool isMod = false, IRCClient.PrivmsgReceivedEventArgs data = null)
+        /// <summary>
+        /// Creates a new chat entry in the chat listbox
+        /// </summary>
+        /// <param name="eventType">Determines the control template.</param>
+        /// <param name="text">Can be an empty string if type is 'CHAT'</param>
+        /// <param name="username">Only needed for types 'JOIN', 'PART' or 'CHAT'</param>
+        /// <param name="color">Color of the username when type is 'CHAT'</param>
+        /// <param name="tags"></param>
+        public ChatEntry(Type eventType, string text, string username = "", string color = "", Dictionary<string, string> tags = null)
         {
             eventID = Guid.NewGuid();
             this.eventType = eventType;
             this.text = text;
             this.username = username;
             this.color = color;
-            this.isMod = isMod;
-            this.data = data;
+            this.tags = tags;
+
+            if (this.eventType == Type.CHAT)
+                this.tags.Add("text", this.text);
+
         }
 
     }

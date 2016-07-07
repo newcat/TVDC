@@ -125,15 +125,13 @@ namespace tvdc
                 await tcpClient.ConnectAsync(ip, port);
             } catch (SocketException)
             {
-                if (ConnectionError != null)
-                    ConnectionError(this, new EventArgs());
+                ConnectionError?.Invoke(this, new EventArgs());
                 return;
             }
 
             if (tcpClient.Connected)
             {
-                if (Connected != null)
-                    Connected(this, new EventArgs());
+                Connected?.Invoke(this, new EventArgs());
 
                 tcpStream = tcpClient.GetStream();
                 tcpWriter = new StreamWriter(tcpStream);
@@ -142,8 +140,7 @@ namespace tvdc
                 receiveThread.Start();
             } else
             {
-                if (ConnectionError != null)
-                    ConnectionError(this, new EventArgs());
+                ConnectionError?.Invoke(this, new EventArgs());
             }
 
             rawSend(string.Format("PASS {0}", oauth));
@@ -168,8 +165,7 @@ namespace tvdc
             {
                 tcpWriter.WriteLine(msg);
                 tcpWriter.Flush();
-                if (MessageSent != null)
-                    MessageSent(this, new MsgReceivedEventArgs() { message = msg });
+                MessageSent?.Invoke(this, new MsgReceivedEventArgs() { message = msg });
             }
         }
 
@@ -190,8 +186,7 @@ namespace tvdc
                 if (receivedMessage == null)
                     break;
 
-                if (MessageReceived != null)
-                    MessageReceived(this, new MsgReceivedEventArgs() { message = receivedMessage });
+                MessageReceived?.Invoke(this, new MsgReceivedEventArgs() { message = receivedMessage });
 
                 IRCMessage parsedMessage = IRCMessage.FromMessage(receivedMessage);
 
@@ -203,8 +198,7 @@ namespace tvdc
 
                     case IRC_Commands.NOTICE: //:tmi.twitch.tv NOTICE * :Error logging in
                         if (string.Join(" ", parsedMessage.command_params[1], parsedMessage.command_params[2], parsedMessage.command_params[3]).Equals(":Error logging in")) {
-                            if (ConnectionError != null)
-                                ConnectionError(this, new EventArgs());
+                            ConnectionError?.Invoke(this, new EventArgs());
                         } else
                         {
                             string Nmessage = parsedMessage.command_params[1].Substring(1) + " ";
@@ -212,23 +206,20 @@ namespace tvdc
                             {
                                 Nmessage += parsedMessage.command_params[i] + " ";
                             }
-                            if (Notice != null)
-                                Notice(this, new MsgReceivedEventArgs() { message = Nmessage.TrimEnd(' '), tags = parsedMessage.tags });
+                            Notice?.Invoke(this, new MsgReceivedEventArgs() { message = Nmessage.TrimEnd(' '), tags = parsedMessage.tags });
                         }
                         break;
 
                     case IRC_Commands.RPL_NAMREPLY:
                         for (int i = 3; i < parsedMessage.command_params.Length; i++)
                         {
-                            if (Join != null)
-                                Join(this, new JoinPartEventArgs() { username = parsedMessage.command_params[i].TrimStart(':') });
+                            Join?.Invoke(this, new JoinPartEventArgs() { username = parsedMessage.command_params[i].TrimStart(':') });
                         }
                         break;
 
                     case IRC_Commands.RPL_ENDOFNAMES:
                         initialized = true;
-                        if (InitCompleted != null)
-                            InitCompleted(this, new EventArgs());
+                        InitCompleted?.Invoke(this, new EventArgs());
                         break;
 
                     case IRC_Commands.RPL_ENDOFMOTD:
@@ -239,13 +230,11 @@ namespace tvdc
                         break;
 
                     case IRC_Commands.JOIN:
-                        if (Join != null)
-                            Join(this, new JoinPartEventArgs() { username = parsedMessage.prefix.Split('!')[0].TrimStart(':') });
+                        Join?.Invoke(this, new JoinPartEventArgs() { username = parsedMessage.prefix.Split('!')[0].TrimStart(':') });
                         break;
 
                     case IRC_Commands.PART:
-                        if (Part != null)
-                            Part(this, new JoinPartEventArgs() { username = parsedMessage.prefix.Split('!')[0].TrimStart(':') });
+                        Part?.Invoke(this, new JoinPartEventArgs() { username = parsedMessage.prefix.Split('!')[0].TrimStart(':') });
                         break;
 
                     case IRC_Commands.MODE:
@@ -254,19 +243,16 @@ namespace tvdc
                         {
                             isMod = true;
                         }
-                        if (ModeChanged != null)
-                            ModeChanged(this, new ModeChangedEventArgs() { username = parsedMessage.command_params[2], isMod = isMod });
+                        ModeChanged?.Invoke(this, new ModeChangedEventArgs() { username = parsedMessage.command_params[2], isMod = isMod });
                         break;
 
                     case IRC_Commands.CLEARCHAT:
                         if (parsedMessage.command_params.Length == 2)
                         {
-                            if (Clearchat != null)
-                                Clearchat(this, new JoinPartEventArgs() { username = parsedMessage.command_params[1].TrimStart(':') });
+                            Clearchat?.Invoke(this, new JoinPartEventArgs() { username = parsedMessage.command_params[1].TrimStart(':') });
                         } else
                         {
-                            if (Clearchat != null)
-                                Clearchat(this, new JoinPartEventArgs());
+                            Clearchat?.Invoke(this, new JoinPartEventArgs());
                         }
                         break;
 
@@ -301,8 +287,7 @@ namespace tvdc
                             message += parsedMessage.command_params[i] + " ";
                         }
 
-                        if (PrivmsgReceived != null)
-                            PrivmsgReceived(this, new PrivmsgReceivedEventArgs() { tags = parsedMessage.tags, username = username, message = message });
+                        PrivmsgReceived?.Invoke(this, new PrivmsgReceivedEventArgs() { tags = parsedMessage.tags, username = username, message = message });
                         break;
 
                     case IRC_Commands.ROOMSTATE:
@@ -310,8 +295,7 @@ namespace tvdc
                         break;
 
                     case IRC_Commands.USERSTATE:
-                        if (Userstate != null)
-                            Userstate(this, new UserstateEventArgs() { tags = parsedMessage.tags });
+                        Userstate?.Invoke(this, new UserstateEventArgs() { tags = parsedMessage.tags });
                         break;
 
                 }

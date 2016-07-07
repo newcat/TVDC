@@ -83,6 +83,8 @@ namespace tvdc
 
         public bool updating { get; private set; }
 
+        public string badges { get; set; }
+
         public User(string name, bool isMod)
         {
             lock (MainWindowVM.viewerListLock)

@@ -459,12 +459,5 @@ namespace tvdc
             InfoEllipse.BeginAnimation(OpacityProperty, fadeOut);
         }
 
-        public void clearStops()
-        {
-
-            viewerHistory.Clear();
-
-        }
-
     }
 }

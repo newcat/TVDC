@@ -61,11 +61,71 @@ namespace tvdc.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap admin_alpha {
+            get {
+                object obj = ResourceManager.GetObject("admin_alpha", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap broadcaster_alpha {
+            get {
+                object obj = ResourceManager.GetObject("broadcaster_alpha", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 3rxdy8dzlvpysys8fjfle0qqab77aqq.
         /// </summary>
         internal static string client_id {
             get {
                 return ResourceManager.GetString("client_id", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap globalmod_alpha {
+            get {
+                object obj = ResourceManager.GetObject("globalmod_alpha", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap mod_alpha {
+            get {
+                object obj = ResourceManager.GetObject("mod_alpha", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap staff_alpha {
+            get {
+                object obj = ResourceManager.GetObject("staff_alpha", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap turbo_alpha {
+            get {
+                object obj = ResourceManager.GetObject("turbo_alpha", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
     }

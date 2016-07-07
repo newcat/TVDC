@@ -30,18 +30,11 @@ namespace tvdc
             set { SetValue(ColorProperty, value); }
         }
 
-        public static readonly DependencyProperty IsModProperty = DependencyProperty.Register("IsMod", typeof(bool), typeof(ChatRow));
-        public bool IsMod
+        public static readonly DependencyProperty TagsProperty = DependencyProperty.Register("Tags", typeof(Dictionary<string, string>), typeof(ChatRow));
+        public Dictionary<string, string> Tags
         {
-            get { return (bool)GetValue(IsModProperty); }
-            set { SetValue(IsModProperty, value); }
-        }
-
-        public static readonly DependencyProperty DataProperty = DependencyProperty.Register("Data", typeof(IRCClient.PrivmsgReceivedEventArgs), typeof(ChatRow));
-        public IRCClient.PrivmsgReceivedEventArgs Data
-        {
-            get { return (IRCClient.PrivmsgReceivedEventArgs)GetValue(DataProperty); }
-            set { SetValue(DataProperty, value); }
+            get { return (Dictionary<string, string>)GetValue(TagsProperty); }
+            set { SetValue(TagsProperty, value); }
         }
 
         private List<Image> images = new List<Image>();
@@ -50,24 +43,63 @@ namespace tvdc
         {
             InitializeComponent();
 
-            DependencyPropertyDescriptor isModDesc = DependencyPropertyDescriptor.FromProperty(IsModProperty, typeof(ChatRow));
-            isModDesc.AddValueChanged(this, new EventHandler((object sender, EventArgs e) => updateMod()));
-
-            DependencyPropertyDescriptor textDesc = DependencyPropertyDescriptor.FromProperty(DataProperty, typeof(ChatRow));
-            textDesc.AddValueChanged(this, new EventHandler((object sender, EventArgs e) => updateText()));
+            DependencyPropertyDescriptor tagsDesc = DependencyPropertyDescriptor.FromProperty(TagsProperty, typeof(ChatRow));
+            tagsDesc.AddValueChanged(this, new EventHandler((object sender, EventArgs e) => updateData()));
         }
 
-        private void updateText()
+        private void updateData()
         {
 
-            if (mainPanel.Children.Count > 2)
-                mainPanel.Children.RemoveRange(2, mainPanel.Children.Count - 1);
+            if (Tags.ContainsKey("message_deleted"))
+            {
+                clearText();
+                return;
+            }
+
+            if ((Tags.ContainsKey("badges") && Tags["badges"] != null && Tags["badges"].Contains("moderator")) ||
+                (Tags.ContainsKey("mod") && Tags["mod"] != null && Tags["mod"] == "1"))
+            {
+                addBadge(Badges.moderator);
+            }
+
+            if (((Tags.ContainsKey("badges") && Tags["badges"] != null && Tags["badges"].Contains("subscriber")) ||
+                (Tags.ContainsKey("subscriber") && Tags["subscriber"] != null && Tags["subscriber"] == "1")) &&
+                Badges.hasSubscriberBadge)
+            {
+                addBadge(Badges.subscriber);
+            }
+
+            if ((Tags.ContainsKey("badges") && Tags["badges"] != null && Tags["badges"].Contains("turbo")) ||
+                (Tags.ContainsKey("turbo") && Tags["turbo"] != null && Tags["turbo"] == "1"))
+            {
+                addBadge(Badges.turbo);
+            }
+
+            if (Tags.ContainsKey("badges") && Tags["badges"] != null && Tags["badges"].Contains("staff"))
+            {
+                addBadge(Badges.staff);
+            }
+
+            if (Tags.ContainsKey("badges") && Tags["badges"] != null && Tags["badges"].Contains("admin"))
+            {
+                addBadge(Badges.admin);
+            }
+
+            if (Tags.ContainsKey("badges") && Tags["badges"] != null && Tags["badges"].Contains("broadcaster"))
+            {
+                addBadge(Badges.broadcaster);
+            }
+
+            if (Tags.ContainsKey("badges") && Tags["badges"] != null && Tags["badges"].Contains("global_mod"))
+            {
+                addBadge(Badges.global_mod);
+            }
 
             //Split the text into not emoticon parts
             //Therefore we first need to parse the emoticons
             ArrayList paragraphs = new ArrayList();
             List<EmoticonPosition> positions = new List<EmoticonPosition>();
-            string emoticons = Data.tags["emotes"];
+            string emoticons = Tags["emotes"];
 
             if (emoticons.Length > 0)
             {
@@ -122,14 +154,14 @@ namespace tvdc
                 foreach (EmoticonPosition ep in positions)
                 {
                     if (i != ep.startIndex)
-                        paragraphs.Add(Data.message.Substring(i, ep.startIndex - i));
+                        paragraphs.Add(Tags["text"].Substring(i, ep.startIndex - i));
                     paragraphs.Add(ep.emoteID);
-                    i = ep.endIndex;
+                    i = ep.endIndex + 1;
                 }
 
             } else
             {
-                paragraphs.Add(Data.message);
+                paragraphs.Add(Tags["text"]);
             }
 
             foreach (object p in paragraphs)
@@ -202,6 +234,19 @@ namespace tvdc
 
         }
 
+        private void addBadge(BitmapImage b)
+        {
+            Image i = new Image();
+            i.Source = b;
+            i.Width = 18;  //not using b.Width / b.Heigh because the alpha images
+            i.Height = 18; //might have different dimensions
+            i.VerticalAlignment = VerticalAlignment.Center;
+            i.SnapsToDevicePixels = true;
+            i.Margin = new Thickness(5, 0, 0, 0);
+            i.Tag = "Badge";
+            mainPanel.Children.Insert(0, i);
+        }
+
         private void E_ImageDownloadFinished(object sender, EventArgs e)
         {
 
@@ -215,17 +260,6 @@ namespace tvdc
                 }
             }
 
-        }
-
-        private void updateMod()
-        {
-            if (IsMod)
-            {
-                pathMod.Visibility = Visibility.Visible;
-            } else
-            {
-                pathMod.Visibility = Visibility.Collapsed;
-            }
         }
 
         private bool isUrl(string s)
@@ -251,6 +285,31 @@ namespace tvdc
             b.UriSource = new Uri(e.image);
             b.EndInit();
             i.Source = b;
+        }
+
+        private void clearText()
+        {
+
+            List<UIElement> removeList = new List<UIElement>();
+
+            foreach (UIElement uie in mainPanel.Children)
+            {
+                if (uie is TextBlock && (string)((TextBlock)uie).Tag != "username")
+                    removeList.Add(uie);
+                if (uie is Image && (string)((Image)uie).Tag != "Badge")
+                    removeList.Add(uie);
+            }
+
+            foreach (UIElement r in removeList)
+            {
+                mainPanel.Children.Remove(r);
+            }
+
+            TextBlock tb = new TextBlock();
+            tb.Text = "<message deleted>";
+            tb.VerticalAlignment = VerticalAlignment.Center;
+            mainPanel.Children.Add(tb);
+
         }
 
         private class Paragraph
