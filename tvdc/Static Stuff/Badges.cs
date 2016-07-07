@@ -59,23 +59,43 @@ namespace tvdc
 
         }
 
-        public static async Task downloadSubBadge(string channel)
+        public static async Task<bool> downloadSubBadge(string channel)
         {
             WebClient wc = new WebClient();
             wc.Headers.Add("Client-ID", Properties.Resources.client_id);
 
-            string json = await wc.DownloadStringTaskAsync(string.Format("https://api.twitch.tv/kraken/chat/{0}/badges", channel));
+            string json;
+
+            try
+            {
+                json = await wc.DownloadStringTaskAsync(string.Format("https://api.twitch.tv/kraken/chat/{0}/badges", channel));
+            } catch (WebException)
+            {
+                hasSubscriberBadge = false;
+                return false;
+            }
+
             JObject mainJO = JObject.Parse(json);
 
             if (!mainJO["subscriber"].HasValues)
             {
                 hasSubscriberBadge = false;
-                return;
+                return true;
             }
 
             string subBadgeURL = (string)mainJO["subscriber"]["image"];
 
-            byte[] imgData = await wc.DownloadDataTaskAsync(subBadgeURL);
+            byte[] imgData;
+
+            try
+            {
+                imgData = await wc.DownloadDataTaskAsync(subBadgeURL);
+            } catch (WebException)
+            {
+                hasSubscriberBadge = false;
+                return false;
+            }
+
             MemoryStream ms = new MemoryStream(imgData);
             ms.Position = 0;
 
@@ -88,6 +108,7 @@ namespace tvdc
             imgData = null;
 
             hasSubscriberBadge = true;
+            return true;
         }
 
     }

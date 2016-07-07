@@ -81,8 +81,10 @@ namespace tvdc
             EmoticonManager.initialize();
 
             //Load badges and download sub badge
+            vm.chatEntryList.Add(new ChatEntry(ChatEntry.Type.IRC, "Initializing..."));
             Badges.init();
-            await Badges.downloadSubBadge(channel);
+            if (!await Badges.downloadSubBadge(channel))
+                vm.chatEntryList.Add(new ChatEntry(ChatEntry.Type.ERROR, "Failed to download subscriber badge."));
 
             //Connect to IRC
             vm.chatEntryList.Add(new ChatEntry(ChatEntry.Type.IRC, "Connecting to IRC..."));
@@ -129,9 +131,6 @@ namespace tvdc
             } catch (WebException ex)
             {
                 vm.chatEntryList_Add(new ChatEntry(ChatEntry.Type.ERROR, "Error while trying to update follower count: " + ex.Message));
-                return;
-            } catch (Exception)
-            {
                 return;
             }
 
