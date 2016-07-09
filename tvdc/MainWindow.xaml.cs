@@ -76,6 +76,7 @@ namespace tvdc
             fnfgraph.userlist = vm.viewerList;
 
             vm.chatEntryList.CollectionChanged += ChatEntryList_CollectionChanged;
+            vm.enableSorting = false;
 
             //Init emoticons
             EmoticonManager.initialize();
@@ -100,6 +101,7 @@ namespace tvdc
             irc.PrivmsgReceived += IRC_PrivmsgReceived;
             irc.Userstate += IRC_Userstate;
             irc.Clearchat += IRC_Clearchat;
+            irc.InitCompleted += Irc_InitCompleted;
 
             //Connect
             irc.connect();
@@ -190,11 +192,8 @@ namespace tvdc
             if (e.tags.ContainsKey("display-name") && e.tags["display-name"] != null && e.tags["display-name"] != "")
                 u.displayName = e.tags["display-name"];
 
-            if (e.tags.ContainsKey("user-type") && e.tags["user-type"] != null && e.tags["user-type"] != "")
-                u.isMod = true;
-
             if (e.tags.ContainsKey("badges") && e.tags["badges"] != null)
-                u.badges = e.tags["badges"];
+                u.setBadges(Badges.parseBadgeString(e.tags["badges"]));
 
         }
 
@@ -210,11 +209,32 @@ namespace tvdc
             }
 
             vm.chatEntryList_Add(new ChatEntry(ChatEntry.Type.CHAT, e.message, e.username, color, e.tags));
+
+            User u = null;
+            vm.viewerList_GetUserInstanceByName(e.username, out u);
+
+            if (u == null || !e.tags.ContainsKey("badges") || e.tags["badges"] == null)
+                return;
+
+            u.setBadges(Badges.parseBadgeString(e.tags["badges"]));
         }
 
         private void IRC_ModeChanged(object sender, IRCClient.ModeChangedEventArgs e)
         {
-            vm.viewerList_SetMod(e.username, e.isMod);
+            User u;
+            vm.viewerList_GetUserInstanceByName(e.username, out u);
+
+            if (u == null)
+                return;
+
+            if (e.isMod)
+            {
+                u.addBadge(Badges.BadgeTypes.MODERATOR);
+            } else
+            {
+                u.TryRemoveBadge(Badges.BadgeTypes.MODERATOR);
+            }
+
         }
 
         private void IRC_Part(object sender, IRCClient.JoinPartEventArgs e)
@@ -229,7 +249,7 @@ namespace tvdc
         private void IRC_Join(object sender, IRCClient.JoinPartEventArgs e)
         {
             if (!vm.viewerList_ContainsName(e.username))
-                vm.viewerList_Add(new User(e.username, false));
+                vm.viewerList_Add(new User(e.username));
 
             if (showJoinLeave && irc.initialized)
                 vm.chatEntryList_Add(new ChatEntry(ChatEntry.Type.JOIN, "joined", e.username));
@@ -253,6 +273,12 @@ namespace tvdc
                 vm.chatEntryList_Add(new ChatEntry(ChatEntry.Type.IRC, ">" + e.message));
         }
 
+        private void Irc_InitCompleted(object sender, EventArgs e)
+        {
+            vm.enableSorting = true;
+            vm.viewerList_Sort();
+        }
+
         private async void ViewerGraphTimer_Elapsed(object sender, ElapsedEventArgs e)
         {
             await ViewerGraph.addStop(vm.viewerCount);
@@ -261,7 +287,7 @@ namespace tvdc
 
         private void ChatEntryList_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            if (vm.chatEntryList.Count > 0)
+            if (vm.chatEntryList.Count > 0 && cbAutoscroll.IsChecked == true)
                 eventList.ScrollIntoView(vm.chatEntryList.Last());
         }
 
@@ -345,12 +371,12 @@ namespace tvdc
 
                 Dictionary<string, string> tags = new Dictionary<string, string>();
                 tags.Add("emotes", "");
-                tags.Add("badges", u.badges);
+                tags.Add("badges", Badges.badgeListToString(u.badges));
 
-                if (u.isMod)
-                {
-                    tags.Add("mod", "1");
-                }
+                //if (u.isMod)
+                //{
+                //    tags.Add("mod", "1");
+                //}
 
                 vm.chatEntryList_Add( new ChatEntry(ChatEntry.Type.CHAT, text, nick, u.color, tags));
 

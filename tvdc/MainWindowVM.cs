@@ -13,8 +13,7 @@ namespace tvdc
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
         {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
 
@@ -73,18 +72,45 @@ namespace tvdc
         public ObservableCollection<User> viewerList = new ObservableCollection<User>();
         public ObservableCollection<ChatEntry> chatEntryList = new ObservableCollection<ChatEntry>();
 
+        public bool enableSorting { get; set; }
+
         public static object viewerListLock = new object();
         private object chatListLock = new object();
 
         public MainWindowVM()
         {
             viewerList.CollectionChanged += ViewerList_CollectionChanged;
+            enableSorting = false;
         }
 
         private void ViewerList_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs("viewerCount"));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("viewerCount"));
+
+            if (e.NewItems != null)
+            {
+                foreach (User u in e.NewItems)
+                {
+                    if (!u.subscribedToBadgeChangedEvent)
+                    {
+                        u.BadgeChanged += U_BadgeChanged;
+                        u.subscribedToBadgeChangedEvent = true;
+                    }
+                }
+            }
+
+        }
+
+        private void U_BadgeChanged(object sender, EventArgs e)
+        {
+            lock (viewerListLock)
+            {
+                System.Windows.Application.Current.Dispatcher.Invoke(delegate ()
+                {
+                    if (enableSorting)
+                        viewerList.Sort();
+                });
+            }
         }
 
         public void chatEntryList_Add(ChatEntry ce)
@@ -149,7 +175,13 @@ namespace tvdc
             {
                 System.Windows.Application.Current.Dispatcher.Invoke(delegate ()
                 {
-                    viewerList.Add(u);
+                    if (enableSorting)
+                    {
+                        viewerList.AddSorted(u);
+                    } else
+                    {
+                        viewerList.Add(u);
+                    }
                 });
             }
         }
@@ -197,30 +229,14 @@ namespace tvdc
                 {
                     if (u.name == name || u.displayName == name)
                     {
-                        viewerList_Remove(u);
+                        System.Windows.Application.Current.Dispatcher.Invoke(delegate ()
+                        {
+                            viewerList.Remove(u);
+                        });
                         return true;
                     }
                 }
                 return false;
-            }
-        }
-
-        public void viewerList_SetMod(string name, bool isMod)
-        {
-            lock (viewerListLock)
-            {
-                foreach (User u in viewerList)
-                {
-                    if (u.name == name || u.displayName == name)
-                    {
-                        System.Windows.Application.Current.Dispatcher.Invoke(delegate ()
-                        {
-                            u.isMod = isMod;
-                            viewerList.Move(viewerList.IndexOf(u), 0);
-                        });
-                        return;
-                    }
-                }
             }
         }
 
@@ -249,6 +265,18 @@ namespace tvdc
 
             user = null;
 
+        }
+
+        public void viewerList_Sort()
+        {
+            lock (viewerListLock)
+            {
+
+                System.Windows.Application.Current.Dispatcher.Invoke(delegate ()
+                {
+                    viewerList.Sort();
+                });
+            }
         }
 
         #region IDisposable Support

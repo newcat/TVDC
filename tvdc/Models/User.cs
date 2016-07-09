@@ -5,16 +5,16 @@ using System.Runtime.CompilerServices;
 using System.Net;
 using System.Web.Script.Serialization;
 using System.Windows;
+using System.Linq;
 
 namespace tvdc
 {
-    public class User : INotifyPropertyChanged
+    public class User : INotifyPropertyChanged, IComparable<User>, IEquatable<User>
     {
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
         {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         private string _color;
@@ -35,17 +35,6 @@ namespace tvdc
             set
             {
                 _name = value;
-                NotifyPropertyChanged();
-            }
-        }
-
-        private bool _isMod;
-        public bool isMod
-        {
-            get { return _isMod; }
-            set
-            {
-                _isMod = value;
                 NotifyPropertyChanged();
             }
         }
@@ -83,20 +72,97 @@ namespace tvdc
 
         public bool updating { get; private set; }
 
-        public string badges { get; set; }
+        private List<Badges.BadgeTypes> _badges;
+        public List<Badges.BadgeTypes> badges
+        {
+            get { return _badges; }
+            set
+            {
+                _badges = value;
+                NotifyPropertyChanged();
+            }
+        }
+        public int badgeLevel { get; private set; }
 
-        public User(string name, bool isMod)
+        public delegate void BadgeChangedHandler(object sender, EventArgs e);
+        public event BadgeChangedHandler BadgeChanged;
+        public bool subscribedToBadgeChangedEvent { get; set; }
+
+        public User(string name, List<Badges.BadgeTypes> badges = null)
         {
             lock (MainWindowVM.viewerListLock)
             {
                 _name = name;
-                _isMod = isMod;
                 updating = true;
                 color = TwitchColors.getColorByUsername(name);
+
+                if (badges != null)
+                {
+                    this.badges = badges;
+                    badgeLevel = getBadgeLevel();
+                } else
+                {
+                    this.badges = new List<Badges.BadgeTypes>();
+                    badgeLevel = 0;
+                }
             }
 
             if (!name.Equals("404"))
                 getDisplayName();
+        }
+
+        public void addBadge(Badges.BadgeTypes badge)
+        {
+            lock (MainWindowVM.viewerListLock)
+            {
+                if (!badges.Contains(badge))
+                {
+                    badges.Add(badge);
+                    badgeLevel = getBadgeLevel();
+                    BadgeChanged?.Invoke(this, new EventArgs());
+                }
+            }
+        }
+
+        public void setBadges(List<Badges.BadgeTypes> badges)
+        {
+            lock (MainWindowVM.viewerListLock)
+            {
+                if (!equalBadges(badges))
+                {
+                    this.badges = badges;
+                    badgeLevel = getBadgeLevel();
+                    BadgeChanged?.Invoke(this, new EventArgs());
+                }
+            }
+        }
+
+        private bool equalBadges(List<Badges.BadgeTypes> badges)
+        {
+            if (this.badges.Count != badges.Count)
+                return false;
+
+            foreach (Badges.BadgeTypes b in this.badges)
+            {
+                if (!badges.Contains(b))
+                    return false;
+            }
+
+            return true;
+        }
+
+        public void TryRemoveBadge(Badges.BadgeTypes b)
+        {
+            lock (MainWindowVM.viewerListLock)
+            {
+                bool success = badges.Remove(b);
+
+                if (success)
+                {
+                    badgeLevel = getBadgeLevel();
+                    BadgeChanged?.Invoke(this, new EventArgs());
+                }
+            }
         }
 
         private async void getDisplayName()
@@ -166,5 +232,55 @@ namespace tvdc
 
         }
 
+        private int getBadgeLevel()
+        {
+
+            int badgeLevel = 0;
+
+            if (badges.Contains(Badges.BadgeTypes.SUBSCRIBER))
+                badgeLevel = 1;
+
+            if (badges.Contains(Badges.BadgeTypes.TURBO))
+                badgeLevel = 2;
+
+            if (badges.Contains(Badges.BadgeTypes.MODERATOR))
+                badgeLevel = 3;
+
+            if (badges.Contains(Badges.BadgeTypes.BROADCASTER))
+                badgeLevel = 4;
+
+            if (badges.Contains(Badges.BadgeTypes.GlOBAL_MOD))
+                badgeLevel = 5;
+
+            if (badges.Contains(Badges.BadgeTypes.ADMIN))
+                badgeLevel = 6;
+
+            if (badges.Contains(Badges.BadgeTypes.STAFF))
+                badgeLevel = 7;
+
+            return badgeLevel;
+
+        }
+
+        public int CompareTo(User other)
+        {
+  
+            if (badgeLevel < other.badgeLevel)
+            {
+                return 1;
+            } else if (badgeLevel == other.badgeLevel)
+            {
+                return name.CompareTo(other.name);
+            } else
+            {
+                return -1;
+            }
+
+        }
+
+        public bool Equals(User other)
+        {
+            return name == other.name;
+        }
     }
 }

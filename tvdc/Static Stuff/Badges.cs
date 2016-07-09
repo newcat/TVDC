@@ -12,20 +12,25 @@ using Newtonsoft.Json.Linq;
 
 namespace tvdc
 {
-    class Badges
+    public class Badges
     {
 
         private static bool loaded = false;
 
         public static bool hasSubscriberBadge { get; private set; }
         
-        public static BitmapImage staff;
-        public static BitmapImage admin;
-        public static BitmapImage global_mod;
-        public static BitmapImage moderator;
-        public static BitmapImage subscriber;
-        public static BitmapImage turbo;
-        public static BitmapImage broadcaster;
+        public static BitmapImage staff { get; private set; }
+        public static BitmapImage admin { get; private set; }
+        public static BitmapImage global_mod { get; private set; }
+        public static BitmapImage moderator { get; private set; }
+        public static BitmapImage subscriber { get; private set; }
+        public static BitmapImage turbo { get; private set; }
+        public static BitmapImage broadcaster { get; private set; }
+
+        public enum BadgeTypes
+        {
+            SUBSCRIBER, TURBO, MODERATOR, BROADCASTER, GlOBAL_MOD, ADMIN, STAFF
+        }
 
         public static void init()
         {
@@ -109,6 +114,48 @@ namespace tvdc
 
             hasSubscriberBadge = true;
             return true;
+        }
+
+        public static string badgeListToString(List<BadgeTypes> badges)
+        {
+            string returnString = "";
+
+            foreach (BadgeTypes b in badges)
+            {
+                returnString += Enum.GetName(typeof(BadgeTypes), b).ToLower();
+            }
+
+            return returnString;
+        }
+
+        public static List<BadgeTypes> parseBadgeString(string bs)
+        {
+
+            List<BadgeTypes> returnList = new List<BadgeTypes>();
+
+            if (bs.Contains("moderator"))
+                returnList.Add(BadgeTypes.MODERATOR);
+
+            if (bs.Contains("subscriber"))
+                returnList.Add(BadgeTypes.SUBSCRIBER);
+
+            if (bs.Contains("turbo"))
+                returnList.Add(BadgeTypes.TURBO);
+
+            if (bs.Contains("staff"))
+                returnList.Add(BadgeTypes.STAFF);
+
+            if (bs.Contains("admin"))
+                returnList.Add(BadgeTypes.ADMIN);
+
+            if (bs.Contains("broadcaster"))
+                returnList.Add(BadgeTypes.BROADCASTER);
+
+            if (bs.Contains("global_mod"))
+                returnList.Add(BadgeTypes.GlOBAL_MOD);
+
+            return returnList;
+
         }
 
     }

@@ -86,6 +86,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Static Stuff\Extensions.cs" />
     <Compile Include="Models\ChatEntry.cs" />
     <Compile Include="Models\Emoticon.cs" />
     <Compile Include="Static Stuff\Badges.cs" />
@@ -105,6 +106,9 @@
     </Compile>
     <Compile Include="UserControls\PollWindow.xaml.cs">
       <DependentUpon>PollWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ViewerRow.xaml.cs">
+      <DependentUpon>ViewerRow.xaml</DependentUpon>
     </Compile>
     <Page Include="UserControls\FNFGraph.xaml">
       <SubType>Designer</SubType>
@@ -138,6 +142,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\PollWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\ViewerRow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

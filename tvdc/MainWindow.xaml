@@ -72,6 +72,10 @@
 
         
         <!-- Control Templates for the viewers listbox -->
+        <ControlTemplate x:Key="Viewer" TargetType="{x:Type ListViewItem}">
+            <local:ViewerRow badges="{Binding badges}"/>
+        </ControlTemplate>
+        
         <ControlTemplate x:Key="Mod" TargetType='{x:Type ListViewItem}'>
             <StackPanel Background="Transparent" Orientation="Horizontal">
                 <GridViewRowPresenter Content="{TemplateBinding Content}" Columns="{TemplateBinding GridView.ColumnCollection}" />
@@ -392,13 +396,8 @@
 
             <ListView.ItemContainerStyle>
                 <Style TargetType="{x:Type ListViewItem}">
-                    <Setter Property="Template" Value="{StaticResource User}" />
+                    <Setter Property="Template" Value="{StaticResource Viewer}" />
                     <Setter Property="Height" Value="20" />
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding isMod}" Value="true">
-                            <Setter Property="Template" Value="{StaticResource Mod}" />
-                        </DataTrigger>
-                    </Style.Triggers>
                 </Style>
             </ListView.ItemContainerStyle>
 
@@ -427,20 +426,9 @@
                 <Style TargetType="{x:Type ListViewItem}"  >
                     <Setter Property="Template" Value="{StaticResource Chat}"/>
                     <Style.Triggers>
-                        <MultiDataTrigger>
-                            <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding eventType}" Value="{x:Static local:ChatEntry+Type.CHAT}" />
-                                <Condition Binding="{Binding isMod}" Value="true" />
-                            </MultiDataTrigger.Conditions>
-                            <Setter Property="Template" Value="{StaticResource Chat}" />
-                        </MultiDataTrigger>
-                        <MultiDataTrigger>
-                            <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding eventType}" Value="{x:Static local:ChatEntry+Type.CHAT}" />
-                                <Condition Binding="{Binding isMod}" Value="false" />
-                            </MultiDataTrigger.Conditions>
-                            <Setter Property="Template" Value="{StaticResource Chat}" />
-                        </MultiDataTrigger>
+                        <DataTrigger Binding="{Binding eventType}" Value="{x:Static local:ChatEntry+Type.CHAT}">
+                            <Setter Property="Template" Value="{StaticResource Chat}"/>
+                        </DataTrigger>
                         <DataTrigger Binding="{Binding eventType}" Value="{x:Static local:ChatEntry+Type.PART}">
                             <Setter Property="Template" Value="{StaticResource Part}"/>
                         </DataTrigger>
@@ -512,6 +500,15 @@
                 </Style>
             </Button.Style>
         </Button>
+
+        <CheckBox x:Name="cbAutoscroll" Content="" Margin="0,152,27,0" Width="20" Height="20" VerticalAlignment="Top" HorizontalAlignment="Right" Panel.ZIndex="2"
+                  ToolTip="Enable autoscroll" IsChecked="True">
+            <CheckBox.Style>
+                <Style TargetType="{x:Type CheckBox}">
+                    <Setter Property="Template" Value="{StaticResource CheckboxTemplate}" />
+                </Style>
+            </CheckBox.Style>
+        </CheckBox>
 
         <local:FNFGraph x:Name="fnfgraph" userlist="{Binding viewerList}" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,25,5,0" Width="140"/>
 

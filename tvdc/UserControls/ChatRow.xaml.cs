@@ -50,49 +50,40 @@ namespace tvdc
         private void updateData()
         {
 
+            if (Tags == null)
+                return;
+
             if (Tags.ContainsKey("message_deleted"))
             {
                 clearText();
                 return;
             }
 
-            if ((Tags.ContainsKey("badges") && Tags["badges"] != null && Tags["badges"].Contains("moderator")) ||
-                (Tags.ContainsKey("mod") && Tags["mod"] != null && Tags["mod"] == "1"))
+            if (Tags.ContainsKey("badges") && Tags["badges"] != null)
             {
-                addBadge(Badges.moderator);
-            }
+                List<Badges.BadgeTypes> badges = Badges.parseBadgeString(Tags["badges"]);
 
-            if (((Tags.ContainsKey("badges") && Tags["badges"] != null && Tags["badges"].Contains("subscriber")) ||
-                (Tags.ContainsKey("subscriber") && Tags["subscriber"] != null && Tags["subscriber"] == "1")) &&
-                Badges.hasSubscriberBadge)
-            {
-                addBadge(Badges.subscriber);
-            }
+                if (badges.Contains(Badges.BadgeTypes.SUBSCRIBER) && Badges.hasSubscriberBadge)
+                    addBadge(Badges.subscriber);
 
-            if ((Tags.ContainsKey("badges") && Tags["badges"] != null && Tags["badges"].Contains("turbo")) ||
-                (Tags.ContainsKey("turbo") && Tags["turbo"] != null && Tags["turbo"] == "1"))
-            {
-                addBadge(Badges.turbo);
-            }
+                if (badges.Contains(Badges.BadgeTypes.TURBO))
+                    addBadge(Badges.turbo);
 
-            if (Tags.ContainsKey("badges") && Tags["badges"] != null && Tags["badges"].Contains("staff"))
-            {
-                addBadge(Badges.staff);
-            }
+                if (badges.Contains(Badges.BadgeTypes.MODERATOR))
+                    addBadge(Badges.moderator);
 
-            if (Tags.ContainsKey("badges") && Tags["badges"] != null && Tags["badges"].Contains("admin"))
-            {
-                addBadge(Badges.admin);
-            }
+                if (badges.Contains(Badges.BadgeTypes.BROADCASTER))
+                    addBadge(Badges.broadcaster);
 
-            if (Tags.ContainsKey("badges") && Tags["badges"] != null && Tags["badges"].Contains("broadcaster"))
-            {
-                addBadge(Badges.broadcaster);
-            }
+                if (badges.Contains(Badges.BadgeTypes.GlOBAL_MOD))
+                    addBadge(Badges.global_mod);
 
-            if (Tags.ContainsKey("badges") && Tags["badges"] != null && Tags["badges"].Contains("global_mod"))
-            {
-                addBadge(Badges.global_mod);
+                if (badges.Contains(Badges.BadgeTypes.ADMIN))
+                    addBadge(Badges.admin);
+
+                if (badges.Contains(Badges.BadgeTypes.STAFF))
+                    addBadge(Badges.staff);
+
             }
 
             //Split the text into not emoticon parts
@@ -296,7 +287,7 @@ namespace tvdc
             {
                 if (uie is TextBlock && (string)((TextBlock)uie).Tag != "username")
                     removeList.Add(uie);
-                if (uie is Image && (string)((Image)uie).Tag != "Badge")
+                if (uie is Image && ((Image)uie).Tag.ToString() != "Badge")
                     removeList.Add(uie);
             }
 
