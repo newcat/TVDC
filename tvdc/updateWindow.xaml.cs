@@ -28,11 +28,10 @@ namespace tvdc
             InitializeComponent();
         }
 
-        private async void Window_Loaded(object sender, EventArgs e)
+        private async void Content_Rendered(object sender, EventArgs e)
         {
 
             bool updatesFound = false;
-
             isSearching = true;
             try
             {
@@ -43,6 +42,7 @@ namespace tvdc
                 {
                     MessageBox.Show(this, "Failed to search for updates:\n" + ex.Message, "TVD Updater",
                         MessageBoxButton.OK, MessageBoxImage.Warning);
+                    manager.Dispose();
                     Close();
                     return;
                 }
@@ -51,10 +51,12 @@ namespace tvdc
             } finally
             {
                 isSearching = false;
+                pb.IsIndeterminate = true;
             }
 
             if (!updatesFound)
             {
+                Hide();
                 MessageBox.Show(this, "No updates found.", "TVD Updater", MessageBoxButton.OK, MessageBoxImage.Information);
                 manager.Dispose();
                 Close();
@@ -136,6 +138,7 @@ namespace tvdc
         {
             MessageBox.Show(this, "Failed to download updates:\n" + e.Exception.Message, "TVD Updater",
                 MessageBoxButton.OK, MessageBoxImage.Error);
+            manager.Dispose();
             Close();
             return;
         }
