@@ -31,13 +31,15 @@ namespace tvdc
 
         public static void AddSorted<T>(this ObservableCollection<T> collection, T itemToAdd) where T : IComparable<T>
         {
-            for (int i = 0; i < collection.Count; i++)
+            for (int i = 0; i < collection.Count - 1; i++)
             {
                 if (collection[i].CompareTo(itemToAdd) < 0 && collection[i + 1].CompareTo(itemToAdd) > 0)
                 {
                     collection.Insert(i + 1, itemToAdd);
+                    return;
                 }
             }
+            collection.Insert(collection.Count, itemToAdd);
         }
 
     }

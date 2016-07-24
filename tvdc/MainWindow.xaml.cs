@@ -7,11 +7,11 @@ using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.IO;
 
 namespace tvdc
 {
 
-    //TODO: Fix that twitchnotify messages ("xxx just subscribed") are being treated as PRIVMSG which leads to crash
     //TODO: Fix that if there is text after an emoticon it sometimes doesn't get displayed
     //TODO: Replace poll window with poll plugin
     //TODO: Add support for cheering
@@ -44,6 +44,18 @@ namespace tvdc
         {
             InitializeComponent();
             DataContext = vm;
+
+            if (File.Exists(Path.Combine(Environment.CurrentDirectory, "tvd_settings.cfg")))
+            {
+                string[] cfg = File.ReadAllLines(Path.Combine(Environment.CurrentDirectory, "tvd_settings.cfg"));
+                Properties.Settings.Default.nick = cfg[0];
+                Properties.Settings.Default.oauth = cfg[1];
+                Properties.Settings.Default.channel = cfg[2];
+                Properties.Settings.Default.debug = cfg[3] == "True" ? true : false;
+                Properties.Settings.Default.showJoinLeave = cfg[4] == "True" ? true : false;
+                File.Delete(Path.Combine(Environment.CurrentDirectory, "tvd_settings.cfg"));
+            }
+
         }
 
         private async void init()
@@ -325,6 +337,7 @@ namespace tvdc
                 irc.disconnect();
                 vm.chatEntryList_Clear();
                 vm.viewerList_Clear();
+                vm.followerCount = 0;
                 ViewerGraph.reset();
                 init();
             }
@@ -348,7 +361,8 @@ namespace tvdc
 
         private void Window_Closed(object sender, EventArgs e)
         {
-            irc.disconnect();
+            if (irc != null)
+                irc.disconnect();
             viewerGraphTimer.Stop();
             followerTimer.Stop();
             Application.Current.Shutdown();

@@ -91,6 +91,9 @@
     <Compile Include="Models\Emoticon.cs" />
     <Compile Include="Static Stuff\Badges.cs" />
     <Compile Include="Static Stuff\EmoticonManager.cs" />
+    <Compile Include="UpdateWindow.xaml.cs">
+      <DependentUpon>UpdateWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\FNFGraph.xaml.cs">
       <DependentUpon>FNFGraph.xaml</DependentUpon>
     </Compile>
@@ -110,6 +113,10 @@
     <Compile Include="UserControls\ViewerRow.xaml.cs">
       <DependentUpon>ViewerRow.xaml</DependentUpon>
     </Compile>
+    <Page Include="UpdateWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\FNFGraph.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

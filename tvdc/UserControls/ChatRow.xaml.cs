@@ -16,20 +16,6 @@ namespace tvdc
     public partial class ChatRow : UserControl
     {
 
-        public static readonly DependencyProperty UsernameProperty = DependencyProperty.Register("Username", typeof(string), typeof(ChatRow));
-        public string Username
-        {
-            get { return (string)GetValue(UsernameProperty); }
-            set { SetValue(UsernameProperty, value); }
-        }
-
-        public static readonly DependencyProperty ColorProperty = DependencyProperty.Register("Color", typeof(string), typeof(ChatRow));
-        public string Color
-        {
-            get { return (string)GetValue(ColorProperty); }
-            set { SetValue(ColorProperty, value); }
-        }
-
         public static readonly DependencyProperty TagsProperty = DependencyProperty.Register("Tags", typeof(Dictionary<string, string>), typeof(ChatRow));
         public Dictionary<string, string> Tags
         {
@@ -84,6 +70,27 @@ namespace tvdc
                 if (badges.Contains(Badges.BadgeTypes.STAFF))
                     addBadge(Badges.staff);
 
+            }
+
+            if (Tags.Count == 1 && Tags.ContainsKey("text") && Tags["text"] != null)
+            {
+                TextBlock t = new TextBlock();
+                t.Text = Tags["text"];
+                t.VerticalAlignment = VerticalAlignment.Center;
+                t.HorizontalAlignment = HorizontalAlignment.Center;
+                t.FontWeight = FontWeights.Bold;
+                t.Foreground = Brushes.LightGray;
+                mainPanel.Children.Clear();
+                mainPanel.Children.Add(t);
+                return;
+            }
+
+
+            bool isAction = false;
+            if (Tags.ContainsKey("text") && Tags["text"] != null && Tags["text"].StartsWith("\u0001ACTION"))
+            {
+                isAction = true;
+                Tags["text"] = Tags["text"].Substring(8);
             }
 
             //Split the text into not emoticon parts
@@ -208,6 +215,14 @@ namespace tvdc
                         t.Text = pg.text;
                         t.VerticalAlignment = VerticalAlignment.Center;
 
+                        if (isAction)
+                        {
+                            Brush b = getUsernameColor();
+                            if (b != null)
+                            {
+                                t.SetBinding(TextBlock.ForegroundProperty, "color");
+                            }
+                        }
 
                         if (isUrl(pg.text))
                         {
@@ -223,6 +238,22 @@ namespace tvdc
                 }
             }
 
+        }
+
+        private Brush getUsernameColor()
+        {
+            foreach (UIElement uie in mainPanel.Children)
+            {
+                if (uie is TextBlock)
+                {
+                    TextBlock tb = (TextBlock)uie;
+                    if (tb.Tag != null && tb.Tag.ToString() == "username")
+                    {
+                        return tb.Foreground;
+                    }
+                }
+            }
+            return null;
         }
 
         private void addBadge(BitmapImage b)

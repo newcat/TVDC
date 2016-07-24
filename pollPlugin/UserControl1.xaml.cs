@@ -10,6 +10,7 @@ using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Controls;
 using System.Reflection;
 using System.Drawing;
 using tvdc;
@@ -19,7 +20,7 @@ namespace pollPlugin
     /// <summary>
     /// Interaction logic for UserControl1.xaml
     /// </summary>
-    public partial class UserControl1 : Window, IPlugin
+    public partial class UserControl1 : UserControl, IPlugin
     {
 
         public UserControl1()
@@ -38,7 +39,7 @@ namespace pollPlugin
 
         public event EventHandler<SendMessageEventArgs> sendMessage;
 
-        public Image getMenuIcon()
+        public System.Windows.Controls.Image getMenuIcon()
         {
 
             Bitmap bmp = new Bitmap(28, 28);
@@ -50,7 +51,7 @@ namespace pollPlugin
 
         }
 
-        public Image getMenuIconHover() {
+        public System.Windows.Controls.Image getMenuIconHover() {
 
             Bitmap bmp = new Bitmap(28, 28);
             Graphics g = Graphics.FromImage(bmp);
