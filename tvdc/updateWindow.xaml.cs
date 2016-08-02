@@ -13,7 +13,7 @@ namespace tvdc
     /// <summary>
     /// Interaction logic for updateWindow.xaml
     /// </summary>
-    public partial class UpdateWindow : Window
+    public partial class UpdateWindow : Window, IDisposable
     {
 
         private UpdateManager manager = new UpdateManager(new Uri("http://newcat.bplaced.net/tvd/updates.json"),
@@ -156,14 +156,12 @@ namespace tvdc
             string path = Path.Combine(Environment.CurrentDirectory, "tvd_settings.cfg");
             using (FileStream fs = new FileStream(path, FileMode.Create))
             {
-                using (StreamWriter sw = new StreamWriter(fs, Encoding.ASCII))
-                {
-                    sw.WriteLine(Properties.Settings.Default.nick);
-                    sw.WriteLine(Properties.Settings.Default.oauth);
-                    sw.WriteLine(Properties.Settings.Default.channel);
-                    sw.WriteLine(Properties.Settings.Default.debug);
-                    sw.WriteLine(Properties.Settings.Default.showJoinLeave);
-                }
+                StreamWriter sw = new StreamWriter(fs, Encoding.ASCII);
+                sw.WriteLine(Properties.Settings.Default.nick);
+                sw.WriteLine(Properties.Settings.Default.oauth);
+                sw.WriteLine(Properties.Settings.Default.channel);
+                sw.WriteLine(Properties.Settings.Default.debug);
+                sw.WriteLine(Properties.Settings.Default.showJoinLeave);
             }
             File.SetAttributes(path, File.GetAttributes(path) | FileAttributes.Hidden);
 
@@ -175,6 +173,27 @@ namespace tvdc
         {
             return Math.Round(bytes / 1048576, 2).ToString() + " MB";
         }
+
+        #region IDisposable Support
+        private bool disposedValue = false; // Dient zur Erkennung redundanter Aufrufe.
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposedValue)
+            {
+                if (disposing)
+                    manager.Dispose();
+
+                disposedValue = true;
+            }
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+        }
+        #endregion
+
 
     }
 }

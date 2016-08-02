@@ -16,7 +16,6 @@ namespace tvdc
     {
 
         private bool clearedCache = false;
-        UpdateManager manager;
 
         public Settings()
         {

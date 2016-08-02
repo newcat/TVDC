@@ -8,6 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.IO;
+using tvdc.EventArguments;
 
 namespace tvdc
 {
@@ -155,7 +156,7 @@ namespace tvdc
 
         }
 
-        private void IRC_Clearchat(object sender, IRCClient.JoinPartEventArgs e)
+        private void IRC_Clearchat(object sender, JoinPartEventArgs e)
         {
             
             if (e.username != null && e.username != "")
@@ -189,7 +190,7 @@ namespace tvdc
 
         }
 
-        private void IRC_Userstate(object sender, IRCClient.UserstateEventArgs e)
+        private void IRC_Userstate(object sender, UserstateEventArgs e)
         {
 
             User u = null;
@@ -209,7 +210,7 @@ namespace tvdc
 
         }
 
-        private void IRC_PrivmsgReceived(object sender, IRCClient.PrivmsgReceivedEventArgs e)
+        private void IRC_PrivmsgReceived(object sender, PrivmsgReceivedEventArgs e)
         {
             string color;
             if (e.tags.ContainsKey("color") && e.tags["color"] != null && e.tags["color"] != "")
@@ -231,7 +232,7 @@ namespace tvdc
             u.setBadges(Badges.parseBadgeString(e.tags["badges"]));
         }
 
-        private void IRC_ModeChanged(object sender, IRCClient.ModeChangedEventArgs e)
+        private void IRC_ModeChanged(object sender, ModeChangedEventArgs e)
         {
             User u;
             vm.viewerList_GetUserInstanceByName(e.username, out u);
@@ -249,7 +250,7 @@ namespace tvdc
 
         }
 
-        private void IRC_Part(object sender, IRCClient.JoinPartEventArgs e)
+        private void IRC_Part(object sender, JoinPartEventArgs e)
         {
             if (vm.viewerList_ContainsName(e.username))
                 vm.viewerList_TryRemoveName(e.username);
@@ -258,7 +259,7 @@ namespace tvdc
                 vm.chatEntryList_Add(new ChatEntry(ChatEntry.Type.PART, "left", e.username));
         }
 
-        private void IRC_Join(object sender, IRCClient.JoinPartEventArgs e)
+        private void IRC_Join(object sender, JoinPartEventArgs e)
         {
             if (!vm.viewerList_ContainsName(e.username))
                 vm.viewerList_Add(new User(e.username));
@@ -268,18 +269,18 @@ namespace tvdc
 
         }
 
-        private void IRC_Notice(object sender, IRCClient.MsgReceivedEventArgs e)
+        private void IRC_Notice(object sender, MsgReceivedEventArgs e)
         {
             vm.chatEntryList_Add(new ChatEntry(ChatEntry.Type.IRC, e.message));
         }
 
-        private void IRC_MessageSent(object sender, IRCClient.MsgReceivedEventArgs e)
+        private void IRC_MessageSent(object sender, MsgReceivedEventArgs e)
         {
             if (debug)
                 vm.chatEntryList_Add(new ChatEntry(ChatEntry.Type.IRC, "<" + e.message));
         }
 
-        private void IRC_MessageReceived(object sender, IRCClient.MsgReceivedEventArgs e)
+        private void IRC_MessageReceived(object sender, MsgReceivedEventArgs e)
         {
             if (debug)
                 vm.chatEntryList_Add(new ChatEntry(ChatEntry.Type.IRC, ">" + e.message));

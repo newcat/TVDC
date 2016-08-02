@@ -12,8 +12,10 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Controls;
 using System.Reflection;
+using tvdc.Plugin;
+using System.Windows.Media;
 using System.Drawing;
-using tvdc;
+using System.IO;
 
 namespace pollPlugin
 {
@@ -23,64 +25,63 @@ namespace pollPlugin
     public partial class UserControl1 : UserControl, IPlugin
     {
 
+        private IPluginHost host;
+
         public UserControl1()
         {
             Assembly.LoadFrom("plugin.dll");
             InitializeComponent();
         }
 
+        public void Initialize(IPluginHost host)
+        {
+            this.host = host;
+        }
+
         public string pluginName
         {
-            get
-            {
-                return "Poll Plugin";
-            }
+            get { return "Poll Plugin"; }
         }
 
-        public event EventHandler<SendMessageEventArgs> sendMessage;
-
-        public System.Windows.Controls.Image getMenuIcon()
+        public ImageSource getMenuIcon()
         {
 
             Bitmap bmp = new Bitmap(28, 28);
             Graphics g = Graphics.FromImage(bmp);
-            g.FillEllipse(Brushes.Yellow, 0, 0, 28, 28);
+            g.FillEllipse(System.Drawing.Brushes.Yellow, 0, 0, 28, 28);
             g.Flush();
-            g.Dispose();
-            return bmp;
+
+            return BmpToImg(bmp);
 
         }
 
-        public System.Windows.Controls.Image getMenuIconHover() {
+        public ImageSource getMenuIconHover() {
 
             Bitmap bmp = new Bitmap(28, 28);
             Graphics g = Graphics.FromImage(bmp);
-            g.FillEllipse(Brushes.AliceBlue, 0, 0, 28, 28);
+            g.FillEllipse(System.Drawing.Brushes.AliceBlue, 0, 0, 28, 28);
             g.Flush();
-            g.Dispose();
-            return bmp;
+
+            return BmpToImg(bmp);
 
         }
 
-        public void IconClicked() { }
-
-        public void IRC_Connected() { }
-
-        public void IRC_ConnectionError() { }
-
-        public void IRC_InitCompleted() { }
-
-        public void IRC_Join(string username) { }
-
-        public void IRC_MessageReceived(string username, string message, Dictionary<string, string> tags)
+        public void IconClicked()
         {
-            throw new NotImplementedException();
+            MessageBox.Show("PollPlugin");
         }
 
-        public void IRC_ModeChanged(string username, bool isMod) { }
-
-        public void IRC_Part(string username) { }
-
-        public void IRC_Userstate(Dictionary<string, string> tags) { }
+        private BitmapImage BmpToImg(Bitmap bmp)
+        {
+            MemoryStream ms = new MemoryStream();
+            bmp.Save(ms, System.Drawing.Imaging.ImageFormat.MemoryBmp);
+            BitmapImage bi = new BitmapImage();
+            bi.BeginInit();
+            ms.Seek(0, SeekOrigin.Begin);
+            bi.StreamSource = ms;
+            bi.EndInit();
+            return bi;
+        }
+        
     }
 }
