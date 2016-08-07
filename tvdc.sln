@@ -1,9 +1,12 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tvdc", "tvdc\tvdc.csproj", "{BD9CC7C0-3D04-42B9-BA3C-40CA4F1B78F8}"
+	ProjectSection(ProjectDependencies) = postProject
+		{8CE76121-E353-4A06-A8E6-2DF560ED2228} = {8CE76121-E353-4A06-A8E6-2DF560ED2228}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pollPlugin", "pollPlugin\pollPlugin.csproj", "{8CE76121-E353-4A06-A8E6-2DF560ED2228}"
 EndProject

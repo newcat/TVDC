@@ -29,7 +29,7 @@
             <GradientStop Offset="1" Color="#B47C0000" />
         </LinearGradientBrush>
 
-        
+
         <!-- Control Templates for the chat box -->
         <ControlTemplate x:Key="Chat" TargetType='{x:Type ListViewItem}'>
             <StackPanel Background="Transparent" Orientation="Horizontal">
@@ -70,12 +70,12 @@
             </StackPanel>
         </ControlTemplate>
 
-        
+
         <!-- Control Templates for the viewers listbox -->
         <ControlTemplate x:Key="Viewer" TargetType="{x:Type ListViewItem}">
             <local:ViewerRow badges="{Binding badges}"/>
         </ControlTemplate>
-        
+
         <ControlTemplate x:Key="Mod" TargetType='{x:Type ListViewItem}'>
             <StackPanel Background="Transparent" Orientation="Horizontal">
                 <GridViewRowPresenter Content="{TemplateBinding Content}" Columns="{TemplateBinding GridView.ColumnCollection}" />
@@ -91,7 +91,7 @@
             </StackPanel>
         </ControlTemplate>
 
-        
+
         <!-- Progress Bar Style -->
         <Style x:Key="{x:Type ProgressBar}" TargetType="{x:Type ProgressBar}">
             <Setter Property="Template">
@@ -115,7 +115,7 @@
             </Setter>
         </Style>
 
-        
+
         <!-- Scroll Bar Style -->
         <Style x:Key="{x:Type ScrollBar}" TargetType="{x:Type ScrollBar}">
             <Setter Property="OverridesDefaultStyle" Value="True" />
@@ -315,7 +315,7 @@
             </Setter>
         </Style>
 
-        
+
         <!-- Button Style -->
         <ControlTemplate x:Key="btn">
             <Grid x:Name="btnGrid" Background="#00000000">
@@ -511,6 +511,45 @@
         </CheckBox>
 
         <local:FNFGraph x:Name="fnfgraph" userlist="{Binding viewerList}" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,25,5,0" Width="140"/>
+        <ListView x:Name="pluginPanel" Height="28" Margin="323,120,162,0" VerticalAlignment="Top" ScrollViewer.VerticalScrollBarVisibility="Disabled" ScrollViewer.HorizontalScrollBarVisibility="Auto" BorderThickness="0" Background="{x:Null}" Focusable="False">
+            
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal" />
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+
+            <ListView.ItemTemplate>
+                <ItemContainerTemplate>
+                    <Image Tag="{Binding name}" MouseLeftButtonDown="Image_MouseLeftButtonDown" Width="28" Height="28" Stretch="None" Cursor="Hand" Focusable="False">
+                        <Image.Style>
+                            <Style TargetType="Image">
+                                <Setter Property="Source" Value="{Binding imageSource}" />
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Source" Value="{Binding imageSourceHover}" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Image.Style>
+                    </Image>
+                </ItemContainerTemplate>
+            </ListView.ItemTemplate>
+
+            <ListView.ItemContainerStyle>
+                <Style TargetType="{x:Type ListViewItem}">
+                    <Setter Property="Background" Value="Transparent" />
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                <ContentPresenter />
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </ListView.ItemContainerStyle>
+
+        </ListView>
 
     </Grid>
 </Window>

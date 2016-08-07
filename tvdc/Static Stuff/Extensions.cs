@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Linq;
 
 namespace tvdc
@@ -11,15 +10,13 @@ namespace tvdc
 
         public static void Sort<T>(this ObservableCollection<T> collection) where T : IComparable<T>
         {
-            DateTime start = DateTime.Now;
             List<T> sorted = collection.OrderBy(x => x).ToList();
             for (int i = 0; i < sorted.Count(); i++)
                 collection.Move(collection.IndexOf(sorted[i]), i);
-            Debug.WriteLine((DateTime.Now - start).TotalMilliseconds);
         }
 
-        //Seems to be slightly more efficient but using method above
-        //to theoretically support animating the moving process
+        //Second method seems to be slightly more efficient but I'm using the
+        //method above to theoretically support animating the moving process
 
         //public static void Sort<T>(this Collection<T> source)
         //{

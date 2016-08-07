@@ -45,7 +45,7 @@ namespace tvdc
 
             Properties.Settings.Default.nick = tbNick.Text;
             Properties.Settings.Default.oauth = tbOauth.Text;
-            Properties.Settings.Default.channel = tbChannel.Text;
+            Properties.Settings.Default.channel = tbChannel.Text.ToLower();
             Properties.Settings.Default.debug = (bool)cbDebug.IsChecked;
             Properties.Settings.Default.showJoinLeave = (bool)cbShowEvents.IsChecked;
             Properties.Settings.Default.Save();

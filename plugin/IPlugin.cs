@@ -24,6 +24,7 @@ namespace tvdc.Plugin
 
         void IconClicked();
         void Initialize(IPluginHost host);
+        void End();
 
 
     }

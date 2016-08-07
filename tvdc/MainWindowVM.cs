@@ -214,7 +214,7 @@ namespace tvdc
             {
                 foreach (User u in viewerList)
                 {
-                    if (u.name == name || u.displayName == name)
+                    if (u.name == name || u.name == name.ToLower() || u.displayName == name)
                         return true;
                 }
                 return false;
@@ -227,7 +227,7 @@ namespace tvdc
             {
                 foreach (User u in viewerList)
                 {
-                    if (u.name == name || u.displayName == name)
+                    if (u.name == name || u.name == name.ToLower() || u.displayName == name)
                     {
                         System.Windows.Application.Current.Dispatcher.Invoke(delegate ()
                         {
@@ -244,7 +244,7 @@ namespace tvdc
         {
             foreach (User u in viewerList)
             {
-                if (u.name == name || u.displayName == name)
+                if (u.name == name || u.name == name.ToLower() || u.displayName == name)
                 {
                     return u;
                 }
@@ -256,7 +256,7 @@ namespace tvdc
         {
             foreach (User u in viewerList)
             {
-                if (u.name == name || u.displayName == name)
+                if (u.name == name || u.name == name.ToLower() || u.displayName == name)
                 {
                     user = u;
                     return;

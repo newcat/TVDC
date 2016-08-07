@@ -1,0 +1,140 @@
+﻿<Window x:Class="pollPlugin.ResultsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:pollPlugin"
+        mc:Ignorable="d" Background="{DynamicResource WindowBackgroundBrush}"
+        Title="Poll Results" Height="300" Width="550" MinWidth="550" MinHeight="300" MaxHeight="300" SizeChanged="Window_SizeChanged" Closed="Window_Closed">
+
+    <Window.Resources>
+
+        <LinearGradientBrush x:Key="WindowBackgroundBrush" SpreadMethod="Pad">
+            <GradientStop Offset="0" Color="#3A3C48" />
+            <GradientStop Offset="1" Color="#131218" />
+        </LinearGradientBrush>
+
+        <ControlTemplate x:Key="ButtonTemplate">
+            <Grid x:Name="btnGrid">
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal">
+                            <Storyboard>
+                                <ColorAnimation From="#40FFFFFF" To="Transparent" Duration="00:00:00.1000000"
+                                                    Storyboard.TargetName="btnGrid" Storyboard.TargetProperty="(Panel.Background).Color"/>
+                            </Storyboard>
+                        </VisualState>
+                        <VisualState x:Name="MouseOver">
+                            <Storyboard>
+                                <ColorAnimation From="Transparent" To="#40FFFFFF" Duration="00:00:00.1000000"
+                                                    Storyboard.TargetName="btnGrid" Storyboard.TargetProperty="(Panel.Background).Color"/>
+                            </Storyboard>
+                        </VisualState>
+                        <VisualState x:Name="Disabled">
+                            <Storyboard>
+                                <ColorAnimation To="Gray" Duration="00:00:00.1000000"
+                                                Storyboard.TargetName="btnlabel" Storyboard.TargetProperty="Foreground.Color" />
+                                <ColorAnimation To="Gray" Duration="00:00:00.1000000"
+                                                Storyboard.TargetName="btnborder" Storyboard.TargetProperty="BorderBrush.Color" />
+                            </Storyboard>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+                <ContentPresenter RecognizesAccessKey="True" />
+                <Border BorderBrush="White" BorderThickness="1" CornerRadius="2" x:Name="btnborder"/>
+                <Label x:Name="btnlabel" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0" Content="{Binding Content, RelativeSource={RelativeSource TemplatedParent}}" Foreground="White" Margin="0,-2.5,0,0"/>
+                <Grid.Background>
+                    <SolidColorBrush />
+                </Grid.Background>
+            </Grid>
+        </ControlTemplate>
+
+        <ControlTemplate x:Key="CheckboxTemplate">
+            <BulletDecorator Background="Transparent">
+                <BulletDecorator.Bullet>
+                    <StackPanel Orientation="Horizontal">
+                        <Canvas>
+                            <Ellipse Stroke="White" Width="16" Height="16" />
+                            <Ellipse Width="8" Height="8" Margin="4,4" Fill="White" Name="checkBullet"/>
+                        </Canvas>
+                        <TextBlock Text="{Binding Content, RelativeSource={RelativeSource TemplatedParent}}" Margin="20,0,0,0"/>
+                    </StackPanel>
+                </BulletDecorator.Bullet>
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CheckStates">
+                        <VisualState x:Name="Checked">
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="checkBullet"
+                                                         From="0.0" To="1.0" Duration="00:00:00.1" />
+                            </Storyboard>
+                        </VisualState>
+                        <VisualState x:Name="Unchecked">
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="checkBullet"
+                                                         From="1.0" To="0.0" Duration="00:00:00.1" />
+                            </Storyboard>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+                <ContentPresenter RecognizesAccessKey="True" />
+            </BulletDecorator>
+        </ControlTemplate>
+
+    </Window.Resources>
+
+    <Grid>
+        <Canvas x:Name="MainCanvas" Margin="10,10,100,10">
+            <TextBlock Text="100%" Foreground="Gray" Margin="2,2,0,0" />
+            <TextBlock Text="90%" Foreground="Gray" Margin="8,22,0,0" />
+            <TextBlock Text="80%" Foreground="Gray" Margin="8,42,0,0" />
+            <TextBlock Text="70%" Foreground="Gray" Margin="8,62,0,0" />
+            <TextBlock Text="60%" Foreground="Gray" Margin="8,82,0,0" />
+            <TextBlock Text="50%" Foreground="Gray" Margin="8,102,0,0" />
+            <TextBlock Text="40%" Foreground="Gray" Margin="8,122,0,0" />
+            <TextBlock Text="30%" Foreground="Gray" Margin="8,142,0,0" />
+            <TextBlock Text="20%" Foreground="Gray" Margin="8,162,0,0" />
+            <TextBlock Text="10%" Foreground="Gray" Margin="8,182,0,0" />
+            <TextBlock Text="0%" Foreground="Gray" Margin="14,202,0,0" />
+
+            <Line StrokeThickness="0.1" Stroke="Gray"
+                  X1="40" X2="{Binding ActualWidth, ElementName=MainCanvas}"
+                  Y1="10" Y2="10" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <Line StrokeThickness="0.1" Stroke="Gray"
+                  X1="40" X2="{Binding ActualWidth, ElementName=MainCanvas}"
+                  Y1="30" Y2="30" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <Line StrokeThickness="0.1" Stroke="Gray"
+                  X1="40" X2="{Binding ActualWidth, ElementName=MainCanvas}"
+                  Y1="50" Y2="50" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <Line StrokeThickness="0.1" Stroke="Gray"
+                  X1="40" X2="{Binding ActualWidth, ElementName=MainCanvas}"
+                  Y1="70" Y2="70" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <Line StrokeThickness="0.1" Stroke="Gray"
+                  X1="40" X2="{Binding ActualWidth, ElementName=MainCanvas}"
+                  Y1="90" Y2="90" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <Line StrokeThickness="0.1" Stroke="Gray"
+                  X1="40" X2="{Binding ActualWidth, ElementName=MainCanvas}"
+                  Y1="110" Y2="110" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <Line StrokeThickness="0.1" Stroke="Gray"
+                  X1="40" X2="{Binding ActualWidth, ElementName=MainCanvas}"
+                  Y1="130" Y2="130" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <Line StrokeThickness="0.1" Stroke="Gray"
+                  X1="40" X2="{Binding ActualWidth, ElementName=MainCanvas}"
+                  Y1="150" Y2="150" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <Line StrokeThickness="0.1" Stroke="Gray"
+                  X1="40" X2="{Binding ActualWidth, ElementName=MainCanvas}"
+                  Y1="170" Y2="170" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <Line StrokeThickness="0.1" Stroke="Gray"
+                  X1="40" X2="{Binding ActualWidth, ElementName=MainCanvas}"
+                  Y1="190" Y2="190" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <Line StrokeThickness="0.1" Stroke="Gray"
+                  X1="40" X2="{Binding ActualWidth, ElementName=MainCanvas}"
+                  Y1="210" Y2="210" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+
+        </Canvas>
+        <TextBlock Text="Poll running:" HorizontalAlignment="Right" Margin="0,10,10,0" VerticalAlignment="Top" Width="85" Foreground="White" TextAlignment="Right"/>
+        <TextBlock x:Name="tbTimeRunning" HorizontalAlignment="Right" Margin="0,31,10,0" TextWrapping="Wrap" Text="0:00" VerticalAlignment="Top" TextAlignment="Right" Foreground="White"/>
+        <TextBlock HorizontalAlignment="Right" Margin="0,70,10,0" TextWrapping="Wrap" Text="Total Votes:" VerticalAlignment="Top" Foreground="White"/>
+        <TextBlock x:Name="tbTotalVotes" HorizontalAlignment="Right" Margin="0,86,10.333,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Foreground="White" FontFamily="Segoe UI Light" FontSize="48" TextAlignment="Right" Height="70"/>
+
+    </Grid>
+</Window>

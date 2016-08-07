@@ -14,6 +14,7 @@ namespace tvdc.Plugin
         event EventHandler<JoinPartEventArgs> IRC_Part;
         event EventHandler<ModeChangedEventArgs> IRC_ModeChanged;
         event EventHandler<UserstateEventArgs> IRC_Userstate;
+        event EventHandler<PrivmsgReceivedEventArgs> IRC_PrivmsgReceived;
 
         /// <summary>
         /// Sends a message to the IRC. If the message starts with an '%', the message

@@ -100,6 +100,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="PluginHelper.cs" />
     <Compile Include="Static Stuff\Extensions.cs" />
     <Compile Include="Models\ChatEntry.cs" />
     <Compile Include="Models\Emoticon.cs" />

@@ -25,6 +25,7 @@ namespace tvdc
 
         private MainWindowVM vm = new MainWindowVM();
         private IRCClient irc;
+        private PluginHelper ph;
 
         //private PollWindow pollWindow = new PollWindow();
 
@@ -101,7 +102,6 @@ namespace tvdc
                 vm.chatEntryList.Add(new ChatEntry(ChatEntry.Type.ERROR, "Failed to download subscriber badge."));
 
             //Connect to IRC
-            vm.chatEntryList.Add(new ChatEntry(ChatEntry.Type.IRC, "Connecting to IRC..."));
             irc = new IRCClient("irc.twitch.tv", 6667, nick, oauth, channel);
 
             //Add event handlers
@@ -116,7 +116,14 @@ namespace tvdc
             irc.Clearchat += IRC_Clearchat;
             irc.InitCompleted += Irc_InitCompleted;
 
+            //Load plugins
+            vm.chatEntryList.Add(new ChatEntry(ChatEntry.Type.IRC, "Loading plugins..."));
+            ph = new PluginHelper(irc);
+            ph.loadPlugins();
+            pluginPanel.ItemsSource = ph.getPluginInfo();
+
             //Connect
+            vm.chatEntryList.Add(new ChatEntry(ChatEntry.Type.IRC, "Connecting to IRC..."));
             irc.connect();
 
             //Start timer for graph & follower count
@@ -398,6 +405,12 @@ namespace tvdc
                 tbChat.Text = "";
             }
 
+        }
+
+        private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (sender is Image)
+                ph.pluginClicked(((Image)sender).Tag.ToString());
         }
 
         #region IDisposable Support
