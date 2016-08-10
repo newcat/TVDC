@@ -1,11 +1,5 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Input;
-using System.Diagnostics;
-using nUpdate.Updating;
-using System.Globalization;
-using System.IO;
-using System.Text;
 
 namespace tvdc
 {
@@ -30,7 +24,13 @@ namespace tvdc
 
         private void linkGenerate_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            Process.Start("http://www.twitchapps.com/tmi");
+            //Process.Start("http://www.twitchapps.com/tmi");
+            AuthenticationWindow aw = new AuthenticationWindow();
+            aw.ShowDialog();
+            if (aw.oauth != "")
+            {
+                tbOauth.Text = aw.oauth;
+            }
         }
 
         private void btnOK_Click(object sender, RoutedEventArgs e)

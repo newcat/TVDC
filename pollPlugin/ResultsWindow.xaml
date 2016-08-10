@@ -135,6 +135,15 @@
         <TextBlock x:Name="tbTimeRunning" HorizontalAlignment="Right" Margin="0,31,10,0" TextWrapping="Wrap" Text="0:00" VerticalAlignment="Top" TextAlignment="Right" Foreground="White"/>
         <TextBlock HorizontalAlignment="Right" Margin="0,70,10,0" TextWrapping="Wrap" Text="Total Votes:" VerticalAlignment="Top" Foreground="White"/>
         <TextBlock x:Name="tbTotalVotes" HorizontalAlignment="Right" Margin="0,86,10.333,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Foreground="White" FontFamily="Segoe UI Light" FontSize="48" TextAlignment="Right" Height="70"/>
+        <TextBlock x:Name="tbVoteType" Margin="0,161,10,0" TextWrapping="Wrap" Text="Single Vote" VerticalAlignment="Top" Foreground="White" HorizontalAlignment="Right" Width="85" TextAlignment="Right"/>
+        <CheckBox x:Name="cbNotify" Content="Notify" Foreground="White" HorizontalAlignment="Right" Margin="0,185,10,0" VerticalAlignment="Top"
+                  ToolTip="Sends a whisper message to the users after they voted so they know their vote has been received." Checked="cbNotify_Checked" Unchecked="cbNotify_Unchecked">
+            <CheckBox.Style>
+                <Style TargetType="CheckBox">
+                    <Setter Property="Template" Value="{StaticResource CheckboxTemplate}" />
+                </Style>
+            </CheckBox.Style>
+        </CheckBox>
 
     </Grid>
 </Window>

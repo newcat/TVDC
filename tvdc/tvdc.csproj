@@ -100,6 +100,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AuthenticationWindow.xaml.cs">
+      <DependentUpon>AuthenticationWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PluginHelper.cs" />
     <Compile Include="Static Stuff\Extensions.cs" />
     <Compile Include="Models\ChatEntry.cs" />
@@ -128,6 +131,10 @@
     <Compile Include="UserControls\ViewerRow.xaml.cs">
       <DependentUpon>ViewerRow.xaml</DependentUpon>
     </Compile>
+    <Page Include="AuthenticationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UpdateWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

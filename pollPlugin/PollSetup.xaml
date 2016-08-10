@@ -1,4 +1,4 @@
-﻿<Window x:Class="pollPlugin.UserControl1"
+﻿<Window x:Class="pollPlugin.PollSetup"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:pollPlugin"
              mc:Ignorable="d" 
              Background="{DynamicResource WindowBackgroundBrush}"
-             Title="PollWindow" Height="270" Width="260" ResizeMode="CanMinimize" Closing="Window_Closing">
+             Title="Setup poll" Height="275" Width="265" ResizeMode="CanMinimize" Closing="Window_Closing">
 
     <Window.Resources>
 
@@ -85,14 +85,15 @@
 
     <Grid x:Name="MainGrid">
 
-        <CheckBox x:Name="checkBox" Content="Multi-Vote" HorizontalAlignment="Left" Margin="10,207,0,0" VerticalAlignment="Top" Foreground="White" FontFamily="Segoe UI Light">
+        <CheckBox x:Name="cbMultiVote" Content="Multi-Vote" HorizontalAlignment="Left" Margin="10,207,0,0" VerticalAlignment="Top" Foreground="White" FontFamily="Segoe UI Light" Height="20"
+                  ToolTip="If this option is enabled, viewers can vote for multiple options instead of just one, but they can still only vote one time per option.">
             <CheckBox.Style>
                 <Style TargetType="{x:Type CheckBox}">
                     <Setter Property="Template" Value="{DynamicResource CheckboxTemplate}" />
                 </Style>
             </CheckBox.Style>
         </CheckBox>
-        <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="171" Margin="10,31,0,0" VerticalAlignment="Top" Width="231" ScrollViewer.CanContentScroll="False" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled">
+        <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="166" Margin="10,36,0,0" VerticalAlignment="Top" Width="231" ScrollViewer.CanContentScroll="False" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled">
             <ListBox.Style>
                 <Style TargetType="{x:Type ListBox}">
                     <Setter Property="Background" Value="Transparent" />
@@ -121,14 +122,14 @@
                 </Style>
             </Button.Style>
         </Button>
-        <Button x:Name="btnDelete" Content="-" HorizontalAlignment="Left" Margin="225,10,0,0" VerticalAlignment="Top" Width="16" Height="16" Click="btnDelete_Click">
+        <Button x:Name="btnDelete" Content="-" HorizontalAlignment="Left" Margin="220,10,0,0" VerticalAlignment="Top" Width="21" Height="21" Click="btnDelete_Click">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
                     <Setter Property="Template" Value="{StaticResource ButtonTemplate}" />
                 </Style>
             </Button.Style>
         </Button>
-        <Button x:Name="btnAdd" Content="+" HorizontalAlignment="Left" Margin="204,10,0,0" VerticalAlignment="Top" Width="16" Height="16" Click="btnAdd_Click">
+        <Button x:Name="btnAdd" Content="+" HorizontalAlignment="Left" Margin="194,10,0,0" VerticalAlignment="Top" Width="21" Height="21" Click="btnAdd_Click">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
                     <Setter Property="Template" Value="{StaticResource ButtonTemplate}" />
@@ -138,8 +139,8 @@
         <TextBox Background="Transparent"
 			CaretBrush="White" BorderBrush="White"
 			Foreground="White" x:Name="tbAddOption" HorizontalAlignment="Left"
-            Height="16" Margin="10,10,0,0" TextWrapping="Wrap" Text=""
-            VerticalAlignment="Top" Width="189" FontSize="10"/>
+            Height="21" Margin="10,10,0,0" TextWrapping="Wrap" Text=""
+            VerticalAlignment="Top" Width="179" />
 
     </Grid>
 </Window>

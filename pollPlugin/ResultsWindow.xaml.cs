@@ -1,16 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using System.Windows.Threading;
 using tvdc.EventArguments;
 using tvdc.Plugin;
@@ -34,22 +26,27 @@ namespace pollPlugin
             { Color.FromRgb(255, 136, 0), Color.FromRgb(255, 165, 61)} 
         };
 
-        //UIElement[0] = ChartBar, [1] = TextBlock
         private Dictionary<string, OptionData> pollOptions = new Dictionary<string, OptionData>();
-        private Dictionary<string, string> voters = new Dictionary<string, string>();
+        private Dictionary<string, List<string>> voters = new Dictionary<string, List<string>>();
         private int totalVotes = 0;
+        private bool multiVote;
 
         private IPluginHost host;
 
         private DispatcherTimer tmr = new DispatcherTimer();
         private DateTime startTime;
 
-        public ResultsWindow(IEnumerable<string> options, IPluginHost host)
+        public ResultsWindow(IEnumerable<string> options, IPluginHost host, bool multiVote)
         {
             InitializeComponent();
 
+            cbNotify.IsChecked = Properties.Settings.Default.notify;
+
             this.host = host;
             this.host.IRC_PrivmsgReceived += messageReceived;
+
+            this.multiVote = multiVote;
+            tbVoteType.Text = multiVote ? "Multi Vote" : "Single Vote";
 
             startTime = DateTime.Now;
             tmr.Interval = TimeSpan.FromSeconds(1);
@@ -87,10 +84,10 @@ namespace pollPlugin
             {
                 if (totalVotes == 0)
                 {
-                    od.cb.setValue(100);
+                    od.cb.setValue(0);
                 } else
                 {
-                    od.cb.setValue((od.voteCount / totalVotes) * 200);
+                    od.cb.setValue((od.voteCount / totalVotes * 1.0) * 200);
                 }
             }
         }
@@ -121,16 +118,38 @@ namespace pollPlugin
                 string option = e.message.Trim().ToLower();
                 if (voters.ContainsKey(e.username))
                 {
-                    pollOptions[voters[e.username]].voteCount -= 1;
-                    voters[e.username] = option;
-                    host.sendMesssage(string.Format("/w {0} You changed your vote to {1}.",
-                        e.username, option));
+                    if (multiVote)
+                    {
+                        if (voters[e.username].Contains(option) && Properties.Settings.Default.notify)
+                        {
+                            host.sendMesssage(string.Format("/w {0} You already voted for {1}.",
+                            e.username, option));
+                            return;
+                        } else
+                        {
+                            voters[e.username].Add(option);
+                            totalVotes += 1;
+                            if (Properties.Settings.Default.notify)
+                                host.sendMesssage(string.Format("/w {0} Thanks for voting! You voted for {1}.",
+                                e.username, string.Join(", ", voters[e.username].ToArray())));
+                        }
+                    } else
+                    {
+                        pollOptions[voters[e.username][0]].voteCount -= 1;
+                        voters[e.username][0] = option;
+                        if (Properties.Settings.Default.notify)
+                            host.sendMesssage(string.Format("/w {0} You changed your vote to {1}.",
+                            e.username, option));
+                    }
                 } else
                 {
                     totalVotes += 1;
-                    voters.Add(e.username, option);
-                    host.sendMesssage(string.Format("/w {0} Thanks for voting! You voted for {1}.",
-                        e.username, option));
+                    List<string> l = new List<string>();
+                    l.Add(option);
+                    voters.Add(e.username, l);
+                    if (Properties.Settings.Default.notify)
+                        host.sendMesssage(string.Format("/w {0} Thanks for voting! You voted for {1}.",
+                            e.username, option));
                 }
                 pollOptions[option].voteCount += 1;
             }
@@ -152,6 +171,18 @@ namespace pollPlugin
         {
             tmr.Stop();
             host.IRC_PrivmsgReceived -= messageReceived;
+        }
+
+        private void cbNotify_Checked(object sender, RoutedEventArgs e)
+        {
+            Properties.Settings.Default.notify = true;
+            Properties.Settings.Default.Save();
+        }
+
+        private void cbNotify_Unchecked(object sender, RoutedEventArgs e)
+        {
+            Properties.Settings.Default.notify = false;
+            Properties.Settings.Default.Save();
         }
     }
 }

@@ -13,7 +13,6 @@ using tvdc.EventArguments;
 namespace tvdc
 {
 
-    //TODO: Fix that if there is text after an emoticon it sometimes doesn't get displayed
     //TODO: Replace poll window with poll plugin
     //TODO: Add support for cheering
 
@@ -92,11 +91,15 @@ namespace tvdc
             vm.chatEntryList.CollectionChanged += ChatEntryList_CollectionChanged;
             vm.enableSorting = false;
 
+            vm.chatEntryList.Add(new ChatEntry(ChatEntry.Type.IRC, "Initializing..."));
+
             //Init emoticons
-            EmoticonManager.initialize();
+            if (!await EmoticonManager.initialize())
+            {
+                vm.chatEntryList.Add(new ChatEntry(ChatEntry.Type.ERROR, "Failed to download emoticon list."));
+            }
 
             //Load badges and download sub badge
-            vm.chatEntryList.Add(new ChatEntry(ChatEntry.Type.IRC, "Initializing..."));
             Badges.init();
             if (!await Badges.downloadSubBadge(channel))
                 vm.chatEntryList.Add(new ChatEntry(ChatEntry.Type.ERROR, "Failed to download subscriber badge."));
@@ -392,13 +395,8 @@ namespace tvdc
                 irc.send(text);
 
                 Dictionary<string, string> tags = new Dictionary<string, string>();
-                tags.Add("emotes", "");
+                tags.Add("emotes", EmoticonManager.parseEmoticons(text));
                 tags.Add("badges", Badges.badgeListToString(u.badges));
-
-                //if (u.isMod)
-                //{
-                //    tags.Add("mod", "1");
-                //}
 
                 vm.chatEntryList_Add( new ChatEntry(ChatEntry.Type.CHAT, text, nick, u.color, tags));
 

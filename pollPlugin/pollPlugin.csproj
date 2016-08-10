@@ -58,7 +58,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControl1.xaml">
+    <Page Include="PollSetup.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -68,8 +68,8 @@
     <Compile Include="ResultsWindow.xaml.cs">
       <DependentUpon>ResultsWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControl1.xaml.cs">
-      <DependentUpon>UserControl1.xaml</DependentUpon>
+    <Compile Include="PollSetup.xaml.cs">
+      <DependentUpon>PollSetup.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -91,6 +91,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="app.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -111,7 +112,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy $(TargetPath) $(SolutionDir)\tvdc\bin\Debug\</PostBuildEvent>
+    <PostBuildEvent>copy "$(TargetPath)" "$(SolutionDir)tvdc\bin\Debug\"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

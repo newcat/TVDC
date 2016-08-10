@@ -15,14 +15,14 @@ namespace pollPlugin
     /// <summary>
     /// Interaction logic for UserControl1.xaml
     /// </summary>
-    public partial class UserControl1 : Window, IPlugin
+    public partial class PollSetup : Window, IPlugin
     {
 
         private IPluginHost host;
         private ObservableCollection<string> pollOptions = new ObservableCollection<string>();
         private ResultsWindow rw;
 
-        public UserControl1()
+        public PollSetup()
         {
             Assembly.LoadFrom("plugin.dll");
             InitializeComponent();
@@ -111,7 +111,7 @@ namespace pollPlugin
         private void btnStartPoll_Click(object sender, RoutedEventArgs e)
         {
             Hide();
-            ResultsWindow rw = new ResultsWindow(pollOptions, host);
+            ResultsWindow rw = new ResultsWindow(pollOptions, host, (bool)cbMultiVote.IsChecked);
         }
     }
 }

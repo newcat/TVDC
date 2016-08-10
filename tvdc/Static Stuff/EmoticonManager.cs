@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
-using System.Web.Script.Serialization;
+using Newtonsoft.Json.Linq;
 using System.Collections;
 using System.Text.RegularExpressions;
 using System.Net.Http;
 using System.Windows;
+using System.Net;
 
 namespace tvdc
 {
@@ -19,16 +20,18 @@ namespace tvdc
 
         public static string tempPath = Environment.GetFolderPath(Environment.SpecialFolder.InternetCache) + "\\tvd\\emoticons\\";
         private static Dictionary<int, Emoticon> emoticons = new Dictionary<int, Emoticon>();
+        private static Dictionary<string, int> availableEmoticonsForUser = new Dictionary<string, int>();
 
         public static bool isCached(int id)
         {
             return File.Exists(tempPath + id.ToString() + ".png");
         }
 
-        public static void initialize()
+        public static async Task<bool> initialize()
         {
 
             emoticons.Clear();
+            availableEmoticonsForUser.Clear();
 
             if (!Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.InternetCache) + "\\tvd"))
                 Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.InternetCache) + "\\tvd");
@@ -44,6 +47,8 @@ namespace tvdc
                 int eID = int.Parse(Path.GetFileNameWithoutExtension(fi.Name));
                 emoticons.Add(eID, new Emoticon(eID));
             }
+
+            return await downloadUserEmoticonList();
 
         }
 
@@ -70,6 +75,101 @@ namespace tvdc
             foreach (FileInfo f in di.GetFiles())
             {
                 f.Delete();
+            }
+
+        }
+
+        public static string parseEmoticons(string text)
+        {
+            List<EmoticonPositionData> emotePositions = new List<EmoticonPositionData>();
+            foreach (string s in availableEmoticonsForUser.Keys)
+            {
+
+                //TODO: Regex not perfect yet, e. g. \:-?D as s will also Match 123:D
+                MatchCollection mc = Regex.Matches(text, "((?=\\W)|(^|\\b))" + s + "(?=\\W|$|\\b)");
+
+                if (mc.Count > 0)
+                {
+                    Dictionary<int, int> positions = new Dictionary<int, int>();
+
+                    foreach (Match m in mc)
+                    {
+                        positions.Add(m.Index, m.Index + m.Length - 1);
+                    }
+
+                    emotePositions.Add(new EmoticonPositionData()
+                    {
+                        id = availableEmoticonsForUser[s],
+                        positions = positions
+                    });
+                }
+                    
+            }
+
+            string returnString = "";
+
+            for (int i = 0; i < emotePositions.Count; i++)
+            {
+                if (i > 0)
+                    returnString += "/";
+
+                returnString += emotePositions[i].id + ":";
+                Dictionary<int, int> pos = emotePositions[i].positions;
+
+                for (int j = 0; j < pos.Count; j++)
+                {
+                    if (j > 0)
+                        returnString += ",";
+
+                    returnString += pos.ElementAt(j).Key.ToString() + "-" + pos.ElementAt(j).Value.ToString();
+                }
+            }
+
+            return returnString;
+
+        }
+
+        private class EmoticonPositionData
+        {
+            public int id;
+            public Dictionary<int, int> positions;
+        }
+
+        private static async Task<bool> downloadUserEmoticonList()
+        {
+
+            using (WebClient wc = new WebClient())
+            {
+
+                wc.Headers.Add("Client-ID", Properties.Resources.client_id);
+
+                try
+                {
+                    string json = await wc.DownloadStringTaskAsync(
+                        string.Format("https://api.twitch.tv/kraken/users/{0}/emotes?oauth_token={1}",
+                        Properties.Settings.Default.nick, Properties.Settings.Default.oauth.Substring(6)));
+
+                    JObject root = JObject.Parse(json);
+                    JObject sets = (JObject)root["emoticon_sets"];
+                    
+                    foreach (JToken set in sets.Children())
+                    {
+                        foreach (JToken em in set.First)
+                        {
+                            availableEmoticonsForUser.Add(WebUtility.HtmlDecode((string)em["code"]), (int)em["id"]);
+                        }
+                    }
+                    
+                } catch (WebException)
+                {
+                    return false;
+                } catch (InvalidOperationException)
+                {
+                    return false;
+                }
+
+                return true;
+
             }
 
         }

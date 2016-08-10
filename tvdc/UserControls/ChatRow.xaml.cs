@@ -157,6 +157,11 @@ namespace tvdc
                     i = ep.endIndex + 1;
                 }
 
+                if (positions[positions.Count - 1].endIndex < Tags["text"].Length - 1)
+                {
+                    paragraphs.Add(Tags["text"].Substring(positions[positions.Count - 1].endIndex + 1));
+                }
+
             } else
             {
                 paragraphs.Add(Tags["text"]);

@@ -26,7 +26,7 @@
                         <BeginStoryboard>
                             <Storyboard>
                                 <DoubleAnimation Storyboard.TargetProperty="(Effect).BlurRadius" To="10"
-                                                 Duration="0:0:0.3" />
+                                                 Duration="0:0:0.15" />
                             </Storyboard>
                         </BeginStoryboard>
                     </EventTrigger>
@@ -34,7 +34,7 @@
                         <BeginStoryboard>
                             <Storyboard>
                                 <DoubleAnimation Storyboard.TargetProperty="(Effect).BlurRadius" To="0"
-                                                 Duration="0:0:0.3" />
+                                                 Duration="0:0:0.15" />
                             </Storyboard>
                         </BeginStoryboard>
                     </EventTrigger>
