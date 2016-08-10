@@ -1,0 +1,46 @@
+﻿<UserControl x:Class="pollPlugin.ChartBar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:pollPlugin"
+             mc:Ignorable="d" 
+             d:DesignHeight="200" d:DesignWidth="30">
+
+    <UserControl.Resources>
+        <LinearGradientBrush x:Key="FillBrush" EndPoint="15,200" MappingMode="Absolute" StartPoint="15,0">
+            <GradientStop Color="#FFFF6060" />
+            <GradientStop Color="#FFFF0000" Offset="1"/>
+        </LinearGradientBrush>
+    </UserControl.Resources>
+    
+    <Canvas Width="{Binding Width}" Height="200">
+    <Rectangle x:Name="rect" Height="0" Width="30" Stroke="White" Canvas.Bottom="0" Fill="{StaticResource FillBrush}">
+            <Rectangle.Effect>
+                <DropShadowEffect Color="White" Opacity="0.7" ShadowDepth="0" BlurRadius="0"/>
+            </Rectangle.Effect>
+            <Rectangle.Style>
+            <Style TargetType="Rectangle">
+                <Style.Triggers>
+                    <EventTrigger RoutedEvent="MouseEnter">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="(Effect).BlurRadius" To="10"
+                                                 Duration="0:0:0.3" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                    <EventTrigger RoutedEvent="MouseLeave">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="(Effect).BlurRadius" To="0"
+                                                 Duration="0:0:0.3" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Style.Triggers>
+            </Style>
+        </Rectangle.Style>
+    </Rectangle>
+    </Canvas>
+</UserControl>
