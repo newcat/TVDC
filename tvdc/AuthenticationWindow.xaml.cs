@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using System.Reflection;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace tvdc
 {
@@ -13,6 +15,7 @@ namespace tvdc
         public AuthenticationWindow()
         {
             InitializeComponent();
+            HideScriptErrors(wb, true);
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -29,6 +32,19 @@ namespace tvdc
                 oauth = "oauth:" + e.Uri.Fragment.Substring(14, e.Uri.Fragment.IndexOf('&') - 14);
                 Close();
             }
+        }
+
+        private void HideScriptErrors(WebBrowser webBrowser, bool hide)
+        {
+            var fiComWebBrowser = typeof(WebBrowser).GetField("_axIWebBrowser2", BindingFlags.Instance | BindingFlags.NonPublic);
+            if (fiComWebBrowser == null) return;
+            var objComWebBrowser = fiComWebBrowser.GetValue(webBrowser);
+            if (objComWebBrowser == null)
+            {
+                webBrowser.Loaded += (o, s) => HideScriptErrors(webBrowser, hide); //In case we are to early
+                return;
+            }
+            objComWebBrowser.GetType().InvokeMember("Silent", BindingFlags.SetProperty, null, objComWebBrowser, new object[] { hide });
         }
     }
 }

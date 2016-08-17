@@ -20,7 +20,6 @@ namespace pollPlugin
 
         private IPluginHost host;
         private ObservableCollection<string> pollOptions = new ObservableCollection<string>();
-        private ResultsWindow rw;
 
         public PollSetup()
         {

@@ -139,6 +139,10 @@ namespace tvdc
 
             initialized = true;
 
+            UpdateWindow uw = new UpdateWindow(true);
+            await uw.searchForUpdates();
+
+
         }
 
         private async void FollowerTimer_Elapsed(object sender, ElapsedEventArgs e)

@@ -7,6 +7,10 @@ using nUpdate.UpdateEventArgs;
 using System.Globalization;
 using System.IO;
 using System.Text;
+using System.Threading.Tasks;
+using System.Runtime.InteropServices;
+using System.Windows.Threading;
+using System.Windows.Interop;
 
 namespace tvdc
 {
@@ -22,46 +26,90 @@ namespace tvdc
         private bool isSearching = false;
         private bool isDownloading = false;
         private bool readyToInstall = false;
+        private bool silent = false;
 
-        public UpdateWindow()
+        public UpdateWindow(bool silent)
         {
             InitializeComponent();
+            this.silent = silent;
         }
 
-        private async void Content_Rendered(object sender, EventArgs e)
+        [DllImport("user32")]
+        internal static extern bool EnableWindow(IntPtr hwnd, bool bEnable);
+
+        public async Task ShowModal(IntPtr ownerHwnd)
+        {
+            EnableWindow(ownerHwnd, false);
+
+            DispatcherFrame frame = new DispatcherFrame();
+
+            Closed += delegate
+            {
+                EnableWindow(ownerHwnd, true);
+                frame.Continue = false;
+            };
+            
+            Show();
+            await searchForUpdates();
+            Dispatcher.PushFrame(frame);
+        }
+
+        public async Task searchForUpdates()
         {
 
             bool updatesFound = false;
             isSearching = true;
+
             try
             {
                 updatesFound = await manager.SearchForUpdatesAsync();
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
-                if (ex is OperationCanceledException)
+                if (ex is OperationCanceledException && !silent)
                 {
+                    Close();
                     MessageBox.Show(this, "Failed to search for updates:\n" + ex.Message, "TVD Updater",
                         MessageBoxButton.OK, MessageBoxImage.Warning);
                     manager.Dispose();
-                    Close();
                     return;
                 }
                 else if (!(ex is SizeCalculationException))
-                    throw;
-            } finally
+                {
+                    if (silent)
+                    {
+                        return;
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+            }
+            finally
             {
                 isSearching = false;
-                pb.IsIndeterminate = true;
+                pb.IsIndeterminate = false;
             }
 
             if (!updatesFound)
             {
-                Hide();
-                MessageBox.Show(this, "No updates found.", "TVD Updater", MessageBoxButton.OK, MessageBoxImage.Information);
-                manager.Dispose();
-                Close();
-                return;
+                if (silent)
+                {
+                    manager.Dispose();
+                    return;
+                }
+                else
+                {
+                    Close();
+                    MessageBox.Show(this, "No updates found.", "TVD Updater", MessageBoxButton.OK, MessageBoxImage.Information);
+                    manager.Dispose();
+                    return;
+                }
             }
+
+            if (silent)
+                Show();
 
             btnInstall.IsEnabled = true;
             lblStatus.Content = "Update(s) found.";
@@ -136,10 +184,10 @@ namespace tvdc
 
         private void Manager_PackagesDownloadFailed(object sender, FailedEventArgs e)
         {
+            Close();
             MessageBox.Show(this, "Failed to download updates:\n" + e.Exception.Message, "TVD Updater",
                 MessageBoxButton.OK, MessageBoxImage.Error);
             manager.Dispose();
-            Close();
             return;
         }
 
@@ -147,9 +195,9 @@ namespace tvdc
         {
             if (!manager.ValidatePackages())
             {
+                Close();
                 MessageBox.Show(this, "Invalid package found! Please try again.", "TVD Updater",
                 MessageBoxButton.OK, MessageBoxImage.Error);
-                Close();
                 return;
             }
 

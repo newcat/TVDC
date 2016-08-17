@@ -66,10 +66,11 @@ namespace tvdc
             MessageBox.Show(this, "Cache cleared.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
-        private void btnCheckUpdate_Click(object sender, RoutedEventArgs e)
+        private async void btnCheckUpdate_Click(object sender, RoutedEventArgs e)
         {
-            UpdateWindow uw = new UpdateWindow();
-            uw.ShowDialog();
+            UpdateWindow uw = new UpdateWindow(false);
+            await uw.ShowModal(new System.Windows.Interop.WindowInteropHelper(this).Handle);
+            Activate();
         }
 
     }
