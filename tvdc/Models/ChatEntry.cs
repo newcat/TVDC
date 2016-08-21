@@ -1,7 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Collections.Generic;
 
 namespace tvdc
 {
@@ -19,11 +19,30 @@ namespace tvdc
             ERROR, IRC, JOIN, PART, CHAT
         }
 
-        public Type eventType { get; set; }
-        public string username { get; set; }
+        private Type _eventType = Type.ERROR;
+        public Type EventType
+        {
+            get { return _eventType; }
+            set
+            {
+                _eventType = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private string _username = "";
+        public string Username
+        {
+            get { return _username; }
+            set
+            {
+                _username = value;
+                NotifyPropertyChanged();
+            }
+        }
 
         private string _text;
-        public string text
+        public string Text
         {
             get { return _text; }
             set
@@ -33,41 +52,57 @@ namespace tvdc
             }
         }
 
-        private Dictionary<string, string> _tags;
-        public Dictionary<string, string> tags
+        private List<Paragraph> _paragraphs;
+        public List<Paragraph> Paragraphs
         {
-            get { return _tags; }
+            get { return _paragraphs; }
             set
             {
-                _tags = value;
+                _paragraphs = value;
                 NotifyPropertyChanged();
             }
         }
 
-        public string color { get; set; }
-        public bool isMod { get; set; }
-        public Guid eventID { get; }
-
-        /// <summary>
-        /// Creates a new chat entry in the chat listbox
-        /// </summary>
-        /// <param name="eventType">Determines the control template.</param>
-        /// <param name="text">Can be an empty string if type is 'CHAT'</param>
-        /// <param name="username">Only needed for types 'JOIN', 'PART' or 'CHAT'</param>
-        /// <param name="color">Color of the username when type is 'CHAT'</param>
-        /// <param name="tags"></param>
-        public ChatEntry(Type eventType, string text, string username = "", string color = "", Dictionary<string, string> tags = null)
+        private string _color = "";
+        public string Color
         {
-            eventID = Guid.NewGuid();
-            this.eventType = eventType;
-            this.text = text;
-            this.username = username;
-            this.color = color;
-            this.tags = tags;
+            get { return _color; }
+            set
+            {
+                _color = value;
+                NotifyPropertyChanged();
+            }
+        }
 
-            if (this.eventType == Type.CHAT)
-                this.tags.Add("text", this.text);
+        private List<Badges.BadgeTypes> _badges;
+        public List<Badges.BadgeTypes> Badges
+        {
+            get { return _badges; }
+            set
+            {
+                _badges = value;
+                NotifyPropertyChanged();
+            }
+        }
 
+        private Guid _eventID = Guid.NewGuid();
+        public Guid EventID { get; }
+
+
+        public ChatEntry(Type eventType, string text, string username = "")
+        {
+            EventType = eventType;
+            Text = text;
+            Username = username;
+        }
+
+        public ChatEntry(string username, string color, List<Paragraph> paragraphs, List<Badges.BadgeTypes> badges)
+        {
+            EventType = Type.CHAT;
+            Username = username;
+            Color = color;
+            Paragraphs = paragraphs;
+            Badges = badges;
         }
 
     }

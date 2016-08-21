@@ -8,6 +8,7 @@ using System.Runtime.CompilerServices;
 using System.Collections.ObjectModel;
 using System.Windows.Media.Animation;
 using Microsoft.Expression.Shapes;
+using System.Windows.Threading;
 
 namespace tvdc
 {
@@ -22,13 +23,6 @@ namespace tvdc
         private void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        public static readonly DependencyProperty userlistProperty = DependencyProperty.Register("userlist", typeof(ObservableCollection<User>), typeof(FNFGraph));
-        public ObservableCollection<User> userlist
-        {
-            get { return (ObservableCollection<User>)GetValue(userlistProperty); }
-            set { SetValue(userlistProperty, value); }
         }
 
         private string _lblInfoPanel_Content = "";
@@ -72,21 +66,31 @@ namespace tvdc
         private int nonFollower;
         private int unknown;
 
+        private DispatcherTimer t = new DispatcherTimer();
+
         public FNFGraph()
         {
             InitializeComponent();
             DataContext = this;
+            t.Interval = TimeSpan.FromSeconds(1);
+            t.Tick += update;
+            t.Start();
         }
 
-        public void update()
+        public void update(object sender, EventArgs e)
         {
 
-            if (userlist == null || userlist.Count == 0)
+            MainWindowVM vm = MainWindowVM.Instance;
+
+            if (vm.viewerList == null || vm.viewerList.Count == 0)
                 return;
 
-            total = userlist.Count;
+            total = vm.viewerList.Count;
             follower = 0;
             nonFollower = 0;
+
+            User[] userlist = new User[total];
+            vm.viewerList.CopyTo(userlist, 0);
 
             foreach (User u in userlist)
             {

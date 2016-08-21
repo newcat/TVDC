@@ -8,9 +8,7 @@
     Title="Twitch Viewer Display" Height="434" Width="850"
     Icon="Resources/Twitch-tv-logo.png"
     Background="{StaticResource WindowBackgroundBrush}"
-    MinWidth="650" MinHeight="300" Loaded="Window_Loaded" Closed="Window_Closed">
-
-    <!--DataContext="{Binding RelativeSource={RelativeSource Self}}"-->
+    MinWidth="650" MinHeight="300" Closed="Window_Closed">
 
     <Window.Resources>
 
@@ -29,12 +27,59 @@
             <GradientStop Offset="1" Color="#B47C0000" />
         </LinearGradientBrush>
 
-
         <!-- Control Templates for the chat box -->
+        <ControlTemplate x:Key="EmoticonParagraph" TargetType="ListViewItem">
+            <Image Source="{Binding ImageSource}" VerticalAlignment="Center" />
+        </ControlTemplate>
+
+        <ControlTemplate x:Key="TextParagraph" TargetType="ListViewItem">
+            <TextBlock Foreground="White" Text="{Binding Text}" Background="Transparent" VerticalAlignment="Center">
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsAction}" Value="True">
+                                <Setter Property="Foreground"
+                                        Value="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListView}}}" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding IsURL}" Value="True">
+                                <Setter Property="TextDecorations" Value="Underline" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+        </ControlTemplate>
+        
         <ControlTemplate x:Key="Chat" TargetType='{x:Type ListViewItem}'>
-            <StackPanel Background="Transparent" Orientation="Horizontal">
+            <StackPanel Background="Transparent" Orientation="Horizontal" ScrollViewer.VerticalScrollBarVisibility="Disabled" >
                 <GridViewRowPresenter Content="{TemplateBinding Content}" Columns="{TemplateBinding GridView.ColumnCollection}"/>
-                <local:ChatRow Tags="{Binding tags}"/>
+                <!--TODO: BADGES-->
+                <TextBlock Background="Transparent" Text="{Binding Username}" Foreground="{Binding Color}" FontWeight="Bold"
+                           Margin="5,0,5,5" VerticalAlignment="Center"/>
+                    
+                <ListView Foreground="{Binding Color}" ItemsSource="{Binding Paragraphs}" Margin="5,0,0,0" Focusable="False" BorderThickness="0"
+                          ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled" Background="Transparent">
+
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="{x:Type ListViewItem}"  >
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsImage}" Value="True">
+                                    <Setter Property="Template" Value="{StaticResource EmoticonParagraph}"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding IsImage}" Value="False">
+                                    <Setter Property="Template" Value="{StaticResource TextParagraph}"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                    
+                </ListView>
             </StackPanel>
         </ControlTemplate>
 
@@ -42,23 +87,23 @@
             <StackPanel Background="{StaticResource errBrush}" Orientation="Horizontal">
                 <GridViewRowPresenter Content="{TemplateBinding Content}" Columns="{TemplateBinding GridView.ColumnCollection}"/>
                 <TextBlock Background="Transparent" Text="[E]" FontWeight="Bold" Margin="5,0,0,5"/>
-                <TextBlock Background="Transparent" Text="{Binding text}" Margin="5,0,0,5" />
+                <TextBlock Background="Transparent" Text="{Binding Text}" Margin="5,0,0,5" />
             </StackPanel>
         </ControlTemplate>
 
         <ControlTemplate x:Key="Join" TargetType='{x:Type ListViewItem}'>
             <StackPanel Background="{StaticResource joinBrush}" Orientation="Horizontal">
                 <GridViewRowPresenter Content="{TemplateBinding Content}" Columns="{TemplateBinding GridView.ColumnCollection}"/>
-                <TextBlock Background="Transparent" Text="{Binding username}" FontWeight="Bold" Margin="5,0,0,5"/>
-                <TextBlock Background="Transparent" Text="{Binding text}" Margin="5,0,0,5" />
+                <TextBlock Background="Transparent" Text="{Binding Username}" FontWeight="Bold" Margin="5,0,0,5"/>
+                <TextBlock Background="Transparent" Text="{Binding Text}" Margin="5,0,0,5" />
             </StackPanel>
         </ControlTemplate>
 
         <ControlTemplate x:Key="Part" TargetType='{x:Type ListViewItem}'>
             <StackPanel Background="{StaticResource partBrush}" Orientation="Horizontal">
                 <GridViewRowPresenter Content="{TemplateBinding Content}" Columns="{TemplateBinding GridView.ColumnCollection}"/>
-                <TextBlock Background="Transparent" Text="{Binding username}" FontWeight="Bold" Margin="5,0,0,5"/>
-                <TextBlock Background="Transparent" Text="{Binding text}" Margin="5,0,0,5" />
+                <TextBlock Background="Transparent" Text="{Binding Username}" FontWeight="Bold" Margin="5,0,0,5"/>
+                <TextBlock Background="Transparent" Text="{Binding Text}" Margin="5,0,0,5" />
             </StackPanel>
         </ControlTemplate>
 
@@ -66,7 +111,7 @@
             <StackPanel Background="Transparent" Orientation="Horizontal">
                 <GridViewRowPresenter Content="{TemplateBinding Content}" Columns="{TemplateBinding GridView.ColumnCollection}"/>
                 <TextBlock Background="Transparent" Text="[IRC]" FontWeight="Bold" Margin="5,0,0,5"/>
-                <TextBlock Background="Transparent" Text="{Binding text}" Margin="5,0,0,5" />
+                <TextBlock Background="Transparent" Text="{Binding Text}" Margin="5,0,0,5" />
             </StackPanel>
         </ControlTemplate>
 
@@ -353,30 +398,10 @@
 
     <Grid>
 
-        <!--<Grid x:Name="loadingPanel" Width="300" Height="100" VerticalAlignment="Center" Margin="0,50,0,0"  HorizontalAlignment="Center" Opacity="0" IsHitTestVisible="False" SnapsToDevicePixels="True">
+        <local:Graph x:Name="ViewerGraph" Height="100" Margin="12,12,268,0" VerticalAlignment="Top" Background="Transparent" />
 
-            <Border BorderBrush="#FFFFFF" BorderThickness="1" CornerRadius="3" Panel.ZIndex="6" >
-                <Border.Effect>
-                    <DropShadowEffect/>
-                </Border.Effect>
-                <Border.Background>
-                    <LinearGradientBrush SpreadMethod="Pad">
-                        <GradientStop Offset="0" Color="#3A3C48" />
-                        <GradientStop Offset="1" Color="#131218" />
-                    </LinearGradientBrush>
-                </Border.Background>
-                <Grid>
-                    <ProgressBar Width="260" Height="25" Margin="20,20,20,20" VerticalAlignment="Bottom" HorizontalAlignment="Center" Value="{Binding loadingProgress}" SnapsToDevicePixels="True"/>
-                    <Label x:Name="lblLoadingStatus" Margin="20,20,20,20" VerticalAlignment="Top" HorizontalAlignment="Left" Content="{Binding loadingStatus}" Foreground="White" SnapsToDevicePixels="True"/>
-                </Grid>
-            </Border>
-            
-        </Grid>-->
-
-        <local:Graph Height="100" Margin="12,12,268,0" x:Name="ViewerGraph" VerticalAlignment="Top" Background="Transparent" />
-
-        <ListView Margin="12,152,0,15"
-			x:Name="viewersLB" Background="Transparent" HorizontalAlignment="Left" Width="156" Foreground="White" ItemsSource="{Binding viewerList, Mode=OneWay}" Focusable="False">
+        <ListView x:Name="viewersLB" Margin="12,152,0,15" Background="Transparent" HorizontalAlignment="Left" Width="156"
+                  Foreground="White" ItemsSource="{Binding viewerList, Mode=OneWay}" Focusable="False">
 
             <ListView.Style>
                 <Style TargetType="{x:Type ListView}">
@@ -403,8 +428,8 @@
 
         </ListView>
 
-        <ListView Margin="174,152,12,44"
-			x:Name="eventList" Background="Transparent" Foreground="White" ItemsSource="{Binding chatEntryList}" Focusable="False" FontSize="{Binding chatSize}">
+        <ListView x:Name="eventList" Margin="174,152,12,44" Background="Transparent" Foreground="White"
+                  ItemsSource="{Binding chatEntryList}" Focusable="False" FontSize="{Binding ChatSize}">
 
             <ListView.Style>
                 <Style TargetType="{x:Type ListView}">
@@ -426,19 +451,19 @@
                 <Style TargetType="{x:Type ListViewItem}"  >
                     <Setter Property="Template" Value="{StaticResource Chat}"/>
                     <Style.Triggers>
-                        <DataTrigger Binding="{Binding eventType}" Value="{x:Static local:ChatEntry+Type.CHAT}">
+                        <DataTrigger Binding="{Binding EventType}" Value="{x:Static local:ChatEntry+Type.CHAT}">
                             <Setter Property="Template" Value="{StaticResource Chat}"/>
                         </DataTrigger>
-                        <DataTrigger Binding="{Binding eventType}" Value="{x:Static local:ChatEntry+Type.PART}">
+                        <DataTrigger Binding="{Binding EventType}" Value="{x:Static local:ChatEntry+Type.PART}">
                             <Setter Property="Template" Value="{StaticResource Part}"/>
                         </DataTrigger>
-                        <DataTrigger Binding="{Binding eventType}" Value="{x:Static local:ChatEntry+Type.JOIN}">
+                        <DataTrigger Binding="{Binding EventType}" Value="{x:Static local:ChatEntry+Type.JOIN}">
                             <Setter Property="Template" Value="{StaticResource Join}"/>
                         </DataTrigger>
-                        <DataTrigger Binding="{Binding eventType}" Value="{x:Static local:ChatEntry+Type.IRC}">
+                        <DataTrigger Binding="{Binding EventType}" Value="{x:Static local:ChatEntry+Type.IRC}">
                             <Setter Property="Template" Value="{StaticResource IRC}"/>
                         </DataTrigger>
-                        <DataTrigger Binding="{Binding eventType}" Value="{x:Static local:ChatEntry+Type.ERROR}">
+                        <DataTrigger Binding="{Binding EventType}" Value="{x:Static local:ChatEntry+Type.ERROR}">
                             <Setter Property="Template" Value="{StaticResource err}"/>
                         </DataTrigger>
                     </Style.Triggers>
@@ -447,19 +472,17 @@
 
         </ListView>
 
-        <TextBox Margin="174,0,12,15"
-			x:Name="tbChat" Background="Transparent"
-			AcceptsReturn="True" CaretBrush="White" BorderBrush="White"
-			Foreground="White" Height="23" VerticalAlignment="Bottom" TextChanged="tbChat_TextChanged" />
+        <TextBox x:Name="tbChat" Margin="174,0,12,15" Background="Transparent" AcceptsReturn="True" CaretBrush="White"
+            BorderBrush="White" Foreground="White" Height="23" VerticalAlignment="Bottom" TextChanged="tbChat_TextChanged" />
 
         <Label Content="Viewers" Height="28" HorizontalAlignment="Left" Margin="12,118,0,0" x:Name="Label1" VerticalAlignment="Top" Width="156" FontFamily="Segoe UI Light" FontSize="20" Foreground="White" UseLayoutRounding="False" Padding="1" />
         <Label Content="Chat" FontFamily="Segoe UI Light" FontSize="20" Foreground="White" Height="28" Margin="174,118,0,0" x:Name="lblChat" Padding="1" UseLayoutRounding="False" VerticalAlignment="Top" HorizontalAlignment="Left" Width="48" />
         <Label Content="Viewers" FontFamily="Segoe UI Light" FontSize="14" Foreground="White" Height="20" HorizontalAlignment="Right" Margin="0,12,162,0" x:Name="Label3" Padding="1" UseLayoutRounding="False" VerticalAlignment="Top" Width="100" />
         <Image Height="20" HorizontalAlignment="Right" Margin="0,38,242,0" x:Name="imgViewers" Stretch="Fill" VerticalAlignment="Top" Width="20" Source="Resources/viewers.png" />
-        <Label Content="{Binding viewerCount}" FontFamily="Segoe UI" FontSize="20" Foreground="White" Height="24.5" HorizontalAlignment="Right" Margin="0,33.5,167,0" x:Name="vc" Padding="0" UseLayoutRounding="False" VerticalAlignment="Top" Width="68.5" FontWeight="Normal" />
+        <Label Content="{Binding ViewerCount}" FontFamily="Segoe UI" FontSize="20" Foreground="White" Height="24.5" HorizontalAlignment="Right" Margin="0,33.5,167,0" x:Name="vc" Padding="0" UseLayoutRounding="False" VerticalAlignment="Top" Width="68.5" FontWeight="Normal" />
         <Label Content="Followers" FontFamily="Segoe UI Light" FontSize="14" Foreground="White" Height="20" HorizontalAlignment="Right" Margin="0,64,162,0" x:Name="Label5" Padding="1" UseLayoutRounding="False" VerticalAlignment="Top" Width="100" />
         <Image Height="22" HorizontalAlignment="Right" Margin="0,90,242,0" x:Name="imgFollowers" Stretch="Fill" VerticalAlignment="Top" Width="20" Source="Resources/followers.png" />
-        <Label Content="{Binding followerCount}" FontFamily="Segoe UI" FontSize="20" Foreground="White" Height="26" HorizontalAlignment="Right" Margin="0,86,167,0" x:Name="fc" Padding="0" UseLayoutRounding="False" VerticalAlignment="Top" Width="68.5" />
+        <Label Content="{Binding FollowerCount}" FontFamily="Segoe UI" FontSize="20" Foreground="White" Height="26" HorizontalAlignment="Right" Margin="0,86,167,0" x:Name="fc" Padding="0" UseLayoutRounding="False" VerticalAlignment="Top" Width="68.5" />
         <Image Height="28" HorizontalAlignment="Left" Margin="290,120,0,0" x:Name="Image1" Stretch="Fill" VerticalAlignment="Top" Width="28" Source="Resources/settings18.png" Focusable="False" RenderTransformOrigin="0.5,0.5" Cursor="Hand" MouseLeftButtonDown="Image1_MouseLeftButtonDown">
             <Image.RenderTransform>
                 <RotateTransform x:Name="settingsRotation" Angle="0" />
@@ -510,8 +533,9 @@
             </CheckBox.Style>
         </CheckBox>
 
-        <local:FNFGraph x:Name="fnfgraph" userlist="{Binding viewerList}" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,25,5,0" Width="140"/>
-        <ListView x:Name="pluginPanel" Height="28" Margin="323,120,162,0" VerticalAlignment="Top" ScrollViewer.VerticalScrollBarVisibility="Disabled" ScrollViewer.HorizontalScrollBarVisibility="Auto" BorderThickness="0" Background="{x:Null}" Focusable="False">
+        <local:FNFGraph x:Name="fnfgraph" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,25,5,0" Width="140"/>
+        <ListView x:Name="pluginPanel" Height="28" Margin="323,120,162,0" VerticalAlignment="Top" ScrollViewer.VerticalScrollBarVisibility="Disabled" ScrollViewer.HorizontalScrollBarVisibility="Auto" BorderThickness="0" Background="{x:Null}" Focusable="False"
+                  ItemsSource="{Binding PluginInfos}">
             
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>

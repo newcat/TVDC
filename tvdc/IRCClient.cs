@@ -45,6 +45,7 @@ namespace tvdc
         public bool initialized { get; private set; }
         public string ip { get; }
         public int port { get; }
+        public bool IsConnected { get { return tcpClient.Connected; } }
 
         private string oauth;
         private string nick;

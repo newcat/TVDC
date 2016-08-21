@@ -17,6 +17,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <TargetFrameworkProfile />
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -29,7 +30,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -103,12 +103,18 @@
     <Compile Include="AuthenticationWindow.xaml.cs">
       <DependentUpon>AuthenticationWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PluginHelper.cs" />
+    <Compile Include="Helpers\FollowerUpdater.cs" />
+    <Compile Include="Helpers\NotifyPropertyChanged.cs" />
+    <Compile Include="Helpers\RelayCommand.cs" />
+    <Compile Include="Models\Paragraph.cs" />
+    <Compile Include="Models\EventArgs.cs" />
+    <Compile Include="Helpers\PluginHelper.cs" />
     <Compile Include="Static Stuff\Extensions.cs" />
     <Compile Include="Models\ChatEntry.cs" />
     <Compile Include="Models\Emoticon.cs" />
     <Compile Include="Static Stuff\Badges.cs" />
     <Compile Include="Static Stuff\EmoticonManager.cs" />
+    <Compile Include="Static Stuff\MessageParser.cs" />
     <Compile Include="UpdateWindow.xaml.cs">
       <DependentUpon>UpdateWindow.xaml</DependentUpon>
     </Compile>
@@ -125,9 +131,6 @@
     <Compile Include="UserControls\Graph.xaml.cs">
       <DependentUpon>Graph.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\PollWindow.xaml.cs">
-      <DependentUpon>PollWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="UserControls\ViewerRow.xaml.cs">
       <DependentUpon>ViewerRow.xaml</DependentUpon>
     </Compile>
@@ -143,10 +146,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\ChatRow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -154,9 +153,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="UserControls\ChatRow.xaml.cs">
-      <DependentUpon>ChatRow.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -167,10 +163,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\Graph.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UserControls\PollWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

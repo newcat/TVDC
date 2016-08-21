@@ -3,10 +3,18 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
 using System.Runtime.CompilerServices;
+using System.Net;
+using System.Timers;
+using System.Windows;
+using System.IO;
+using System.Threading.Tasks;
+using tvdc.EventArguments;
+using System.Text.RegularExpressions;
+using System.Windows.Input;
 
 namespace tvdc
 {
-    class MainWindowVM : INotifyPropertyChanged, IDisposable
+    public class MainWindowVM : INotifyPropertyChanged
     {
 
         //Support for INotifyPropertyChanged
@@ -14,16 +22,26 @@ namespace tvdc
         private void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }  
+
+        private bool _initialized = false;
+        public bool Initialized
+        {
+            get { return _initialized; }
+            set
+            {
+                _initialized = value;
+                NotifyPropertyChanged();
+            }
         }
 
-
-        public int viewerCount
+        public int ViewerCount
         {
             get { return viewerList.Count; }
         }
 
         private int _followerCount = 0;
-        public int followerCount
+        public int FollowerCount
         {
             get { return _followerCount; }
             set
@@ -34,7 +52,7 @@ namespace tvdc
         }
 
         private int _chatSize = 12;
-        public int chatSize
+        public int ChatSize
         {
             get { return _chatSize; }
             set
@@ -47,41 +65,57 @@ namespace tvdc
             }
         }
 
-        private int _loadingProgress = 0;
-        public int loadingProgress
+        private List<PluginHelper.PluginInfo> _pluginInfos = new List<PluginHelper.PluginInfo>();
+        public List<PluginHelper.PluginInfo> PluginInfos
         {
-            get { return _loadingProgress; }
+            get { return _pluginInfos; }
             set
             {
-                _loadingProgress = value;
+                _pluginInfos = value;
                 NotifyPropertyChanged();
             }
         }
 
-        private string _loadingStatus = "";
-        public string loadingStatus
+        public RelayCommand<string> cmdSendChat { get; private set; }
+
+        public event EventHandler<PluginClickedEventArgs> PluginClicked;
+        public event EventHandler<SendMessageEventArgs> SendMessage;
+        public event EventHandler DoInit;
+
+        private static readonly MainWindowVM _instance = new MainWindowVM();
+        public static MainWindowVM Instance
         {
-            get { return _loadingStatus; }
-            set
-            {
-                _loadingStatus = value;
-                NotifyPropertyChanged();
-            }
+            get { return _instance; }
         }
 
-        public ObservableCollection<User> viewerList = new ObservableCollection<User>();
-        public ObservableCollection<ChatEntry> chatEntryList = new ObservableCollection<ChatEntry>();
+        private MainWindowVM()
+        {
+
+            viewerList = new ObservableCollection<User>();
+            chatEntryList = new ObservableCollection<ChatEntry>();
+
+            viewerList.CollectionChanged += ViewerList_CollectionChanged;
+            enableSorting = false;
+
+            cmdSendChat = new RelayCommand<string>(sendMessage, (s) => { return Initialized; });
+
+        }
+
+        public void shutdown()
+        {
+            
+            Application.Current.Shutdown();
+        }
+
+        #region Chat&Viewer List Stuff
+
+        public ObservableCollection<User> viewerList { get; private set; }
+        public ObservableCollection<ChatEntry> chatEntryList { get; private set; }
 
         public bool enableSorting { get; set; }
 
         public static object viewerListLock = new object();
-        private object chatListLock = new object();
-
-        public MainWindowVM()
-        {
-            viewerList.CollectionChanged += ViewerList_CollectionChanged;
-            enableSorting = false;
-        }
+        public static object chatListLock = new object();
 
         private void ViewerList_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
@@ -93,8 +127,11 @@ namespace tvdc
                 {
                     if (!u.subscribedToBadgeChangedEvent)
                     {
-                        u.BadgeChanged += U_BadgeChanged;
-                        u.subscribedToBadgeChangedEvent = true;
+                        invoke(() =>
+                        {
+                            u.BadgeChanged += U_BadgeChanged;
+                            u.subscribedToBadgeChangedEvent = true;
+                        });
                     }
                 }
             }
@@ -105,7 +142,7 @@ namespace tvdc
         {
             lock (viewerListLock)
             {
-                System.Windows.Application.Current.Dispatcher.Invoke(delegate ()
+                invoke(() =>
                 {
                     if (enableSorting)
                         viewerList.Sort();
@@ -115,35 +152,17 @@ namespace tvdc
 
         public void chatEntryList_Add(ChatEntry ce)
         {
-            lock (chatListLock)
-            {
-                System.Windows.Application.Current.Dispatcher.Invoke(delegate ()
-                {
-                    chatEntryList.Add(ce);
-                });
-            }
+            lock (chatListLock) { invoke(() => { chatEntryList.Add(ce); }); }
         }
 
         public void chatEntryList_Remove(ChatEntry ce)
         {
-            lock (chatListLock)
-            {
-                System.Windows.Application.Current.Dispatcher.Invoke(delegate ()
-                {
-                    chatEntryList.Remove(ce);
-                });
-            }
+            lock (chatListLock) { invoke(() => { chatEntryList.Remove(ce); }); }
         }
 
         public void chatEntryList_Clear()
         {
-            lock (chatListLock)
-            {
-                System.Windows.Application.Current.Dispatcher.Invoke(delegate ()
-                {
-                    chatEntryList.Clear();
-                });
-            }
+            lock (chatListLock) { invoke(() => { chatEntryList.Clear(); }); }
         }
 
         public void chatEntryList_GetEntryReference(ChatEntry target, out ChatEntry reference)
@@ -173,12 +192,13 @@ namespace tvdc
         {
             lock (viewerListLock)
             {
-                System.Windows.Application.Current.Dispatcher.Invoke(delegate ()
+                invoke(() =>
                 {
                     if (enableSorting)
                     {
                         viewerList.AddSorted(u);
-                    } else
+                    }
+                    else
                     {
                         viewerList.Add(u);
                     }
@@ -188,24 +208,12 @@ namespace tvdc
 
         public void viewerList_Remove(User u)
         {
-            lock (viewerListLock)
-            {
-                System.Windows.Application.Current.Dispatcher.Invoke(delegate ()
-                {
-                    viewerList.Remove(u);
-                });
-            }
+            lock (viewerListLock) { invoke(() => { viewerList.Remove(u); }); }
         }
 
         public void viewerList_Clear()
         {
-            lock (viewerListLock)
-            {
-                System.Windows.Application.Current.Dispatcher.Invoke(delegate ()
-                {
-                    viewerList.Clear();
-                });
-            }
+            lock (viewerListLock) { invoke(() => { viewerList.Clear(); }); }
         }
 
         public bool viewerList_ContainsName(string name)
@@ -229,10 +237,7 @@ namespace tvdc
                 {
                     if (u.name == name || u.name == name.ToLower() || u.displayName == name)
                     {
-                        System.Windows.Application.Current.Dispatcher.Invoke(delegate ()
-                        {
-                            viewerList.Remove(u);
-                        });
+                        invoke(() => { viewerList.Remove(u); });
                         return true;
                     }
                 }
@@ -242,67 +247,61 @@ namespace tvdc
 
         public User viewerList_GetUserByName(string name)
         {
-            foreach (User u in viewerList)
+            lock (viewerListLock)
             {
-                if (u.name == name || u.name == name.ToLower() || u.displayName == name)
+                foreach (User u in viewerList)
                 {
-                    return u;
+                    if (u.name == name || u.name == name.ToLower() || u.displayName == name)
+                    {
+                        return u;
+                    }
                 }
+                return null;
             }
-            return null;
         }
 
         public void viewerList_GetUserInstanceByName(string name, out User user)
         {
-            foreach (User u in viewerList)
+            lock (viewerListLock)
             {
-                if (u.name == name || u.name == name.ToLower() || u.displayName == name)
+                foreach (User u in viewerList)
                 {
-                    user = u;
-                    return;
+                    if (u.name == name || u.name == name.ToLower() || u.displayName == name)
+                    {
+                        user = u;
+                        return;
+                    }
                 }
+                user = null;
             }
-
-            user = null;
-
         }
 
         public void viewerList_Sort()
         {
-            lock (viewerListLock)
-            {
-
-                System.Windows.Application.Current.Dispatcher.Invoke(delegate ()
-                {
-                    viewerList.Sort();
-                });
-            }
+            lock (viewerListLock) { invoke(() => { viewerList.Sort(); }); }
         }
 
-        #region IDisposable Support
-        private bool disposedValue = false; // To detect redundant calls
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!disposedValue)
-            {
-                if (disposing)
-                {
-                    
-                }
-
-                viewerList = null;
-                chatEntryList = null;
-
-                disposedValue = true;
-            }
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-        }
         #endregion
+
+        public void pluginClicked(string pluginName)
+        {
+            PluginClicked?.Invoke(this, new PluginClickedEventArgs(pluginName));
+        }
+
+        public void invoke(Action a)
+        {
+            Application.Current.Dispatcher.Invoke(a);
+        }
+
+        private void sendMessage(string msg)
+        {
+            SendMessage?.Invoke(this, new SendMessageEventArgs(msg));
+        }
+
+        public void InvokeInit()
+        {
+            DoInit?.Invoke(this, new EventArgs());
+        }
 
     }
 }
