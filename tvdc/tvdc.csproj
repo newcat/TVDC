@@ -103,9 +103,13 @@
     <Compile Include="AuthenticationWindow.xaml.cs">
       <DependentUpon>AuthenticationWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\CommandBehavior.cs" />
+    <Compile Include="Helpers\CommandBehaviorBinding.cs" />
+    <Compile Include="Helpers\EventHandlerGenerator.cs" />
     <Compile Include="Helpers\FollowerUpdater.cs" />
     <Compile Include="Helpers\NotifyPropertyChanged.cs" />
     <Compile Include="Helpers\RelayCommand.cs" />
+    <Compile Include="Helpers\SimpleCommand.cs" />
     <Compile Include="Models\Paragraph.cs" />
     <Compile Include="Models\EventArgs.cs" />
     <Compile Include="Helpers\PluginHelper.cs" />

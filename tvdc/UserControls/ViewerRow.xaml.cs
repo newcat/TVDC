@@ -71,7 +71,7 @@ namespace tvdc
             if (badges.Contains(Badges.BadgeTypes.BROADCASTER))
                 addBadge(Badges.broadcaster);
 
-            if (badges.Contains(Badges.BadgeTypes.GlOBAL_MOD))
+            if (badges.Contains(Badges.BadgeTypes.GLOBAL_MOD))
                 addBadge(Badges.global_mod);
 
             if (badges.Contains(Badges.BadgeTypes.ADMIN))

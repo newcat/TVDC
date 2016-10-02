@@ -1,6 +1,8 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
+using System.Windows.Input;
 
 namespace tvdc
 {
@@ -66,11 +68,35 @@ namespace tvdc
             }
         }
 
+        public int ImageWidth
+        {
+            get
+            {
+                Emoticon e = EmoticonManager.requestEmoticon(emoteID);
+                if (e.isLoaded)
+                    return e.width;
+                return 0;
+            }
+        }
+
+        public int ImageHeight
+        {
+            get
+            {
+                Emoticon e = EmoticonManager.requestEmoticon(emoteID);
+                if (e.isLoaded)
+                    return e.height;
+                return 0;
+            }
+        }
+
         private void E_ImageDownloadFinished(object sender, EventArgs e)
         {
             Emoticon em = (Emoticon)sender;
             em.ImageDownloadFinished -= E_ImageDownloadFinished;
             NotifyPropertyChanged("ImageSource");
+            NotifyPropertyChanged("ImageWidth");
+            NotifyPropertyChanged("ImageHeight");
         }
 
         private string _text = "";
@@ -83,6 +109,8 @@ namespace tvdc
                 NotifyPropertyChanged();
             }
         }
+
+        public RelayCommand cmdUrlClicked { get; private set; }
 
         private int emoteID;
         private bool isSubscribed = false;
@@ -98,6 +126,8 @@ namespace tvdc
             Text = text;
             IsAction = isAction;
             IsURL = isURL;
+
+            cmdUrlClicked = new RelayCommand(() => { Process.Start(Text); }, () => { return IsURL; });
         }
 
     }

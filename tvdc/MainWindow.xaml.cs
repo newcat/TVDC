@@ -11,6 +11,8 @@ namespace tvdc
 {
 
     //TODO: Add support for cheering
+    //TODO: Make context menu functional
+    //TODO: Replace ViewerRow control
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -36,6 +38,7 @@ namespace tvdc
 
         public void initCompleted()
         {
+            ViewerGraph.reset();
             viewerGraphTimer.Start();
         }
 

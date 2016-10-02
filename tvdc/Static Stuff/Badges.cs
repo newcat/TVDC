@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
 using System.IO;
@@ -23,13 +21,13 @@ namespace tvdc
         public static BitmapImage admin { get; private set; }
         public static BitmapImage global_mod { get; private set; }
         public static BitmapImage moderator { get; private set; }
-        public static BitmapImage subscriber { get; private set; }
         public static BitmapImage turbo { get; private set; }
         public static BitmapImage broadcaster { get; private set; }
+        public static BitmapImage subscriber { get; private set; }
 
         public enum BadgeTypes
         {
-            SUBSCRIBER, TURBO, MODERATOR, BROADCASTER, GlOBAL_MOD, ADMIN, STAFF
+            SUBSCRIBER, TURBO, MODERATOR, BROADCASTER, GLOBAL_MOD, ADMIN, STAFF
         }
 
         public static void init()
@@ -152,7 +150,7 @@ namespace tvdc
                 returnList.Add(BadgeTypes.BROADCASTER);
 
             if (bs.Contains("global_mod"))
-                returnList.Add(BadgeTypes.GlOBAL_MOD);
+                returnList.Add(BadgeTypes.GLOBAL_MOD);
 
             return returnList;
 

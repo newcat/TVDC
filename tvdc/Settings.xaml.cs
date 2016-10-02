@@ -11,13 +11,15 @@ namespace tvdc
     {
 
         private bool clearedCache = false;
+        private string oauth;
 
         public Settings()
         {
             InitializeComponent();
 
             tbNick.Text = Properties.Settings.Default.nick;
-            tbOauth.Text = Properties.Settings.Default.oauth;
+            oauth = Properties.Settings.Default.oauth;
+            tbOauth.Text = "(Hidden)";
             tbChannel.Text = Properties.Settings.Default.channel;
             cbDebug.IsChecked = Properties.Settings.Default.debug;
             cbShowEvents.IsChecked = Properties.Settings.Default.showJoinLeave;
@@ -30,13 +32,13 @@ namespace tvdc
             aw.ShowDialog();
             if (aw.oauth != "")
             {
-                tbOauth.Text = aw.oauth;
+                oauth = aw.oauth;
             }
         }
 
         private void btnOK_Click(object sender, RoutedEventArgs e)
         {
-            if (tbNick.Text.Equals("") || tbOauth.Text.Equals("") || tbChannel.Text.Equals("") || tbOauth.Text.Substring(0, 6) != "oauth:")
+            if (tbNick.Text.Equals("") || oauth.Equals("") || tbChannel.Text.Equals("") || oauth.Substring(0, 6) != "oauth:")
             {
                 MessageBox.Show("Invalid input!");
                 return;
@@ -44,8 +46,8 @@ namespace tvdc
 
             DialogResult = true;
 
-            Properties.Settings.Default.nick = tbNick.Text;
-            Properties.Settings.Default.oauth = tbOauth.Text;
+            Properties.Settings.Default.nick = tbNick.Text.ToLower();
+            Properties.Settings.Default.oauth = oauth;
             Properties.Settings.Default.channel = tbChannel.Text.ToLower();
             Properties.Settings.Default.debug = (bool)cbDebug.IsChecked;
             Properties.Settings.Default.showJoinLeave = (bool)cbShowEvents.IsChecked;
@@ -74,5 +76,9 @@ namespace tvdc
             Activate();
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            tbOauth.Text = oauth;
+        }
     }
 }

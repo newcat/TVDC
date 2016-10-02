@@ -97,7 +97,7 @@ namespace tvdc
 
                 if (!u.updating)
                 {
-                    if (u.isFollower)
+                    if (u.IsFollower)
                     {
                         follower++;
                     } else

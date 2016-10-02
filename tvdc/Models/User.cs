@@ -18,7 +18,7 @@ namespace tvdc
         }
 
         private string _color;
-        public string color
+        public string Color
         {
             get { return _color; }
             set
@@ -29,7 +29,7 @@ namespace tvdc
         }
 
         private string _name;
-        public string name
+        public string Name
         {
             get { return _name; }
             set
@@ -40,7 +40,7 @@ namespace tvdc
         }
 
         private string _displayName;
-        public string displayName
+        public string DisplayName
         {
             get
             {
@@ -60,7 +60,7 @@ namespace tvdc
         }
 
         private bool _isFollower;
-        public bool isFollower
+        public bool IsFollower
         {
             get { return _isFollower; }
             set
@@ -73,7 +73,7 @@ namespace tvdc
         public bool updating { get; private set; }
 
         private List<Badges.BadgeTypes> _badges;
-        public List<Badges.BadgeTypes> badges
+        public List<Badges.BadgeTypes> Badges
         {
             get { return _badges; }
             set
@@ -94,15 +94,15 @@ namespace tvdc
             {
                 _name = name;
                 updating = true;
-                color = TwitchColors.getColorByUsername(name);
+                Color = TwitchColors.getColorByUsername(name);
 
                 if (badges != null)
                 {
-                    this.badges = badges;
+                    Badges = badges;
                     badgeLevel = getBadgeLevel();
                 } else
                 {
-                    this.badges = new List<Badges.BadgeTypes>();
+                    Badges = new List<Badges.BadgeTypes>();
                     badgeLevel = 0;
                 }
             }
@@ -115,9 +115,9 @@ namespace tvdc
         {
             lock (MainWindowVM.viewerListLock)
             {
-                if (!badges.Contains(badge))
+                if (!Badges.Contains(badge))
                 {
-                    badges.Add(badge);
+                    Badges.Add(badge);
                     badgeLevel = getBadgeLevel();
                     BadgeChanged?.Invoke(this, new EventArgs());
                 }
@@ -130,7 +130,7 @@ namespace tvdc
             {
                 if (!equalBadges(badges))
                 {
-                    this.badges = badges;
+                    Badges = badges;
                     badgeLevel = getBadgeLevel();
                     BadgeChanged?.Invoke(this, new EventArgs());
                 }
@@ -139,10 +139,10 @@ namespace tvdc
 
         private bool equalBadges(List<Badges.BadgeTypes> badges)
         {
-            if (this.badges.Count != badges.Count)
+            if (Badges.Count != badges.Count)
                 return false;
 
-            foreach (Badges.BadgeTypes b in this.badges)
+            foreach (Badges.BadgeTypes b in Badges)
             {
                 if (!badges.Contains(b))
                     return false;
@@ -155,7 +155,7 @@ namespace tvdc
         {
             lock (MainWindowVM.viewerListLock)
             {
-                bool success = badges.Remove(b);
+                bool success = Badges.Remove(b);
 
                 if (success)
                 {
@@ -187,11 +187,11 @@ namespace tvdc
 
             lock (MainWindowVM.viewerListLock)
             {
-                displayName = dict["display_name"].ToString();
+                DisplayName = dict["display_name"].ToString();
             }
 
             try {
-                json = await wr.DownloadStringTaskAsync(string.Format("https://api.twitch.tv/kraken/users/{0}/follows/channels/{1}", name, Properties.Settings.Default.channel));
+                json = await wr.DownloadStringTaskAsync(string.Format("https://api.twitch.tv/kraken/users/{0}/follows/channels/{1}", Name, Properties.Settings.Default.channel));
             }
             catch (WebException ex)
             {
@@ -199,7 +199,7 @@ namespace tvdc
                 {
                     lock (MainWindowVM.viewerListLock)
                     {
-                        isFollower = false;
+                        IsFollower = false;
                         updating = false;
                     }
                 }
@@ -216,14 +216,14 @@ namespace tvdc
             {
                 lock (MainWindowVM.viewerListLock)
                 {
-                    isFollower = true;
+                    IsFollower = true;
                     updating = false;
                 }
             } else
             {
                 lock (MainWindowVM.viewerListLock)
                 {
-                    isFollower = false;
+                    IsFollower = false;
                     updating = false;
                 }
             }
@@ -237,25 +237,25 @@ namespace tvdc
 
             int badgeLevel = 0;
 
-            if (badges.Contains(Badges.BadgeTypes.SUBSCRIBER))
+            if (Badges.Contains(tvdc.Badges.BadgeTypes.SUBSCRIBER))
                 badgeLevel = 1;
 
-            if (badges.Contains(Badges.BadgeTypes.TURBO))
+            if (Badges.Contains(tvdc.Badges.BadgeTypes.TURBO))
                 badgeLevel = 2;
 
-            if (badges.Contains(Badges.BadgeTypes.MODERATOR))
+            if (Badges.Contains(tvdc.Badges.BadgeTypes.MODERATOR))
                 badgeLevel = 3;
 
-            if (badges.Contains(Badges.BadgeTypes.BROADCASTER))
+            if (Badges.Contains(tvdc.Badges.BadgeTypes.BROADCASTER))
                 badgeLevel = 4;
 
-            if (badges.Contains(Badges.BadgeTypes.GlOBAL_MOD))
+            if (Badges.Contains(tvdc.Badges.BadgeTypes.GLOBAL_MOD))
                 badgeLevel = 5;
 
-            if (badges.Contains(Badges.BadgeTypes.ADMIN))
+            if (Badges.Contains(tvdc.Badges.BadgeTypes.ADMIN))
                 badgeLevel = 6;
 
-            if (badges.Contains(Badges.BadgeTypes.STAFF))
+            if (Badges.Contains(tvdc.Badges.BadgeTypes.STAFF))
                 badgeLevel = 7;
 
             return badgeLevel;
@@ -270,7 +270,7 @@ namespace tvdc
                 return 1;
             } else if (badgeLevel == other.badgeLevel)
             {
-                return name.CompareTo(other.name);
+                return Name.CompareTo(other.Name);
             } else
             {
                 return -1;
@@ -280,7 +280,7 @@ namespace tvdc
 
         public bool Equals(User other)
         {
-            return name == other.name;
+            return Name == other.Name;
         }
     }
 }

@@ -30,25 +30,33 @@ namespace tvdc
             if (File.Exists(Path.Combine(Environment.CurrentDirectory, "tvd_settings.cfg")))
             {
                 string[] cfg = File.ReadAllLines(Path.Combine(Environment.CurrentDirectory, "tvd_settings.cfg"));
-                if (cfg.Length == 5)
+                if (cfg.Length >= 5)
                 {
                     tvdc.Properties.Settings.Default.nick = cfg[0];
                     tvdc.Properties.Settings.Default.oauth = cfg[1];
                     tvdc.Properties.Settings.Default.channel = cfg[2];
                     tvdc.Properties.Settings.Default.debug = cfg[3] == "True" ? true : false;
                     tvdc.Properties.Settings.Default.showJoinLeave = cfg[4] == "True" ? true : false;
+                    for (int i = 5; i < cfg.Length; i++)
+                    {
+                        tvdc.Properties.Settings.Default.favoriteChannels.Add(cfg[i]);
+                    }
                 }
                 File.Delete(Path.Combine(Environment.CurrentDirectory, "tvd_settings.cfg"));
             }
 
-            if (tvdc.Properties.Settings.Default.nick == "")
+            if (tvdc.Properties.Settings.Default.nick == "" ||
+                tvdc.Properties.Settings.Default.oauth == "" ||
+                tvdc.Properties.Settings.Default.channel == "")
             {
                 Settings s = new Settings();
                 s.btnCancel.IsEnabled = false;
                 s.ShowDialog();
             }
 
-            if (tvdc.Properties.Settings.Default.nick == "")
+            if (tvdc.Properties.Settings.Default.nick == "" ||
+                tvdc.Properties.Settings.Default.oauth == "" ||
+                tvdc.Properties.Settings.Default.channel == "")
             {
                 Shutdown();
             }
@@ -209,10 +217,10 @@ namespace tvdc
                 return;
 
             if (e.tags.ContainsKey("color") && e.tags["color"] != null && e.tags["color"] != "")
-                mainVM.invoke(() => { u.color = e.tags["color"]; });
+                mainVM.invoke(() => { u.Color = e.tags["color"]; });
 
             if (e.tags.ContainsKey("display-name") && e.tags["display-name"] != null && e.tags["display-name"] != "")
-                mainVM.invoke(() => { u.displayName = e.tags["display-name"]; });
+                mainVM.invoke(() => { u.DisplayName = e.tags["display-name"]; });
 
             if (e.tags.ContainsKey("badges") && e.tags["badges"] != null)
                 mainVM.invoke(() => { u.setBadges(Badges.parseBadgeString(e.tags["badges"])); });
@@ -236,10 +244,11 @@ namespace tvdc
 
             List<Badges.BadgeTypes> badges = new List<Badges.BadgeTypes>();
 
-            if (u != null && e.tags.ContainsKey("badges") && e.tags["badges"] != null)
+            if (e.tags.ContainsKey("badges") && e.tags["badges"] != null)
             {
                 badges = Badges.parseBadgeString(e.tags["badges"]);
-                mainVM.invoke(() => { u.setBadges(badges); });
+                if (u != null)
+                    mainVM.invoke(() => { u.setBadges(badges); });
             }
 
             e.tags.Add("text", e.message);
@@ -320,9 +329,9 @@ namespace tvdc
 
             if (u != null)
             {
-                name = u.displayName;
-                color = u.color;
-                badges = u.badges;
+                name = u.DisplayName;
+                color = u.Color;
+                badges = u.Badges;
             }
 
             mainVM.chatEntryList_Add(new ChatEntry(name, color, MessageParser.GetParagraphsFromMessage(message), badges));

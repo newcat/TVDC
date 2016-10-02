@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using tvdc.EventArguments;
 using System.Text.RegularExpressions;
 using System.Windows.Input;
+using System.Diagnostics;
 
 namespace tvdc
 {
@@ -76,16 +77,44 @@ namespace tvdc
             }
         }
 
+        private ObservableCollection<string> _channelFavorites = new ObservableCollection<string>();
+        public ObservableCollection<string> ChannelFavorites
+        {
+            get { return _channelFavorites; }
+            set
+            {
+                _channelFavorites = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private string _selectedChannel;
+        public string SelectedChannel
+        {
+            get { return _selectedChannel; }
+            set
+            {
+                _selectedChannel = value;
+                NotifyPropertyChanged();
+            }
+        }
+
         public RelayCommand<string> cmdSendChat { get; private set; }
+        public RelayCommand CmdRemoveChannelEntry { get; private set; }
+        public RelayCommand<string> CmdAddChannelEntry { get; private set; }
 
         public event EventHandler<PluginClickedEventArgs> PluginClicked;
         public event EventHandler<SendMessageEventArgs> SendMessage;
         public event EventHandler DoInit;
 
-        private static readonly MainWindowVM _instance = new MainWindowVM();
+        private static MainWindowVM _instance;
         public static MainWindowVM Instance
         {
-            get { return _instance; }
+            get {
+                if (_instance == null)
+                    _instance = new MainWindowVM();
+                return _instance;
+            }
         }
 
         private MainWindowVM()
@@ -97,13 +126,50 @@ namespace tvdc
             viewerList.CollectionChanged += ViewerList_CollectionChanged;
             enableSorting = false;
 
-            cmdSendChat = new RelayCommand<string>(sendMessage, (s) => { return Initialized; });
+            string[] arr = new string[Properties.Settings.Default.favoriteChannels.Count];
+            Properties.Settings.Default.favoriteChannels.CopyTo(arr, 0);
+            List<string> l = new List<string>(arr);
+            ChannelFavorites = new ObservableCollection<string>(l);
 
+            cmdSendChat = new RelayCommand<string>(sendMessage, (s) => { return Initialized; });
+            CmdAddChannelEntry = new RelayCommand<string>(
+                (s) => 
+                {
+                    if (s != "" && !ChannelFavorites.Contains(s))
+                    {
+                        ChannelFavorites.Add(s);
+                        Properties.Settings.Default.favoriteChannels.Add(s);
+                        Properties.Settings.Default.Save();
+                    }
+                },
+                (s) => { return s != "" && !ChannelFavorites.Contains(s); });
+            CmdRemoveChannelEntry = new RelayCommand(
+                () =>
+                {
+                    if (SelectedChannel != "")
+                    {
+                        Properties.Settings.Default.favoriteChannels.Remove(SelectedChannel);
+                        Properties.Settings.Default.Save();
+                        ChannelFavorites.Remove(SelectedChannel);
+                    }
+                },
+                () => SelectedChannel != null);
+
+            PropertyChanged += MainWindowVM_PropertyChanged;
+        }
+
+        private void MainWindowVM_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "SelectedChannel" && SelectedChannel != null && SelectedChannel != "" &&
+                SelectedChannel != Properties.Settings.Default.channel)
+            {
+                Properties.Settings.Default.channel = SelectedChannel;
+                InvokeInit();
+            }
         }
 
         public void shutdown()
         {
-            
             Application.Current.Shutdown();
         }
 
@@ -222,7 +288,7 @@ namespace tvdc
             {
                 foreach (User u in viewerList)
                 {
-                    if (u.name == name || u.name == name.ToLower() || u.displayName == name)
+                    if (u.Name == name || u.Name == name.ToLower() || u.DisplayName == name)
                         return true;
                 }
                 return false;
@@ -235,7 +301,7 @@ namespace tvdc
             {
                 foreach (User u in viewerList)
                 {
-                    if (u.name == name || u.name == name.ToLower() || u.displayName == name)
+                    if (u.Name == name || u.Name == name.ToLower() || u.DisplayName == name)
                     {
                         invoke(() => { viewerList.Remove(u); });
                         return true;
@@ -251,7 +317,7 @@ namespace tvdc
             {
                 foreach (User u in viewerList)
                 {
-                    if (u.name == name || u.name == name.ToLower() || u.displayName == name)
+                    if (u.Name == name || u.Name == name.ToLower() || u.DisplayName == name)
                     {
                         return u;
                     }
@@ -266,7 +332,7 @@ namespace tvdc
             {
                 foreach (User u in viewerList)
                 {
-                    if (u.name == name || u.name == name.ToLower() || u.displayName == name)
+                    if (u.Name == name || u.Name == name.ToLower() || u.DisplayName == name)
                     {
                         user = u;
                         return;
