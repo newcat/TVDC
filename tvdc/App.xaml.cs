@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
@@ -30,9 +31,24 @@ namespace tvdc
             tvdc.Properties.Settings.Default.Reload();
             if (tvdc.Properties.Settings.Default.upgradeRequired)
             {
-                tvdc.Properties.Settings.Default.Upgrade();
-                tvdc.Properties.Settings.Default.upgradeRequired = false;
-                tvdc.Properties.Settings.Default.Save();
+
+                try
+                {
+                    tvdc.Properties.Settings.Default.GetPreviousVersion("name");
+
+                    tvdc.Properties.Settings.Default.Reset();
+                    tvdc.Properties.Settings.Default.upgradeRequired = false;
+                    tvdc.Properties.Settings.Default.Save();
+
+                } catch (SettingsPropertyNotFoundException)
+                {
+                    //If setting could not be found it means we will also have
+                    //a valid oauth code in previous settings
+                    tvdc.Properties.Settings.Default.Upgrade();
+                    tvdc.Properties.Settings.Default.upgradeRequired = false;
+                    tvdc.Properties.Settings.Default.Save();
+                }
+
             }
 
             if (! await AccountManager.Login())
