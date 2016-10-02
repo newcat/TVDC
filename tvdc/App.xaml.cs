@@ -18,8 +18,6 @@ namespace tvdc
         private FollowerUpdater followerUpdater;
         private IRCClient irc;
 
-        private string nick;
-        private string oauth;
         private string channel;
         private bool debug;
         private bool showJoinLeave;
@@ -27,36 +25,32 @@ namespace tvdc
         private async void Application_Startup(object sender, StartupEventArgs e)
         {
 
-            if (File.Exists(Path.Combine(Environment.CurrentDirectory, "tvd_settings.cfg")))
+            ShutdownMode = ShutdownMode.OnExplicitShutdown;
+
+            tvdc.Properties.Settings.Default.Reload();
+            if (tvdc.Properties.Settings.Default.upgradeRequired)
             {
-                string[] cfg = File.ReadAllLines(Path.Combine(Environment.CurrentDirectory, "tvd_settings.cfg"));
-                if (cfg.Length >= 5)
-                {
-                    tvdc.Properties.Settings.Default.nick = cfg[0];
-                    tvdc.Properties.Settings.Default.oauth = cfg[1];
-                    tvdc.Properties.Settings.Default.channel = cfg[2];
-                    tvdc.Properties.Settings.Default.debug = cfg[3] == "True" ? true : false;
-                    tvdc.Properties.Settings.Default.showJoinLeave = cfg[4] == "True" ? true : false;
-                    for (int i = 5; i < cfg.Length; i++)
-                    {
-                        tvdc.Properties.Settings.Default.favoriteChannels.Add(cfg[i]);
-                    }
-                }
-                File.Delete(Path.Combine(Environment.CurrentDirectory, "tvd_settings.cfg"));
+                tvdc.Properties.Settings.Default.Upgrade();
+                tvdc.Properties.Settings.Default.upgradeRequired = false;
+                tvdc.Properties.Settings.Default.Save();
             }
 
-            if (tvdc.Properties.Settings.Default.nick == "" ||
-                tvdc.Properties.Settings.Default.oauth == "" ||
-                tvdc.Properties.Settings.Default.channel == "")
+            if (! await AccountManager.Login())
+            {
+                MessageBox.Show("Error while logging in. Please try again.", "TVD");
+                Shutdown();
+            }
+
+            if (tvdc.Properties.Settings.Default.channel == "")
             {
                 Settings s = new Settings();
                 s.btnCancel.IsEnabled = false;
                 s.ShowDialog();
             }
 
-            if (tvdc.Properties.Settings.Default.nick == "" ||
-                tvdc.Properties.Settings.Default.oauth == "" ||
-                tvdc.Properties.Settings.Default.channel == "")
+            tvdc.Properties.Settings.Default.Reload();
+
+            if (tvdc.Properties.Settings.Default.channel == "")
             {
                 Shutdown();
             }
@@ -106,8 +100,6 @@ namespace tvdc
             mainVM.viewerList_Clear();
             mainVM.FollowerCount = 0;
 
-            nick = tvdc.Properties.Settings.Default.nick;
-            oauth = tvdc.Properties.Settings.Default.oauth;
             channel = tvdc.Properties.Settings.Default.channel;
             debug = tvdc.Properties.Settings.Default.debug;
             showJoinLeave = tvdc.Properties.Settings.Default.showJoinLeave;
@@ -128,7 +120,7 @@ namespace tvdc
                 mainVM.chatEntryList_Add(new ChatEntry(ChatEntry.Type.ERROR, "Failed to download subscriber badge."));
 
             //Connect to IRC
-            irc = new IRCClient("irc.twitch.tv", 6667, nick, oauth, channel);
+            irc = new IRCClient("irc.twitch.tv", 6667, AccountManager.Username, AccountManager.Oauth, channel);
 
             //Add event handlers
             irc.MessageReceived += IRC_MessageReceived;
@@ -211,7 +203,7 @@ namespace tvdc
         {
 
             User u = null;
-            mainVM.viewerList_GetUserInstanceByName(nick, out u);
+            mainVM.viewerList_GetUserInstanceByName(AccountManager.Username, out u);
 
             if (u == null)
                 return;
@@ -321,11 +313,11 @@ namespace tvdc
 
             irc.send(message);
 
-            string name = nick;
-            string color = TwitchColors.getColorByUsername(nick);
+            string name = AccountManager.Username;
+            string color = TwitchColors.getColorByUsername(name);
             List<Badges.BadgeTypes> badges = new List<Badges.BadgeTypes>();
 
-            User u = mainVM.viewerList_GetUserByName(nick);
+            User u = mainVM.viewerList_GetUserByName(name);
 
             if (u != null)
             {

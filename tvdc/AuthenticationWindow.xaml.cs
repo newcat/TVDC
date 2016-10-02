@@ -22,7 +22,7 @@ namespace tvdc
         {
             wb.Navigate("https://api.twitch.tv/kraken/oauth2/authorize?response_type=token&client_id=" +
                 Properties.Resources.client_id +
-                "&redirect_uri=http://newcat.bplaced.net/tvd/&scope=chat_login+user_subscriptions&force_verify=true");
+                "&redirect_uri=http://newcat.bplaced.net/tvd/&scope=chat_login+user_subscriptions+user_read&force_verify=true");
         }
 
         private void wb_Navigating(object sender, System.Windows.Navigation.NavigatingCancelEventArgs e)

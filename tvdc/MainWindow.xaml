@@ -9,7 +9,7 @@
     Title="Twitch Viewer Display" Height="434" Width="850"
     Icon="Resources/Twitch-tv-logo.png"
     Background="{StaticResource WindowBackgroundBrush}"
-    MinWidth="650" MinHeight="300" Closed="Window_Closed">
+    MinWidth="650" MinHeight="300" Closed="Window_Closed" WindowStartupLocation="CenterScreen">
 
     <Window.Resources>
 

@@ -201,18 +201,6 @@ namespace tvdc
                 return;
             }
 
-            string path = Path.Combine(Environment.CurrentDirectory, "tvd_settings.cfg");
-            using (FileStream fs = new FileStream(path, FileMode.Create))
-            {
-                StreamWriter sw = new StreamWriter(fs, Encoding.ASCII);
-                sw.WriteLine(Properties.Settings.Default.nick);
-                sw.WriteLine(Properties.Settings.Default.oauth);
-                sw.WriteLine(Properties.Settings.Default.channel);
-                sw.WriteLine(Properties.Settings.Default.debug);
-                sw.WriteLine(Properties.Settings.Default.showJoinLeave);
-            }
-            File.SetAttributes(path, File.GetAttributes(path) | FileAttributes.Hidden);
-
             manager.InstallPackage();
             Environment.Exit(0);
         }

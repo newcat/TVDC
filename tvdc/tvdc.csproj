@@ -55,6 +55,10 @@
   <PropertyGroup>
     <ApplicationIcon>Twitch-tv-logo.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>
+    </StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Expression.Drawing, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Threading.Tasks, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -110,9 +114,13 @@
     <Compile Include="Helpers\NotifyPropertyChanged.cs" />
     <Compile Include="Helpers\RelayCommand.cs" />
     <Compile Include="Helpers\SimpleCommand.cs" />
+    <Compile Include="LoginWindow.xaml.cs">
+      <DependentUpon>LoginWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Models\Paragraph.cs" />
     <Compile Include="Models\EventArgs.cs" />
     <Compile Include="Helpers\PluginHelper.cs" />
+    <Compile Include="Static Stuff\AccountManager.cs" />
     <Compile Include="Static Stuff\Extensions.cs" />
     <Compile Include="Models\ChatEntry.cs" />
     <Compile Include="Models\Emoticon.cs" />
@@ -139,6 +147,10 @@
       <DependentUpon>ViewerRow.xaml</DependentUpon>
     </Compile>
     <Page Include="AuthenticationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LoginWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

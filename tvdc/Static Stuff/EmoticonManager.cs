@@ -147,7 +147,7 @@ namespace tvdc
                 {
                     string json = await wc.DownloadStringTaskAsync(
                         string.Format("https://api.twitch.tv/kraken/users/{0}/emotes?oauth_token={1}",
-                        Properties.Settings.Default.nick, Properties.Settings.Default.oauth.Substring(6)));
+                        AccountManager.Username, AccountManager.Oauth.Substring(6)));
 
                     JObject root = JObject.Parse(json);
                     JObject sets = (JObject)root["emoticon_sets"];

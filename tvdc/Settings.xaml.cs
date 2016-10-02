@@ -11,34 +11,27 @@ namespace tvdc
     {
 
         private bool clearedCache = false;
-        private string oauth;
 
         public Settings()
         {
             InitializeComponent();
 
-            tbNick.Text = Properties.Settings.Default.nick;
-            oauth = Properties.Settings.Default.oauth;
-            tbOauth.Text = "(Hidden)";
             tbChannel.Text = Properties.Settings.Default.channel;
             cbDebug.IsChecked = Properties.Settings.Default.debug;
             cbShowEvents.IsChecked = Properties.Settings.Default.showJoinLeave;
-        }
 
-        private void linkGenerate_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            //Process.Start("http://www.twitchapps.com/tmi");
-            AuthenticationWindow aw = new AuthenticationWindow();
-            aw.ShowDialog();
-            if (aw.oauth != "")
+            if (AccountManager.Username != "")
             {
-                oauth = aw.oauth;
+                btnLogout.IsEnabled = true;
+                lblUsername.Text = "Currently logged in as: " + AccountManager.Username;
             }
+
         }
 
         private void btnOK_Click(object sender, RoutedEventArgs e)
         {
-            if (tbNick.Text.Equals("") || oauth.Equals("") || tbChannel.Text.Equals("") || oauth.Substring(0, 6) != "oauth:")
+            
+            if (tbChannel.Text.Equals(""))
             {
                 MessageBox.Show("Invalid input!");
                 return;
@@ -46,8 +39,6 @@ namespace tvdc
 
             DialogResult = true;
 
-            Properties.Settings.Default.nick = tbNick.Text.ToLower();
-            Properties.Settings.Default.oauth = oauth;
             Properties.Settings.Default.channel = tbChannel.Text.ToLower();
             Properties.Settings.Default.debug = (bool)cbDebug.IsChecked;
             Properties.Settings.Default.showJoinLeave = (bool)cbShowEvents.IsChecked;
@@ -76,9 +67,12 @@ namespace tvdc
             Activate();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void btnLogout_Click(object sender, RoutedEventArgs e)
         {
-            tbOauth.Text = oauth;
+            Properties.Settings.Default.oauth = "";
+            Properties.Settings.Default.Save();
+            System.Diagnostics.Process.Start(Application.ResourceAssembly.Location);
+            Application.Current.Shutdown();
         }
     }
 }

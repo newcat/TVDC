@@ -1,0 +1,23 @@
+﻿<Window x:Class="tvdc.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:tvdc"
+        mc:Ignorable="d" Background="{StaticResource WindowBackgroundBrush}"
+        Title="Login" Height="209.167" Width="270.834" WindowStartupLocation="CenterScreen">
+    <Grid>
+
+        <Button x:Name="btnLogin" Content="Login" Height="50" Width="100" VerticalAlignment="Center" Visibility="Collapsed" Click="btnLogin_Click">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Template" Value="{StaticResource ButtonTemplate}" />
+                </Style>
+            </Button.Style>
+        </Button>
+
+        <TextBlock x:Name="lblStatus" Text="Logging in..." Foreground="White" VerticalAlignment="Center" Margin="0,0,0,50" TextAlignment="Center" />
+        <ProgressBar x:Name="pb" IsIndeterminate="True" Width="200" Height="10" Style="{StaticResource ProgressBarStyle1}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+
+    </Grid>
+</Window>
