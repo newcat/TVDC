@@ -164,6 +164,7 @@ namespace tvdc
                 SelectedChannel != Properties.Settings.Default.channel)
             {
                 Properties.Settings.Default.channel = SelectedChannel;
+                Properties.Settings.Default.Save();
                 InvokeInit();
             }
         }
