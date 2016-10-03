@@ -23,7 +23,14 @@ namespace pollPlugin
 
         public PollSetup()
         {
-            Assembly.LoadFrom("plugin.dll");
+            try
+            {
+                Assembly.LoadFrom("plugin.dll");
+            } catch (Exception e)
+            {
+                MessageBox.Show("Unable to initialize poll plugin:\n" + e.Message);
+                return;
+            }
             InitializeComponent();
             listBox.ItemsSource = pollOptions;
         }

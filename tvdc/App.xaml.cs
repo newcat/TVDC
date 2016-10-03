@@ -34,7 +34,7 @@ namespace tvdc
 
                 try
                 {
-                    tvdc.Properties.Settings.Default.GetPreviousVersion("name");
+                    tvdc.Properties.Settings.Default.GetPreviousVersion("nick");
 
                     tvdc.Properties.Settings.Default.Reset();
                     tvdc.Properties.Settings.Default.upgradeRequired = false;

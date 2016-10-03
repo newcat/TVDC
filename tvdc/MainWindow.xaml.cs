@@ -11,8 +11,7 @@ namespace tvdc
 {
 
     //TODO: Add support for cheering
-    //TODO: Make context menu functional
-    //TODO: Replace ViewerRow control
+    //TODO: Maybe problems with the plugins (either plugin.dll [unlikely] or the pollplugin)
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -26,6 +25,7 @@ namespace tvdc
 
         public MainWindow(MainWindowVM vm)
         {
+
             InitializeComponent();
             this.vm = vm;
             vm.chatEntryList.CollectionChanged += ChatEntryList_CollectionChanged;

@@ -102,6 +102,9 @@ namespace tvdc
         public RelayCommand<string> cmdSendChat { get; private set; }
         public RelayCommand CmdRemoveChannelEntry { get; private set; }
         public RelayCommand<string> CmdAddChannelEntry { get; private set; }
+        public RelayCommand<string> CmdMod { get; private set; }
+        public RelayCommand<string> CmdUnmod { get; private set; }
+        public RelayCommand<string> CmdTimeout { get; private set; }
 
         public event EventHandler<PluginClickedEventArgs> PluginClicked;
         public event EventHandler<SendMessageEventArgs> SendMessage;
@@ -154,6 +157,9 @@ namespace tvdc
                     }
                 },
                 () => SelectedChannel != null);
+            CmdMod = new RelayCommand<string>((s) => sendMessage("/mod " + s));
+            CmdUnmod = new RelayCommand<string>((s) => sendMessage("/unmod " + s));
+            CmdTimeout = new RelayCommand<string>((s) => sendMessage("/timeout " + s));
 
             PropertyChanged += MainWindowVM_PropertyChanged;
         }

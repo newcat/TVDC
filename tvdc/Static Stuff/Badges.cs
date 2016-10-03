@@ -24,10 +24,11 @@ namespace tvdc
         public static BitmapImage turbo { get; private set; }
         public static BitmapImage broadcaster { get; private set; }
         public static BitmapImage subscriber { get; private set; }
+        public static BitmapImage premium { get; private set; }
 
         public enum BadgeTypes
         {
-            SUBSCRIBER, TURBO, MODERATOR, BROADCASTER, GLOBAL_MOD, ADMIN, STAFF
+            SUBSCRIBER, TURBO, MODERATOR, BROADCASTER, GLOBAL_MOD, ADMIN, STAFF, PREMIUM
         }
 
         public static void init()
@@ -42,6 +43,7 @@ namespace tvdc
             moderator = convert(Properties.Resources.mod_alpha);
             turbo = convert(Properties.Resources.turbo_alpha);
             broadcaster = convert(Properties.Resources.broadcaster_alpha);
+            premium = convert(Properties.Resources.premium);
 
             loaded = true;
 
@@ -136,6 +138,9 @@ namespace tvdc
 
             if (bs.Contains("subscriber"))
                 returnList.Add(BadgeTypes.SUBSCRIBER);
+
+            if (bs.Contains("premium"))
+                returnList.Add(BadgeTypes.PREMIUM);
 
             if (bs.Contains("turbo"))
                 returnList.Add(BadgeTypes.TURBO);

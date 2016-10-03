@@ -143,9 +143,6 @@
     <Compile Include="UserControls\Graph.xaml.cs">
       <DependentUpon>Graph.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\ViewerRow.xaml.cs">
-      <DependentUpon>ViewerRow.xaml</DependentUpon>
-    </Compile>
     <Page Include="AuthenticationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -179,10 +176,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\Graph.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UserControls\ViewerRow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -276,6 +269,9 @@
       <Project>{b857ba90-2b28-4138-b0d2-27213281ee21}</Project>
       <Name>plugin</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\premium.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Fody.1.28.3\build\Fody.targets" Condition="Exists('..\packages\Fody.1.28.3\build\Fody.targets')" />

@@ -29,9 +29,12 @@
         </LinearGradientBrush>
 
         <ContextMenu x:Key="UserContextMenu">
-            <MenuItem Header="Mod" />
-            <MenuItem Header="Unmod" />
-            <MenuItem Header="Timeout" />
+            <MenuItem Header="Mod" Command="{Binding CmdMod, Source={x:Static local:MainWindowVM.Instance}}"
+                      CommandParameter="{Binding Username}" />
+            <MenuItem Header="Unmod" Command="{Binding CmdUnmod, Source={x:Static local:MainWindowVM.Instance}}"
+                      CommandParameter="{Binding Username}"/>
+            <MenuItem Header="Timeout" Command="{Binding CmdTimeout, Source={x:Static local:MainWindowVM.Instance}}"
+                      CommandParameter="{Binding Username}"/>
         </ContextMenu>
 
         <!-- Control Templates for the chat box -->
@@ -102,6 +105,9 @@
                                                         </DataTrigger>
                                                         <DataTrigger Binding="{Binding}" Value="{x:Static local:Badges+BadgeTypes.TURBO}">
                                                             <Setter Property="Source" Value="{x:Static local:Badges.turbo}" />
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding}" Value="{x:Static local:Badges+BadgeTypes.PREMIUM}">
+                                                            <Setter Property="Source" Value="{x:Static local:Badges.premium}" />
                                                         </DataTrigger>
                                                         <DataTrigger Binding="{Binding}" Value="{x:Static local:Badges+BadgeTypes.SUBSCRIBER}">
                                                             <Setter Property="Source" Value="{x:Static local:Badges.subscriber}" />
@@ -220,6 +226,9 @@
                                                         </DataTrigger>
                                                         <DataTrigger Binding="{Binding}" Value="{x:Static local:Badges+BadgeTypes.TURBO}">
                                                             <Setter Property="Source" Value="{x:Static local:Badges.turbo}" />
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding}" Value="{x:Static local:Badges+BadgeTypes.PREMIUM}">
+                                                            <Setter Property="Source" Value="{x:Static local:Badges.premium}" />
                                                         </DataTrigger>
                                                         <DataTrigger Binding="{Binding}" Value="{x:Static local:Badges+BadgeTypes.SUBSCRIBER}">
                                                             <Setter Property="Source" Value="{x:Static local:Badges.subscriber}" />
@@ -420,10 +429,25 @@
             </ListView.ItemContainerStyle>
 
         </ListView>
-        <Expander x:Name="expanderChannel" HorizontalAlignment="Right" VerticalAlignment="Stretch" ExpandDirection="Left" Margin="0,12,12,12" Panel.ZIndex="3">
+        <Expander x:Name="expanderChannel" HorizontalAlignment="Right" ExpandDirection="Left" 
+                  Margin="0,12,12,12" Panel.ZIndex="3">
             <Expander.Effect>
                 <DropShadowEffect BlurRadius="36" Direction="138"/>
             </Expander.Effect>
+
+            <Expander.Style>
+                <Style TargetType="Expander">
+                    <Setter Property="VerticalAlignment" Value="Top" />
+                    <Style.Triggers>
+                        <Trigger Property="IsExpanded" Value="True">
+                            <Trigger.Setters>
+                                <Setter Property="VerticalAlignment" Value="Stretch" />
+                            </Trigger.Setters>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Expander.Style>
+            
             <Grid Background="#CC000000" Width="200">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30" />

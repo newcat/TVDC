@@ -5,7 +5,6 @@ using System.Runtime.CompilerServices;
 using System.Net;
 using System.Web.Script.Serialization;
 using System.Windows;
-using System.Linq;
 
 namespace tvdc
 {
@@ -171,7 +170,7 @@ namespace tvdc
             WebClient wr = new WebClient();
             string json = "";
 
-            wr.Headers.Add("Client-ID", (string)Application.Current.Resources["client_id"]);
+            wr.Headers.Add("Client-ID", Properties.Resources.client_id);
 
             try
             {
@@ -191,7 +190,9 @@ namespace tvdc
             }
 
             try {
-                json = await wr.DownloadStringTaskAsync(string.Format("https://api.twitch.tv/kraken/users/{0}/follows/channels/{1}", Name, Properties.Settings.Default.channel));
+                json = await wr.DownloadStringTaskAsync(
+                    string.Format("https://api.twitch.tv/kraken/users/{0}/follows/channels/{1}",
+                        Name, Properties.Settings.Default.channel));
             }
             catch (WebException ex)
             {
@@ -241,6 +242,9 @@ namespace tvdc
                 badgeLevel = 1;
 
             if (Badges.Contains(tvdc.Badges.BadgeTypes.TURBO))
+                badgeLevel = 2;
+
+            if (Badges.Contains(tvdc.Badges.BadgeTypes.PREMIUM))
                 badgeLevel = 2;
 
             if (Badges.Contains(tvdc.Badges.BadgeTypes.MODERATOR))
