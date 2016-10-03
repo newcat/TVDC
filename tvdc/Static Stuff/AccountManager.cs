@@ -62,7 +62,16 @@ namespace tvdc
             if (Properties.Settings.Default.oauth != "")
             {
                 _oauth = Properties.Settings.Default.oauth;
-                return await downloadUserData();
+                if (await downloadUserData())
+                {
+                    return true;
+                } else
+                {
+                    //delete the saved oAuth-Key, because it is probably invalid
+                    Properties.Settings.Default.oauth = "";
+                    Properties.Settings.Default.Save();
+                    return await Login();
+                }
             }
             else
             {
@@ -74,8 +83,7 @@ namespace tvdc
                     Properties.Settings.Default.oauth = _oauth;
                     Properties.Settings.Default.Save();
                     return await downloadUserData();
-                }
-                else
+                } else
                 {
                     return false;
                 }

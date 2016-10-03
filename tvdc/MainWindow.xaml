@@ -64,7 +64,7 @@
                 </TextBlock.Style>
             </TextBlock>
         </ControlTemplate>
-        
+
         <ControlTemplate x:Key="Chat" TargetType='{x:Type ListViewItem}'>
             <StackPanel Background="Transparent" Orientation="Horizontal" ScrollViewer.VerticalScrollBarVisibility="Disabled" >
                 <GridViewRowPresenter Content="{TemplateBinding Content}" Columns="{TemplateBinding GridView.ColumnCollection}"/>
@@ -127,7 +127,7 @@
                 <TextBlock Background="Transparent" Text="{Binding Username}" Foreground="{Binding Color}" FontWeight="Bold"
                            Margin="5,5,0,5" VerticalAlignment="Center" ContextMenu="{StaticResource UserContextMenu}"
                            Cursor="Hand"/>
-                    
+
                 <ListView Foreground="{Binding Color}" ItemsSource="{Binding Paragraphs}" Margin="5,0,0,0" Focusable="False" BorderThickness="0"
                           ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled" Background="Transparent">
 
@@ -149,7 +149,7 @@
                             </Style.Triggers>
                         </Style>
                     </ListView.ItemContainerStyle>
-                    
+
                 </ListView>
             </StackPanel>
         </ControlTemplate>
@@ -334,10 +334,10 @@
         <Label Content="Chat" FontFamily="Segoe UI Light" FontSize="20" Foreground="White" Height="28" Margin="174,118,0,0" x:Name="lblChat" Padding="1" UseLayoutRounding="False" VerticalAlignment="Top" HorizontalAlignment="Left" Width="48" />
         <Label Content="Viewers" FontFamily="Segoe UI Light" FontSize="14" Foreground="White" Height="20" HorizontalAlignment="Right" Margin="0,12,162,0" x:Name="Label3" Padding="1" UseLayoutRounding="False" VerticalAlignment="Top" Width="100" />
         <Image Height="20" HorizontalAlignment="Right" Margin="0,38,242,0" x:Name="imgViewers" Stretch="Fill" VerticalAlignment="Top" Width="20" Source="Resources/viewers.png" />
-        <Label Content="{Binding ViewerCount}" FontFamily="Segoe UI" FontSize="20" Foreground="White" Height="24.5" HorizontalAlignment="Right" Margin="0,33.5,167,0" x:Name="vc" Padding="0" UseLayoutRounding="False" VerticalAlignment="Top" Width="68.5" FontWeight="Normal" />
+        <Label Content="{Binding ViewerCount}" FontFamily="Segoe UI" FontSize="20" Foreground="White" Height="24.5" HorizontalAlignment="Right" Margin="0,33.5,145,0" x:Name="vc" Padding="0" UseLayoutRounding="False" VerticalAlignment="Top" Width="90.5" FontWeight="Normal" />
         <Label Content="Followers" FontFamily="Segoe UI Light" FontSize="14" Foreground="White" Height="20" HorizontalAlignment="Right" Margin="0,64,162,0" x:Name="Label5" Padding="1" UseLayoutRounding="False" VerticalAlignment="Top" Width="100" />
         <Image Height="22" HorizontalAlignment="Right" Margin="0,90,242,0" x:Name="imgFollowers" Stretch="Fill" VerticalAlignment="Top" Width="20" Source="Resources/followers.png" />
-        <Label Content="{Binding FollowerCount}" FontFamily="Segoe UI" FontSize="20" Foreground="White" Height="26" HorizontalAlignment="Right" Margin="0,86,167,0" x:Name="fc" Padding="0" UseLayoutRounding="False" VerticalAlignment="Top" Width="68.5" />
+        <Label Content="{Binding FollowerCount}" FontFamily="Segoe UI" FontSize="20" Foreground="White" Height="26" HorizontalAlignment="Right" Margin="0,86,145,0" x:Name="fc" Padding="0" UseLayoutRounding="False" VerticalAlignment="Top" Width="90.5" />
         <Image Height="28" HorizontalAlignment="Left" Margin="290,120,0,0" x:Name="Image1" Stretch="Fill" VerticalAlignment="Top" Width="28" Source="Resources/settings18.png" Focusable="False" RenderTransformOrigin="0.5,0.5" Cursor="Hand" MouseLeftButtonDown="Image1_MouseLeftButtonDown">
             <Image.RenderTransform>
                 <RotateTransform x:Name="settingsRotation" Angle="0" />
@@ -391,7 +391,7 @@
         <local:FNFGraph x:Name="fnfgraph" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,25,5,0" Width="140"/>
         <ListView x:Name="pluginPanel" Height="28" Margin="323,120,162,0" VerticalAlignment="Top" ScrollViewer.VerticalScrollBarVisibility="Disabled" ScrollViewer.HorizontalScrollBarVisibility="Auto" BorderThickness="0" Background="{x:Null}" Focusable="False"
                   ItemsSource="{Binding PluginInfos}">
-            
+
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <StackPanel Orientation="Horizontal" />
@@ -447,7 +447,7 @@
                     </Style.Triggers>
                 </Style>
             </Expander.Style>
-            
+
             <Grid Background="#CC000000" Width="200">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30" />

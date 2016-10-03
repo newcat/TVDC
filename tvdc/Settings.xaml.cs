@@ -39,7 +39,17 @@ namespace tvdc
 
             DialogResult = true;
 
-            Properties.Settings.Default.channel = tbChannel.Text.ToLower();
+            string channel = tbChannel.Text.ToLower();
+
+            if (channel.StartsWith("https://www.twitch.tv/"))
+            {
+                channel = channel.Substring(22);
+            } else if (channel.StartsWith("http://www.twitch.tv/"))
+            {
+                channel = channel.Substring(21);
+            }
+
+            Properties.Settings.Default.channel = channel;
             Properties.Settings.Default.debug = (bool)cbDebug.IsChecked;
             Properties.Settings.Default.showJoinLeave = (bool)cbShowEvents.IsChecked;
             Properties.Settings.Default.Save();
