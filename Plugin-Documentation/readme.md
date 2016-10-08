@@ -2,8 +2,8 @@
 
 ### What you need
 * Visual Studio
-* The [plugin.dll](INSERTLINKHERE)
-* (Optional) If you want the TVD-Styling for your plugin, use [this resource dictionary](INSERTLINKHERE)
+* The [plugin.dll](plugin.dll)
+* (Optional) If you want the TVD-Styling for your plugin, use [this resource dictionary](tvdcStyling.xaml)
 
 ### Get started
 Create a new project in Visual Studio. For the Template you select "WPF Custom Control Library" in the Classic Desktop section. When VS creates this project, it automatically puts a lot of stuff in there that we don't need. So just delete the "Themes" folder and the "CustomControl1.cs" file.
