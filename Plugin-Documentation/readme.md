@@ -139,4 +139,4 @@ This function will be called either before the application exits or before the c
 > NOTE: It can cause memory leaks if you don't dispose your stuff properly in this function!
 
 ### Reference
-If you want to know more, check out the [Reference](INSERTLINKHERE).
+If you want to know more, check out the [Reference](Reference/readme.md).
