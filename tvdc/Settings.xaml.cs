@@ -1,6 +1,4 @@
-﻿using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Input;
+﻿using System.Windows;
 
 namespace tvdc
 {
@@ -70,10 +68,10 @@ namespace tvdc
             MessageBox.Show(this, "Cache cleared.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
-        private async void btnCheckUpdate_Click(object sender, RoutedEventArgs e)
+        private void btnCheckUpdate_Click(object sender, RoutedEventArgs e)
         {
             UpdateWindow uw = new UpdateWindow(false);
-            await uw.ShowModal(new System.Windows.Interop.WindowInteropHelper(this).Handle);
+            uw.ShowDialogAndSearchForUpdates();
             Activate();
         }
 

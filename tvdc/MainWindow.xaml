@@ -37,9 +37,19 @@
                       CommandParameter="{Binding Username}"/>
         </ContextMenu>
 
+        <ContextMenu x:Key="UserContextMenuViewerList">
+            <MenuItem Header="Mod" Command="{Binding CmdMod, Source={x:Static local:MainWindowVM.Instance}}"
+                      CommandParameter="{Binding Name}" />
+            <MenuItem Header="Unmod" Command="{Binding CmdUnmod, Source={x:Static local:MainWindowVM.Instance}}"
+                      CommandParameter="{Binding Name}"/>
+            <MenuItem Header="Timeout" Command="{Binding CmdTimeout, Source={x:Static local:MainWindowVM.Instance}}"
+                      CommandParameter="{Binding Name}"/>
+        </ContextMenu>
+
         <!-- Control Templates for the chat box -->
         <ControlTemplate x:Key="EmoticonParagraph" TargetType="ListViewItem">
-            <Image Source="{Binding ImageSource}" Width="{Binding ImageWidth}" Height="{Binding ImageHeight}" VerticalAlignment="Center" />
+            <Image Source="{Binding ImageSource}" Width="{Binding ImageWidth}" Height="{Binding ImageHeight}" VerticalAlignment="Center"
+                   IsHitTestVisible="False"/>
         </ControlTemplate>
 
         <ControlTemplate x:Key="TextParagraph" TargetType="ListViewItem">
@@ -134,6 +144,10 @@
                     <ListView.ItemsPanel>
                         <ItemsPanelTemplate>
                             <StackPanel Orientation="Horizontal" />
+                            <!--<WrapPanel Width="{Binding (FrameworkElement.ActualWidth), RelativeSource={RelativeSource AncestorType=ScrollContentPresenter}}"
+                                       ItemWidth="{Binding (ListView.View).ItemWidth, RelativeSource={RelativeSource AncestorType=ListView}}"
+                                       MinWidth="{Binding ItemWidth, RelativeSource={RelativeSource Self}}"
+                                       ItemHeight="{Binding (ListView.View).ItemHeight, RelativeSource={RelativeSource AncestorType=ListView}}" />-->
                         </ItemsPanelTemplate>
                     </ListView.ItemsPanel>
 
@@ -183,6 +197,18 @@
                 <GridViewRowPresenter Content="{TemplateBinding Content}" Columns="{TemplateBinding GridView.ColumnCollection}"/>
                 <TextBlock Background="Transparent" Text="[IRC]" FontWeight="Bold" Margin="5,0,0,5"/>
                 <TextBlock Background="Transparent" Text="{Binding Text}" Margin="5,0,0,5" />
+            </StackPanel>
+        </ControlTemplate>
+
+        <ControlTemplate x:Key="IRCHostingMessage" TargetType='{x:Type ListViewItem}'>
+            <StackPanel Background="Transparent" Orientation="Horizontal">
+                <GridViewRowPresenter Content="{TemplateBinding Content}" Columns="{TemplateBinding GridView.ColumnCollection}"/>
+                <TextBlock Background="Transparent" Text="[IRC]" FontWeight="Bold" Margin="5,0,0,5"/>
+                <TextBlock Background="Transparent" Text="Now hosting" Margin="5,0,0,5" />
+                <TextBlock Background="Transparent" Text="{Binding HostingChannelName}" Margin="5,0,0,5" FontWeight="Bold" Cursor="Hand"
+                           acb:CommandBehavior.Command="{Binding CmdSwitchChannel, Source={x:Static local:MainWindowVM.Instance}}"
+                           acb:CommandBehavior.CommandParameter="{Binding HostingChannelName}"
+                           acb:CommandBehavior.Event="MouseLeftButtonDown" />
             </StackPanel>
         </ControlTemplate>
 
@@ -245,7 +271,8 @@
 
                 </ListView>
 
-                <TextBlock Background="Transparent" Text="{Binding DisplayName}" Margin="5,2,0,2" />
+                <TextBlock Background="Transparent" Text="{Binding DisplayName}" Margin="5,2,0,2"
+                           Cursor="Hand" ContextMenu="{StaticResource UserContextMenuViewerList}"/>
             </StackPanel>
         </ControlTemplate>
 
@@ -284,7 +311,8 @@
         </ListView>
 
         <ListView x:Name="eventList" Margin="174,152,12,44" Background="Transparent" Foreground="White"
-                  ItemsSource="{Binding chatEntryList}" Focusable="False" FontSize="{Binding ChatSize}">
+                  ItemsSource="{Binding chatEntryList}" Focusable="False" FontSize="{Binding ChatSize}"
+                  ScrollViewer.HorizontalScrollBarVisibility="Disabled">
 
             <ListView.Style>
                 <Style TargetType="{x:Type ListView}">
@@ -318,6 +346,15 @@
                         <DataTrigger Binding="{Binding EventType}" Value="{x:Static local:ChatEntry+Type.IRC}">
                             <Setter Property="Template" Value="{StaticResource IRC}"/>
                         </DataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding EventType}" Value="{x:Static local:ChatEntry+Type.IRC}" />
+                                <Condition Binding="{Binding IsHostingMessage}" Value="True" />
+                            </MultiDataTrigger.Conditions>
+                            <MultiDataTrigger.Setters>
+                                <Setter Property="Template" Value="{StaticResource IRCHostingMessage}" />
+                            </MultiDataTrigger.Setters>
+                        </MultiDataTrigger>
                         <DataTrigger Binding="{Binding EventType}" Value="{x:Static local:ChatEntry+Type.ERROR}">
                             <Setter Property="Template" Value="{StaticResource err}"/>
                         </DataTrigger>

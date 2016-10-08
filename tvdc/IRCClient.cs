@@ -259,7 +259,7 @@ namespace tvdc
                             message += parsedMessage.command_params[i] + " ";
                         }
 
-                        PrivmsgReceived?.Invoke(this, new PrivmsgReceivedEventArgs() { tags = parsedMessage.tags, username = username, message = message });
+                        PrivmsgReceived?.Invoke(this, new PrivmsgReceivedEventArgs() { tags = parsedMessage.tags, username = username, message = message.TrimEnd() });
                         break;
 
                     case IRC_Commands.ROOMSTATE:

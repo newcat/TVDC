@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:tvdc"
         mc:Ignorable="d" Background="{StaticResource WindowBackgroundBrush}"
-        Title="TVD Update" Height="300" Width="460" ResizeMode="NoResize" ShowInTaskbar="False" WindowStartupLocation="CenterOwner" Topmost="True">
+        Title="TVD Update" Height="310" Width="470" ResizeMode="NoResize" ShowInTaskbar="False"
+        WindowStartupLocation="CenterOwner" Loaded="Window_Loaded">
     <Window.Resources>
         <SolidColorBrush x:Key="TextBox.Static.Border" Color="#FFABAdB3"/>
         <SolidColorBrush x:Key="TextBox.MouseOver.Border" Color="#FF7EB4EA"/>
@@ -61,7 +62,12 @@
             </Button.Style>
         </Button>
         <ProgressBar HorizontalAlignment="Left" Height="10" Margin="10,224,0,0" VerticalAlignment="Top" Width="432" x:Name="pb" IsIndeterminate="True" Style="{StaticResource ProgressBarStyle1}"/>
-        <TextBox x:Name="tbChangelog" HorizontalAlignment="Left" Height="178" Margin="10,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="432" Style="{DynamicResource TextBoxStyle1}" IsEnabled="False" />
+
+        <Border BorderBrush="White" BorderThickness="1" HorizontalAlignment="Left" Height="178" Margin="10,41,0,0" VerticalAlignment="Top" Width="432">
+            <ScrollViewer Foreground="{x:Null}" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                <TextBlock x:Name="tbChangelog" Foreground="White" TextWrapping="Wrap" Margin="5"/>
+            </ScrollViewer>
+        </Border>
 
 
     </Grid>

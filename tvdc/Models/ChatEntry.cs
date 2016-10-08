@@ -30,6 +30,7 @@ namespace tvdc
             }
         }
 
+        //Username for JOIN, PART and CHAT entries
         private string _username = "";
         public string Username
         {
@@ -41,6 +42,8 @@ namespace tvdc
             }
         }
 
+        //Text property is only used for non-chat entries
+        //Chat entries will use the paragraphs-property
         private string _text;
         public string Text
         {
@@ -52,6 +55,7 @@ namespace tvdc
             }
         }
 
+        //Paragraph can be text, url or emoticon
         private List<Paragraph> _paragraphs;
         public List<Paragraph> Paragraphs
         {
@@ -63,6 +67,7 @@ namespace tvdc
             }
         }
 
+        //Color for the username and for /me-Messages
         private string _color = "";
         public string Color
         {
@@ -74,6 +79,7 @@ namespace tvdc
             }
         }
 
+        //Badges to display in front of the username
         private List<Badges.BadgeTypes> _badges;
         public List<Badges.BadgeTypes> Badges
         {
@@ -85,10 +91,25 @@ namespace tvdc
             }
         }
 
+        //Every entry gets its own GUID to prevent the scrollbug
+        //from happening (happens if two entries have the same contents)
         private Guid _eventID = Guid.NewGuid();
         public Guid EventID { get; }
 
+        //needed for making the "Now hosting xxx" clickable
+        public bool IsHostingMessage
+        {
+            get { return Text.StartsWith("Now hosting"); }
+        }
 
+        //needed for making the "Now hosting xxx" clickable
+        public string HostingChannelName
+        {
+            get { return Text.Substring(12).TrimEnd('.'); }
+        }
+
+
+        //Constructor for IRC, Join/Part and error entries
         public ChatEntry(Type eventType, string text, string username = "")
         {
             EventType = eventType;
@@ -96,6 +117,7 @@ namespace tvdc
             Username = username;
         }
 
+        //Constructor for chat entries
         public ChatEntry(string username, string color, List<Paragraph> paragraphs, List<Badges.BadgeTypes> badges)
         {
             EventType = Type.CHAT;

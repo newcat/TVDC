@@ -105,6 +105,7 @@ namespace tvdc
         public RelayCommand<string> CmdMod { get; private set; }
         public RelayCommand<string> CmdUnmod { get; private set; }
         public RelayCommand<string> CmdTimeout { get; private set; }
+        public RelayCommand<string> CmdSwitchChannel { get; private set; }
 
         public event EventHandler<PluginClickedEventArgs> PluginClicked;
         public event EventHandler<SendMessageEventArgs> SendMessage;
@@ -160,6 +161,16 @@ namespace tvdc
             CmdMod = new RelayCommand<string>((s) => sendMessage("/mod " + s));
             CmdUnmod = new RelayCommand<string>((s) => sendMessage("/unmod " + s));
             CmdTimeout = new RelayCommand<string>((s) => sendMessage("/timeout " + s));
+            CmdSwitchChannel = new RelayCommand<string>(
+                (s) => {
+                    if (s != null && s != "" && s != Properties.Settings.Default.channel)
+                    {
+                        Properties.Settings.Default.channel = s.ToLower();
+                        Properties.Settings.Default.Save();
+                        InvokeInit();
+                    }
+                },
+                (s) => (s != null && s != "" && s != Properties.Settings.Default.channel));
 
             PropertyChanged += MainWindowVM_PropertyChanged;
         }

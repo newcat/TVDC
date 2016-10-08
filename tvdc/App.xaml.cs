@@ -98,7 +98,7 @@ namespace tvdc
         private void MainVM_PluginClicked(object sender, PluginClickedEventArgs e)
         {
             if (pluginHelper != null)
-                pluginHelper.pluginClicked(e.PluginName);
+                pluginHelper.PluginClicked(e.PluginName);
         }
 
         public async Task init()
@@ -111,6 +111,9 @@ namespace tvdc
 
             if (irc != null && irc.IsConnected)
                 irc.disconnect();
+
+            if (pluginHelper != null)
+                pluginHelper.End();
 
             mainVM.chatEntryList_Clear();
             mainVM.viewerList_Clear();
@@ -153,8 +156,16 @@ namespace tvdc
             //Load plugins
             mainVM.chatEntryList_Add(new ChatEntry(ChatEntry.Type.IRC, "Loading plugins..."));
             pluginHelper = new PluginHelper(irc);
-            pluginHelper.loadPlugins();
+            pluginHelper.LoadPlugins();
             mainVM.PluginInfos = pluginHelper.PluginInfoList;
+
+            if (debug)
+            {
+                foreach (PluginHelper.PluginInfo pi in pluginHelper.PluginInfoList)
+                {
+                    mainVM.chatEntryList_Add(new ChatEntry(ChatEntry.Type.IRC, "Plugin loaded: " + pi.name));
+                }
+            }
 
             //Connect
             mainVM.chatEntryList_Add(new ChatEntry(ChatEntry.Type.IRC, "Connecting to IRC..."));
@@ -168,7 +179,7 @@ namespace tvdc
             ((MainWindow)MainWindow).initCompleted();
 
             UpdateWindow uw = new UpdateWindow(true);
-            await uw.searchForUpdates();
+            await uw.SearchForUpdates();
 
         }
 
@@ -350,6 +361,7 @@ namespace tvdc
 
         private void Application_Exit(object sender, ExitEventArgs e)
         {
+            pluginHelper.End();
             if (irc != null)
                 irc.disconnect();
             if (followerUpdater != null)

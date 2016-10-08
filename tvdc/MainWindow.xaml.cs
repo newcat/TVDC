@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
@@ -12,6 +11,7 @@ namespace tvdc
 
     //TODO: Add support for cheering
     //TODO: Maybe problems with the plugins (either plugin.dll [unlikely] or the pollplugin)
+    //TODO: Not able to scroll while hovering over a chat message
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml

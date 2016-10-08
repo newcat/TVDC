@@ -47,7 +47,7 @@ namespace tvdc
 
         }
 
-        public void loadPlugins()
+        public void LoadPlugins()
         {
 
             string pluginTypeName = typeof(IPlugin).FullName;
@@ -91,13 +91,23 @@ namespace tvdc
 
         }
 
-        public void pluginClicked(string pluginName)
+        public void PluginClicked(string pluginName)
         {
             IPlugin p = getPluginByName(pluginName);
             if (p != null)
             {
                 p.IconClicked();
             }
+        }
+
+        public void End()
+        {
+
+            foreach (IPlugin p in plugins)
+            {
+                p.End();
+            }
+
         }
 
         private bool pluginExists(string pluginName)

@@ -238,13 +238,13 @@ namespace tvdc
 
             int badgeLevel = 0;
 
-            if (Badges.Contains(tvdc.Badges.BadgeTypes.SUBSCRIBER))
+            if (Badges.Contains(tvdc.Badges.BadgeTypes.TURBO))
                 badgeLevel = 1;
 
-            if (Badges.Contains(tvdc.Badges.BadgeTypes.TURBO))
-                badgeLevel = 2;
-
             if (Badges.Contains(tvdc.Badges.BadgeTypes.PREMIUM))
+                badgeLevel = 1;
+
+            if (Badges.Contains(tvdc.Badges.BadgeTypes.SUBSCRIBER))
                 badgeLevel = 2;
 
             if (Badges.Contains(tvdc.Badges.BadgeTypes.MODERATOR))

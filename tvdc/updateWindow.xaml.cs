@@ -27,6 +27,7 @@ namespace tvdc
         private bool isDownloading = false;
         private bool readyToInstall = false;
         private bool silent = false;
+        private bool searchWhenOpening = false;
 
         public UpdateWindow(bool silent)
         {
@@ -50,11 +51,23 @@ namespace tvdc
             };
             
             Show();
-            await searchForUpdates();
+            await SearchForUpdates();
             Dispatcher.PushFrame(frame);
         }
 
-        public async Task searchForUpdates()
+        public void ShowAndSearchForUpdates()
+        {
+            searchWhenOpening = true;
+            Show();
+        }
+
+        public void ShowDialogAndSearchForUpdates()
+        {
+            searchWhenOpening = true;
+            ShowDialog();
+        }
+
+        public async Task SearchForUpdates()
         {
 
             bool updatesFound = false;
@@ -210,6 +223,12 @@ namespace tvdc
             return Math.Round(bytes / 1048576, 2).ToString() + " MB";
         }
 
+        private async void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (searchWhenOpening)
+                await SearchForUpdates();
+        }
+
         #region IDisposable Support
         private bool disposedValue = false; // Dient zur Erkennung redundanter Aufrufe.
 
@@ -228,8 +247,8 @@ namespace tvdc
         {
             Dispose(true);
         }
-        #endregion
 
+        #endregion
 
     }
 }
