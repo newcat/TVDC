@@ -4,7 +4,7 @@
 
 ### Properties
 Name|Type|Description
-----|-----------
+----|----|-----------
 pluginName|string|The name will be displayed when hovering above the plugin icon.
 
 ### Methods

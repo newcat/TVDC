@@ -4,7 +4,7 @@
 
 ### Methods
 Name|Return Type|Description
-----|-----------
+----|-----------|-----------
 sendMessage(string)|void|Sends a message to the IRC. If the message starts with an '%', the message will be sent to the IRC "as-is" (raw), else it will be sent as a PRIVMSG (like you would type in the normal Twitch-Chatbox).
 
 ### Events
