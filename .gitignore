@@ -6,7 +6,6 @@
 *.user
 *.userosscache
 *.sln.docstates
-*.md
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
@@ -244,5 +243,3 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
-
-Plugin-Documentation/
