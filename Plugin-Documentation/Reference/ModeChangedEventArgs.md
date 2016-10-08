@@ -1,4 +1,4 @@
-# MsgReceivedArgs Class
+# ModeChangedEventArgs Class
 
 ### Properties
 Name|Type|Description
