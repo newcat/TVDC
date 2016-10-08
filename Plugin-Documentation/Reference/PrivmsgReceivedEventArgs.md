@@ -1,4 +1,4 @@
-# PrivmsgReceivedArgs Class
+# PrivmsgReceivedEventArgs Class
 
 ### Properties
 Name|Type|Description
