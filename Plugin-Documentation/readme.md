@@ -41,7 +41,7 @@ public void IconClicked() { }
 public void End() { }
 ```
 
-Ok well at least we can compile without errors now. But it doesn't do anything yet. So let's start with the `Initialize`-Method:
+Ok, well, at least we can compile without errors now. But it doesn't do anything yet. So let's start with the `Initialize`-Method:
 
 I suggest you create a variable in your class, which you assign the `host`-parameter to.
 For my example, I want to send a message back to the user when he sends "Hello". So let's see what my TestClass looks like now:
@@ -72,14 +72,13 @@ class TestPlugin : IPlugin
 }
 ```
 
-> NOTE: All IRC events are called from the IRC thread, so don't do long work in there or try to make it asynchronous.
+> NOTE: All IRC events are called from the IRC thread, so don't do long work in there or, if you have to, try to make it asynchronous.
 
-To run the program, simpley build the project and copy the dll-File from your projects output directory to where your tvdc.exe is located. Also make sure, there is a plugin.dll in the same folder (it should be there by default though).
+To run the program, simply build the project and copy the dll-File from your projects output directory to where your tvdc.exe is located. Also make sure, there is a plugin.dll in the same folder (it should be there by default though).
 
 
 ### Make your plugin show up in the plugin bar
 If you're asking yourself now: "How the hell can I create a image source?", then I've got the answer here for you:
-Basically it takes a `System.Drawing.Bitmap` and converts it into a `BitmapImage`, which is a subclass of `ImageSource`.
 ```C#
 private BitmapImage BmpToImg(System.Drawing.Bitmap bmp)
 {
@@ -93,6 +92,8 @@ private BitmapImage BmpToImg(System.Drawing.Bitmap bmp)
     return bi;
 }
 ```
+
+Basically it takes a `System.Drawing.Bitmap` and converts it into a `BitmapImage`, which is a subclass of `ImageSource`.
 
 So, assuming you got two bitmaps in your resources, one for hover and one for default, your getMenuIcon-Methods could look something like this:
 ```C#
@@ -131,6 +132,11 @@ In your window, simply add this:
 ```
 
 Now all controls should be styled by default. The last thing to do then is to set the Background-Property of the window to `Background="{StaticResource WindowBackgroundBrush}"`. And you're done. Well, only if you don't care about functionality though ;) But thats your task now.
+
+### End-function
+This function will be called either before the application exits or before the channel gets switched. You can use it to save settings as well as to dispose everything you have to dispose.
+
+> NOTE: It can cause memory leaks if you don't dispose your stuff properly in this function!
 
 ### Reference
 If you want to know more, check out the [Reference](INSERTLINKHERE).
