@@ -1,4 +1,4 @@
-# IPlugin Interface
+# IPluginHost Interface
 
 **Namespace:** tvdc.Plugin
 
