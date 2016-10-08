@@ -1,4 +1,4 @@
-# MsgReceivedArgs Class
+# JoinPartEventArgs Class
 
 ### Properties
 Name|Type|Description
