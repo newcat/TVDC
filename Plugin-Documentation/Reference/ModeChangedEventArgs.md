@@ -1,5 +1,7 @@
 # ModeChangedEventArgs Class
 
+**Namespace:** tvdc.EventArguments
+
 ### Properties
 Name|Type|Description
 ----|----|-----------
