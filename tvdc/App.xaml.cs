@@ -216,8 +216,6 @@ namespace tvdc
                         toRemove.Paragraphs = p;
                     }
                 });
-
-
             }
             else
             {
@@ -272,6 +270,7 @@ namespace tvdc
 
             e.tags.Add("text", e.message);
             mainVM.chatEntryList_Add(new ChatEntry(e.username, color, MessageParser.GetParagraphsFromTags(e.tags), badges));
+            Current.Dispatcher.Invoke(() => ((MainWindow)MainWindow)?.ViewerGraph.AddChatEvent());
         }
 
         private void IRC_ModeChanged(object sender, ModeChangedEventArgs e)

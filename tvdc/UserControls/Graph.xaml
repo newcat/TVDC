@@ -6,7 +6,8 @@
              xmlns:System="clr-namespace:System;assembly=mscorlib"
              xmlns:local="clr-namespace:tvdc"
              mc:Ignorable="d" 
-             d:DesignHeight="100" d:DesignWidth="500" MouseMove="UserControl_MouseMove" MouseLeave="UserControl_MouseLeave">
+             d:DesignHeight="100" d:DesignWidth="500"
+             MouseMove="UserControl_MouseMove" MouseLeave="UserControl_MouseLeave" MouseLeftButtonDown="UserControl_MouseLeftButtonDown">
     
     <Canvas x:Name="MainCanvas">
         
@@ -29,12 +30,12 @@
 				StrokeThickness="2"
             />
 
-        <TextBlock HorizontalAlignment="Left" Canvas.Top="-5" Canvas.Left="{Binding lbl0LeftMargin}" Height="10" x:Name="lbl0" Text="{Binding lbl0Text}" Foreground="Gray" FontSize="8" TextAlignment="Right" />
-        <TextBlock HorizontalAlignment="Left" Canvas.Top="15" Canvas.Left="{Binding lbl20LeftMargin}" Height="10" x:Name="lbl20" Text="{Binding lbl20Text}" Foreground="Gray" FontSize="8" />
-        <TextBlock HorizontalAlignment="Left" Canvas.Top="35" Canvas.Left="{Binding lbl40LeftMargin}" Height="10" x:Name="lbl40" Text="{Binding lbl40Text}" Foreground="Gray" FontSize="8" />
-        <TextBlock HorizontalAlignment="Left" Canvas.Top="55" Canvas.Left="{Binding lbl60LeftMargin}" Height="10" x:Name="lbl60" Text="{Binding lbl60Text}" Foreground="Gray" FontSize="8" />
-        <TextBlock HorizontalAlignment="Left" Canvas.Top="75" Canvas.Left="{Binding lbl80LeftMargin}" Height="10" x:Name="lbl80" Text="{Binding lbl80Text}" Foreground="Gray" FontSize="8" />
-        <TextBlock HorizontalAlignment="Left" Canvas.Top="93" Canvas.Left="9" Height="10" x:Name="lbl100" Text="0" Foreground="Gray" FontSize="8" />
+        <TextBlock HorizontalAlignment="Left" Width="20" Canvas.Top="-5" Canvas.Left="-7" Height="10" x:Name="lbl0"   Text="50" Foreground="Gray" FontSize="8" TextAlignment="Right" />
+        <TextBlock HorizontalAlignment="Left" Width="20" Canvas.Top="15" Canvas.Left="-7" Height="10" x:Name="lbl20"  Text="40" Foreground="Gray" FontSize="8" TextAlignment="Right" />
+        <TextBlock HorizontalAlignment="Left" Width="20" Canvas.Top="35" Canvas.Left="-7" Height="10" x:Name="lbl40"  Text="30" Foreground="Gray" FontSize="8" TextAlignment="Right" />
+        <TextBlock HorizontalAlignment="Left" Width="20" Canvas.Top="55" Canvas.Left="-7" Height="10" x:Name="lbl60"  Text="20" Foreground="Gray" FontSize="8" TextAlignment="Right" />
+        <TextBlock HorizontalAlignment="Left" Width="20" Canvas.Top="75" Canvas.Left="-7" Height="10" x:Name="lbl80"  Text="10" Foreground="Gray" FontSize="8" TextAlignment="Right" />
+        <TextBlock HorizontalAlignment="Left" Width="20" Canvas.Top="93" Canvas.Left="-7" Height="10" x:Name="lbl100" Text="0"  Foreground="Gray" FontSize="8" TextAlignment="Right" />
 
 
         <Line
@@ -61,29 +62,22 @@
 				Stroke="Gray"
 				StrokeThickness="0.1" />
 
-        <Path
-				Data="{Binding linePathData}"
-				Stroke="Green" StrokeThickness="2"
-				x:Name="LinePath" />
+        <Path x:Name="ViewerLinePath" Stroke="Green" StrokeThickness="2"/>
+        <Path x:Name="ViewerFillPath" Fill="#2000AA00" />
+        
+        <Path x:Name="ChatFreqLinePath" Stroke="Red" StrokeThickness="2"/>
+        <Path x:Name="ChatFreqFillPath" Fill="#20AA0000" />
 
-        <Path
-				Data="{Binding fillPathData}"
-				Fill="#2000AA00" x:Name="FillPath" />
-
-        <Border x:Name="InfoPanel" Canvas.Left="{Binding InfoPanelLeftMargin}" Canvas.Top="{Binding InfoPanelTopMargin}" Width="100"
+        <Border x:Name="InfoPanel" Width="100"
                     Height="50" Background="#99000000" Opacity="0" IsHitTestVisible="False">
-
-            <Border.Clip>
-                <PathGeometry Figures="{Binding InfoPanelClip}" />
-            </Border.Clip>
 
             <Panel.ZIndex>
                 <System:Int32>2</System:Int32>
             </Panel.ZIndex>
 
             <Grid>
-                <Label x:Name="lblViewerInfoPanel"  Content="{Binding lblViewerText}" FontFamily="Segoe UI" FontSize="15" FontWeight="Bold" HorizontalAlignment="Center" Foreground="White" Margin="{Binding lblViewerMargin}"/>
-                    <Label x:Name="lblTimeInfoPanel" Content="{Binding lblTimeText}" FontFamily="Segoe UI" FontSize="12" VerticalAlignment="Bottom" HorizontalAlignment="Center" Foreground="White" Margin="{Binding lblTimeMargin}"/>
+                <TextBlock x:Name="lblViewerInfoPanel"  Text="0" FontFamily="Segoe UI" FontSize="14" FontWeight="Bold" HorizontalAlignment="Center" Foreground="White"/>
+                <TextBlock x:Name="lblTimeInfoPanel" Text="00:00:00" FontFamily="Segoe UI" FontSize="12" VerticalAlignment="Bottom" HorizontalAlignment="Center" Foreground="White"/>
             </Grid>
         </Border>
 

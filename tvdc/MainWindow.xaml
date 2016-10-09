@@ -29,6 +29,7 @@
         </LinearGradientBrush>
 
         <ContextMenu x:Key="UserContextMenu">
+            <MenuItem Header="{Binding Username}" IsEnabled="False" Background="Black" />
             <MenuItem Header="Mod" Command="{Binding CmdMod, Source={x:Static local:MainWindowVM.Instance}}"
                       CommandParameter="{Binding Username}" />
             <MenuItem Header="Unmod" Command="{Binding CmdUnmod, Source={x:Static local:MainWindowVM.Instance}}"
@@ -38,6 +39,7 @@
         </ContextMenu>
 
         <ContextMenu x:Key="UserContextMenuViewerList">
+            <MenuItem Header="{Binding Username}" IsEnabled="False" Background="Black" />
             <MenuItem Header="Mod" Command="{Binding CmdMod, Source={x:Static local:MainWindowVM.Instance}}"
                       CommandParameter="{Binding Name}" />
             <MenuItem Header="Unmod" Command="{Binding CmdUnmod, Source={x:Static local:MainWindowVM.Instance}}"
