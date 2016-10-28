@@ -13,6 +13,13 @@
 
     <Window.Resources>
 
+        <Storyboard x:Key="CloseHintStoryboard">
+            <DoubleAnimation Storyboard.TargetProperty="Width" To="0" AccelerationRatio="0.3"
+                             Duration="0:0:0.7" BeginTime="0:0:10"/>
+            <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0" AccelerationRatio="0.3"
+                             Duration="0:0:0.7" BeginTime="0:0:10" />
+        </Storyboard>
+
         <LinearGradientBrush x:Key="errBrush" EndPoint="0.5,1" StartPoint="0.5,0">
             <GradientStop Offset="0" Color="Red" />
             <GradientStop Offset="1" Color="#FFD20000" />
@@ -418,6 +425,17 @@
             </Button.Style>
         </Button>
 
+        <TextBlock x:Name="lblAutoscrollHint" Text="Enable Autoscroll" Height="20" VerticalAlignment="Top" HorizontalAlignment="Right" Panel.ZIndex="2"
+                   Margin="0,154,50,0" Width="95" Foreground="White" >
+
+            <TextBlock.Triggers>
+                <EventTrigger RoutedEvent="Window.Loaded">
+                    <BeginStoryboard Storyboard="{StaticResource CloseHintStoryboard}" />
+                </EventTrigger>
+            </TextBlock.Triggers>
+
+        </TextBlock>
+
         <CheckBox x:Name="cbAutoscroll" Content="" Margin="0,152,27,0" Width="20" Height="20" VerticalAlignment="Top" HorizontalAlignment="Right" Panel.ZIndex="2"
                   ToolTip="Enable autoscroll" IsChecked="True">
             <CheckBox.Style>
@@ -468,6 +486,18 @@
             </ListView.ItemContainerStyle>
 
         </ListView>
+
+        <TextBlock x:Name="lblFavoritesHint" Text="Favorites" Height="20" VerticalAlignment="Top" HorizontalAlignment="Right" Panel.ZIndex="2"
+                   Margin="0,0,0,0" Width="55" Foreground="White" >
+
+            <TextBlock.Triggers>
+                <EventTrigger RoutedEvent="Window.Loaded">
+                    <BeginStoryboard Storyboard="{StaticResource CloseHintStoryboard}" />
+                </EventTrigger>
+            </TextBlock.Triggers>
+
+        </TextBlock>
+
         <Expander x:Name="expanderChannel" HorizontalAlignment="Right" ExpandDirection="Left" 
                   Margin="0,12,12,12" Panel.ZIndex="3">
             <Expander.Effect>
