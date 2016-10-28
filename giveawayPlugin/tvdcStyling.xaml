@@ -18,13 +18,13 @@
                 <VisualStateGroup x:Name="CommonStates">
                     <VisualState x:Name="Normal">
                         <Storyboard>
-                            <ColorAnimation From="#40FFFFFF" To="Transparent" Duration="00:00:00.1000000"
+                            <ColorAnimation To="Transparent" Duration="00:00:00.1000000"
                                                     Storyboard.TargetName="btnGrid" Storyboard.TargetProperty="(Panel.Background).Color"/>
                         </Storyboard>
                     </VisualState>
                     <VisualState x:Name="MouseOver">
                         <Storyboard>
-                            <ColorAnimation From="Transparent" To="#40FFFFFF" Duration="00:00:00.1000000"
+                            <ColorAnimation To="#40FFFFFF" Duration="00:00:00.1000000"
                                                     Storyboard.TargetName="btnGrid" Storyboard.TargetProperty="(Panel.Background).Color"/>
                         </Storyboard>
                     </VisualState>
@@ -48,6 +48,7 @@
     </ControlTemplate>
 
     <!-- Checkbox Style -->
+    <!-- TODO: Add style for disabled checkbox -->
     <Style TargetType="CheckBox">
         <Setter Property="Template" Value="{DynamicResource CheckboxTemplate}" />
         <Setter Property="Foreground" Value="White" />
