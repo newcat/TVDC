@@ -1,0 +1,72 @@
+﻿<Window x:Class="giveawayPlugin.GiveawayWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
+        xmlns:local="clr-namespace:giveawayPlugin"
+        Title="Giveaway" Height="365" Width="693" Background="{StaticResource WindowBackgroundBrush}"
+        ResizeMode="CanMinimize" FontSize="14" Closing="Window_Closing">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="tvdcStyling.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Grid>
+
+        <!-- Giveaway Configuration -->
+        <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="127"
+                   TextWrapping="Wrap" Text="Start notification" />
+        <TextBox x:Name="tbStartNotification" HorizontalAlignment="Left" Height="73" Margin="10,36,0,0" VerticalAlignment="Top" Width="219"
+                 TextWrapping="Wrap" Text="{Binding StartNotificationMessage}" IsEnabled="{Binding EnableStartSection}" />
+
+        <TextBlock HorizontalAlignment="Left" Margin="10,128,0,0" VerticalAlignment="Top"
+                   TextWrapping="Wrap" Text="Enter Command" TextAlignment="Right" />
+        <TextBox x:Name="tbEnterCommand" HorizontalAlignment="Left" Height="25" Margin="10,154,0,0" VerticalAlignment="Top" Width="219"
+                 TextWrapping="Wrap" Text="{Binding EnterCommandString}" IsEnabled="{Binding EnableStartSection}"/>
+
+        <CheckBox x:Name="cbNotifyWhenEntering" HorizontalAlignment="Left" Margin="10,195,0,0" VerticalAlignment="Top"
+                  Content="Notify when user participates" IsChecked="{Binding NotifyWhenEntering}" IsEnabled="{Binding EnableStartSection}" />
+        <TextBox x:Name="tbEnterNotification" HorizontalAlignment="Left" Height="50" Margin="10,219,0,0" VerticalAlignment="Top" Width="219"
+                 TextWrapping="Wrap" Text="{Binding EnterNotificationMessage}" IsEnabled="{Binding EnableEnterNotificationTextBox}" />
+
+
+        <Button x:Name="btnStart" HorizontalAlignment="Left" Margin="10,291,0,0" VerticalAlignment="Top" Width="219" Height="25"
+                Content="Start Giveaway" Command="{Binding CmdStartGiveaway}"/>
+
+        <!-- Participants -->
+        <TextBlock HorizontalAlignment="Left" Margin="264,10,0,0" VerticalAlignment="Top"
+                   TextWrapping="Wrap" Text="Participants"/>
+        <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="252" Margin="264,34,0,0" VerticalAlignment="Top" Width="200"
+                 ItemsSource="{Binding Participants}"/>
+        <Button x:Name="btnClearList" HorizontalAlignment="Left" Margin="264,291,0,0" VerticalAlignment="Top" Width="200" Height="25"
+                Content="Clear Participants" Command="{Binding CmdClearParticipants}" />
+
+
+        <!-- Winner Section -->
+        <Button x:Name="btnGenerateWinner" HorizontalAlignment="Left" Margin="499,36,0,0" VerticalAlignment="Top" Width="168" Height="25"
+                Content="Find Winner" Command="{Binding CmdFindWinner}"/>
+
+        <TextBlock HorizontalAlignment="Left" Margin="499,78,0,0" VerticalAlignment="Top" Width="168"
+                   TextWrapping="Wrap" Text="And the winner is:"/>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="499,102,0,0" VerticalAlignment="Top" Width="168" Height="60"
+                   TextWrapping="Wrap" Text="{Binding WinnerName}" FontSize="20" />
+
+        <TextBlock HorizontalAlignment="Left" Margin="499,177,0,0" VerticalAlignment="Top"
+                   TextWrapping="Wrap" Text="Notification Message"/>
+        <TextBox x:Name="tbNotificationMessage" HorizontalAlignment="Left" Height="61" Margin="499,201,0,0" VerticalAlignment="Top" Width="168"
+                 TextWrapping="Wrap" Text="{Binding NotificationMessage}" />
+
+        <TextBlock HorizontalAlignment="Left" Margin="499,267,0,0" VerticalAlignment="Top"
+                   TextWrapping="Wrap" Text="Notify by" />
+        <Button x:Name="btnNotifyChat" HorizontalAlignment="Left" Margin="499,291,0,0" VerticalAlignment="Top" Width="80" Height="25"
+                Content="Chat" Command="{Binding CmdNotify}" CommandParameter="Chat" />
+        <Button x:Name="btnNotifyWhisper" HorizontalAlignment="Left" Margin="587,291,0,0" VerticalAlignment="Top" Width="80" Height="25"
+                Content="Whisper" Command="{Binding CmdNotify}" CommandParameter="Whisper" />
+
+    </Grid>
+
+</Window>

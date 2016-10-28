@@ -304,7 +304,7 @@ namespace tvdc
             if (chatTimes.Count == 0)
                 return 0;
 
-            while ((DateTime.Now - chatTimes.Peek()).TotalSeconds > chatFreqSampleLength)
+            while (chatTimes.Count > 0 && (DateTime.Now - chatTimes.Peek()).TotalSeconds > chatFreqSampleLength)
                 chatTimes.Dequeue();
 
             return chatTimes.Count * (60 / chatFreqSampleLength);

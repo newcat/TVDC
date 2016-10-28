@@ -1,0 +1,21 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="giveawayPlugin.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="StartNotificationMessage" Type="System.String" Scope="User">
+      <Value Profile="(Default)">I am starting a giveaway. Type {0} to participate.</Value>
+    </Setting>
+    <Setting Name="EnterCommandString" Type="System.String" Scope="User">
+      <Value Profile="(Default)">!enter</Value>
+    </Setting>
+    <Setting Name="NotifyWhenEntering" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="EnterNotificationMessage" Type="System.String" Scope="User">
+      <Value Profile="(Default)">{0} entered the giveaway.</Value>
+    </Setting>
+    <Setting Name="NotificationMessage" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Congratulations {0}, you won the giveaway!</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
