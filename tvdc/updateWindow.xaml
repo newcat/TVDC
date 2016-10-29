@@ -61,7 +61,7 @@
                 </Style>
             </Button.Style>
         </Button>
-        <ProgressBar HorizontalAlignment="Left" Height="10" Margin="10,224,0,0" VerticalAlignment="Top" Width="432" x:Name="pb" IsIndeterminate="True" Style="{StaticResource ProgressBarStyle1}"/>
+        <ProgressBar HorizontalAlignment="Left" Height="10" Margin="10,224,0,0" VerticalAlignment="Top" Width="432" x:Name="pb" IsIndeterminate="True"/>
 
         <Border BorderBrush="White" BorderThickness="1" HorizontalAlignment="Left" Height="178" Margin="10,41,0,0" VerticalAlignment="Top" Width="432">
             <ScrollViewer Foreground="{x:Null}" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">

@@ -95,6 +95,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\geschenk_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\geschenk_icon_hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gift_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gift_icon_hover.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>copy "$(TargetPath)" "$(SolutionDir)tvdc\bin\Debug\"</PostBuildEvent>

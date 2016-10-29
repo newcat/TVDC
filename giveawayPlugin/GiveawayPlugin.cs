@@ -177,24 +177,12 @@ namespace giveawayPlugin
 
         public ImageSource getMenuIcon()
         {
-            var bi = new System.Drawing.Bitmap(28, 28);
-            using (var g = System.Drawing.Graphics.FromImage(bi))
-            {
-                g.Clear(System.Drawing.Color.Red);
-            }
-
-            return BmpToImg(bi);
+            return BmpToImg(Properties.Resources.gift_icon);
         }
 
         public ImageSource getMenuIconHover()
         {
-            var bi = new System.Drawing.Bitmap(28, 28);
-            using (var g = System.Drawing.Graphics.FromImage(bi))
-            {
-                g.Clear(System.Drawing.Color.Yellow);
-            }
-
-            return BmpToImg(bi);
+            return BmpToImg(Properties.Resources.gift_icon_hover);
         }
 
         private BitmapImage BmpToImg(System.Drawing.Bitmap bmp)

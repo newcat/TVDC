@@ -9,6 +9,7 @@
 //------------------------------------------------------------------------------
 
 namespace giveawayPlugin.Properties {
+    using System;
     
     
     /// <summary>
@@ -37,7 +38,7 @@ namespace giveawayPlugin.Properties {
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
-                if ((resourceMan == null)) {
+                if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("giveawayPlugin.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
@@ -56,6 +57,26 @@ namespace giveawayPlugin.Properties {
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap gift_icon {
+            get {
+                object obj = ResourceManager.GetObject("gift_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap gift_icon_hover {
+            get {
+                object obj = ResourceManager.GetObject("gift_icon_hover", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
     }

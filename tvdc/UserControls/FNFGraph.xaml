@@ -40,7 +40,17 @@
                 HorizontalAlignment="Center" VerticalAlignment="Bottom" IsHitTestVisible="False">
 
             <Grid>
-                <Label x:Name="lblFnfg"  Content="{Binding lblInfoPanel_Content}" FontFamily="Segoe UI" FontSize="15" FontWeight="Bold" HorizontalAlignment="Center" Foreground="{Binding lblInfoPanel_Foreground}" />
+                <TextBlock x:Name="lblFnfg"  Text="{Binding lblInfoPanel_Content}"
+                           HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="FontFamily" Value="Segoe UI" />
+                            <Setter Property="FontSize" Value="15" />
+                            <Setter Property="FontWeight" Value="Bold" />
+                            <Setter Property="Foreground" Value="{Binding lblInfoPanel_Foreground}" />
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
             </Grid>
         </Border>
 
