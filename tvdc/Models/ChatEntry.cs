@@ -91,10 +91,17 @@ namespace tvdc
             }
         }
 
-        //Every entry gets its own GUID to prevent the scrollbug
-        //from happening (happens if two entries have the same contents)
-        private Guid _eventID = Guid.NewGuid();
-        public Guid EventID { get; }
+        private string _originalMessage = "";
+        public string OriginalMessage
+        {
+            get { return _originalMessage; }
+        }
+
+        private DateTime _timestamp = DateTime.Now;
+        public DateTime Timestamp
+        {
+            get { return _timestamp; }
+        }
 
         //needed for making the "Now hosting xxx" clickable
         public bool IsHostingMessage
@@ -118,13 +125,14 @@ namespace tvdc
         }
 
         //Constructor for chat entries
-        public ChatEntry(string username, string color, List<Paragraph> paragraphs, List<Badges.BadgeTypes> badges)
+        public ChatEntry(string username, string color, List<Paragraph> paragraphs, List<Badges.BadgeTypes> badges, string originalMessage)
         {
             EventType = Type.CHAT;
             Username = username;
             Color = color;
             Paragraphs = paragraphs;
             Badges = badges;
+            _originalMessage = originalMessage;
         }
 
     }

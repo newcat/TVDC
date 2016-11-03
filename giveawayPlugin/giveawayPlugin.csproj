@@ -96,12 +96,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\geschenk_icon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\geschenk_icon_hover.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\gift_icon.png" />
   </ItemGroup>
   <ItemGroup>

@@ -1,17 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Net;
-using System.Timers;
 using System.Windows;
-using System.IO;
-using System.Threading.Tasks;
-using tvdc.EventArguments;
-using System.Text.RegularExpressions;
 using System.Windows.Input;
-using System.Diagnostics;
 
 namespace tvdc
 {
@@ -23,8 +16,9 @@ namespace tvdc
         private void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }  
+        }
 
+        #region Binding Properties
         private bool _initialized = false;
         public bool Initialized
         {
@@ -106,11 +100,13 @@ namespace tvdc
         public RelayCommand<string> CmdUnmod { get; private set; }
         public RelayCommand<string> CmdTimeout { get; private set; }
         public RelayCommand<string> CmdSwitchChannel { get; private set; }
+        #endregion
 
         public event EventHandler<PluginClickedEventArgs> PluginClicked;
         public event EventHandler<SendMessageEventArgs> SendMessage;
         public event EventHandler DoInit;
 
+        #region Singleton and Constructor
         private static MainWindowVM _instance;
         public static MainWindowVM Instance
         {
@@ -174,6 +170,7 @@ namespace tvdc
 
             PropertyChanged += MainWindowVM_PropertyChanged;
         }
+        #endregion
 
         private void MainWindowVM_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {

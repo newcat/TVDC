@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
 using tvdc.EventArguments;
@@ -269,7 +268,7 @@ namespace tvdc
             }
 
             e.tags.Add("text", e.message);
-            mainVM.chatEntryList_Add(new ChatEntry(e.username, color, MessageParser.GetParagraphsFromTags(e.tags), badges));
+            mainVM.chatEntryList_Add(new ChatEntry(e.username, color, MessageParser.GetParagraphsFromTags(e.tags), badges, e.message));
             Current.Dispatcher.Invoke(() => ((MainWindow)MainWindow)?.ViewerGraph.AddChatEvent());
         }
 
@@ -352,7 +351,7 @@ namespace tvdc
                 badges = u.Badges;
             }
 
-            mainVM.chatEntryList_Add(new ChatEntry(name, color, MessageParser.GetParagraphsFromMessage(message), badges));
+            mainVM.chatEntryList_Add(new ChatEntry(name, color, MessageParser.GetParagraphsFromMessage(message), badges, message));
 
         }
 
@@ -365,6 +364,9 @@ namespace tvdc
                 irc.disconnect();
             if (followerUpdater != null)
                 followerUpdater.Stop();
+
+            ChatlogUploader clu = new ChatlogUploader();
+            clu.UploadLog(mainVM.chatEntryList, false);
         }
     }
 }

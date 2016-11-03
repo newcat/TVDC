@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net;
 using System.Drawing;
+using System.IO;
 
 namespace tvdc
 {
@@ -49,10 +50,20 @@ namespace tvdc
 
         private void loadDimensions()
         {
-            Image img = Image.FromFile(image);
-            width = img.Width;
-            height = img.Height;
-            img.Dispose();
+            try
+            {
+                Image img = Image.FromFile(image);
+                width = img.Width;
+                height = img.Height;
+                img.Dispose();
+            } catch (OutOfMemoryException)
+            {
+                //This normally doesn't happen in normal use, since the img gets
+                //disposed right away.
+                //It occurs though if the image is broken, so in that case just delete the image
+                //from cache and continue.
+                File.Delete(image);
+            }
         }
 
         public void Dispose()

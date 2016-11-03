@@ -122,10 +122,10 @@ namespace tvdc
 
             foreach (BadgeTypes b in badges)
             {
-                returnString += Enum.GetName(typeof(BadgeTypes), b).ToLower();
+                returnString += Enum.GetName(typeof(BadgeTypes), b).ToLower() + ",";
             }
 
-            return returnString;
+            return returnString.TrimEnd(',');
         }
 
         public static List<BadgeTypes> parseBadgeString(string bs)
