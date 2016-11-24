@@ -12,6 +12,7 @@ namespace tvdc
     //TODO: Add support for cheering
     //TODO: Maybe problems with the plugins (either plugin.dll [unlikely] or the pollplugin)
     //TODO: Not able to scroll while hovering over a chat message
+    //TODO: Style/fix context menu
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml

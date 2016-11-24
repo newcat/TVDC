@@ -173,6 +173,7 @@ namespace tvdc
             if (followerUpdater == null)
                 followerUpdater = new FollowerUpdater();
             followerUpdater.Start();
+            followerUpdater.RunOnce();
 
             mainVM.Initialized = true;
             ((MainWindow)MainWindow).initCompleted();
@@ -218,7 +219,9 @@ namespace tvdc
             }
             else
             {
-                mainVM.chatEntryList_Clear();
+                //Not using the threadsafe method, because it crashes the application
+                //May be a problem with double locking due to the BindingOperations in MainWindow.xaml.cs
+                mainVM.chatEntryList.Clear();
             }
 
         }
@@ -365,8 +368,9 @@ namespace tvdc
             if (followerUpdater != null)
                 followerUpdater.Stop();
 
-            ChatlogUploader clu = new ChatlogUploader();
-            clu.UploadLog(mainVM.chatEntryList, false);
+            //TODO: Implement upload
+            //ChatlogUploader clu = new ChatlogUploader();
+            //clu.UploadLog(mainVM.chatEntryList, false);
         }
     }
 }

@@ -35,8 +35,24 @@
             <GradientStop Offset="1" Color="#B47C0000" />
         </LinearGradientBrush>
 
+        <Style x:Key="UserContextMenuNameHeaderStyle" TargetType="MenuItem">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="MenuItem">
+                        <Border Name="Border">
+                            <Grid>
+                                <ContentPresenter Margin="6,3,6,3" ContentSource="Header"
+                                                              RecognizesAccessKey="True" HorizontalAlignment="Center"/>
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
         <ContextMenu x:Key="UserContextMenu">
-            <MenuItem Header="{Binding Username}" IsEnabled="False" Background="Black" Foreground="White" />
+            <MenuItem Header="{Binding Username}" IsEnabled="False" FontWeight="Bold"
+                      Style="{StaticResource UserContextMenuNameHeaderStyle}"/>
             <MenuItem Header="Mod" Command="{Binding CmdMod, Source={x:Static local:MainWindowVM.Instance}}"
                       CommandParameter="{Binding Username}" Foreground="Black" />
             <MenuItem Header="Unmod" Command="{Binding CmdUnmod, Source={x:Static local:MainWindowVM.Instance}}"
@@ -46,7 +62,8 @@
         </ContextMenu>
 
         <ContextMenu x:Key="UserContextMenuViewerList">
-            <MenuItem Header="{Binding Username}" IsEnabled="False" Background="Black" Foreground="White" />
+            <MenuItem Header="{Binding Name}" IsEnabled="False" OverridesDefaultStyle="True" FontWeight="Bold"
+                      Style="{StaticResource UserContextMenuNameHeaderStyle}"/>
             <MenuItem Header="Mod" Command="{Binding CmdMod, Source={x:Static local:MainWindowVM.Instance}}"
                       CommandParameter="{Binding Name}" Foreground="Black" />
             <MenuItem Header="Unmod" Command="{Binding CmdUnmod, Source={x:Static local:MainWindowVM.Instance}}"
@@ -62,7 +79,8 @@
         </ControlTemplate>
 
         <ControlTemplate x:Key="TextParagraph" TargetType="ListViewItem">
-            <TextBlock Text="{Binding Text}" Background="Transparent" VerticalAlignment="Center">
+            <TextBlock Text="{Binding Text}" Background="Transparent" VerticalAlignment="Center" TextWrapping="Wrap"
+                       MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListView}}}">
                 <TextBlock.Style>
                     <Style TargetType="TextBlock">
                         <Setter Property="Foreground" Value="White" />

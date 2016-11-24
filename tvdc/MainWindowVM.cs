@@ -30,9 +30,31 @@ namespace tvdc
             }
         }
 
+        private bool _overrideViewerCount = true;
+        public bool OverrideViewerCount
+        {
+            get { return _overrideViewerCount; }
+            set
+            {
+                _overrideViewerCount = value;
+                NotifyPropertyChanged("ViewerCount");
+            }
+        }
+
+        private int _overriddenViewerCount = 0;
+        public int OverriddenViewerCount
+        {
+            get { return _overriddenViewerCount; }
+            set
+            {
+                _overriddenViewerCount = value;
+                NotifyPropertyChanged("ViewerCount");
+            }
+        }
+
         public int ViewerCount
         {
-            get { return viewerList.Count; }
+            get { return OverrideViewerCount ? OverriddenViewerCount : viewerList.Count; }
         }
 
         private int _followerCount = 0;
