@@ -16,6 +16,17 @@ namespace tvdc
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        private string _id;
+        public string Id
+        {
+            get { return _id; }
+            private set
+            {
+                _id = value;
+                NotifyPropertyChanged();
+            }
+        }
+
         private string _color;
         public string Color
         {
@@ -31,7 +42,7 @@ namespace tvdc
         public string Name
         {
             get { return _name; }
-            set
+            private set
             {
                 _name = value;
                 NotifyPropertyChanged();
@@ -58,6 +69,17 @@ namespace tvdc
             }
         }
 
+        private string _bio;
+        public string Bio
+        {
+            get { return _bio; }
+            private set
+            {
+                _bio = value;
+                NotifyPropertyChanged();
+            }
+        }
+
         private bool _isFollower;
         public bool IsFollower
         {
@@ -68,8 +90,6 @@ namespace tvdc
                 NotifyPropertyChanged();
             }
         }
-
-        public bool updating { get; private set; }
 
         private List<Badges.BadgeTypes> _badges;
         public List<Badges.BadgeTypes> Badges
@@ -82,6 +102,8 @@ namespace tvdc
             }
         }
         public int badgeLevel { get; private set; }
+
+        public bool updating { get; private set; }
 
         public delegate void BadgeChangedHandler(object sender, EventArgs e);
         public event BadgeChangedHandler BadgeChanged;
@@ -107,7 +129,7 @@ namespace tvdc
             }
 
             if (!name.Equals("404"))
-                getDisplayName();
+                retrieveUserData();
         }
 
         public void addBadge(Badges.BadgeTypes badge)
@@ -164,12 +186,13 @@ namespace tvdc
             }
         }
 
-        private async void getDisplayName()
+        private async void retrieveUserData()
         {
 
             WebClient wr = new WebClient();
             string json = "";
 
+            //TODO: Update to Twitch API Version 5
             wr.Headers.Add("Client-ID", Properties.Resources.client_id);
 
             try
@@ -187,6 +210,8 @@ namespace tvdc
             lock (MainWindowVM.viewerListLock)
             {
                 DisplayName = dict["display_name"].ToString();
+                Id = dict["_id"].ToString();
+                Bio = dict["bio"].ToString();
             }
 
             try {

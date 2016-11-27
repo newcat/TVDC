@@ -2,7 +2,6 @@
 using System.Text.RegularExpressions;
 using System.Timers;
 
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Diagnostics;
 using System;
@@ -74,6 +73,7 @@ namespace tvdc
             } catch (Exception)
             {
                 Debug.WriteLine("Exception at viewer count retriever.");
+                vm.OverrideViewerCount = false;
             }
 
         }
