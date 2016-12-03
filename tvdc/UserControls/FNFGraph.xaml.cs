@@ -95,7 +95,7 @@ namespace tvdc
             foreach (User u in userlist)
             {
 
-                if (!u.updating)
+                if (!u.Updating)
                 {
                     if (u.IsFollower)
                     {

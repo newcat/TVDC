@@ -15,13 +15,13 @@ namespace tvdc
         //Chatlog format:
         //Start of file: v01
         //For each chat event (fields separated by | (chr(124))):
-        //1 char: Messagetype (C(hat), I(RC), J(OIN), P(ART))
-        //Timestamp in unix format
-        //Badge list (optional, can be empty)
-        //Color in hex (optional, can be empty)
-        //Username
-        //Text
-        //CR LF
+            //1 char: Messagetype (C(hat), I(RC), J(OIN), P(ART))
+            //Timestamp in unix format
+            //Badge list (optional, can be empty)
+            //Color in hex (optional, can be empty)
+            //Username
+            //Text
+            //CR LF
 
         private readonly string[] sizes = { "B", "KB", "MB", "GB" };
         
@@ -43,12 +43,13 @@ namespace tvdc
             }
         }
 
-        public void UploadLog(IEnumerable<ChatEntry> chatEntryList, bool includeJoinLeave)
+        public async Task UploadLog(IEnumerable<ChatEntry> chatEntryList, bool includeJoinLeave)
         {
 
             progWin = new ProgressWindow();
             progWin.Title = "Uploading chatlog";
             progWin.IsIndeterminate = true;
+            progWin.Show();
 
             //build the data
             progWin.Operation = "Building chatlog";
@@ -60,7 +61,7 @@ namespace tvdc
                 switch (ce.EventType)
                 {
                     case ChatEntry.Type.CHAT:
-                        sb.AppendFormat("C|{0}|{1}|{2}|{3}|{4}", toUnix(ce.Timestamp), Badges.badgeListToString(ce.Badges),
+                        sb.AppendFormat("C|{0}|{1}|{2}|{3}|{4}", toUnix(ce.Timestamp), Badges.BadgeListToString(ce.Badges),
                             ce.Color, ce.Username, ce.OriginalMessage);
                         sb.AppendLine();
                         break;
@@ -97,7 +98,7 @@ namespace tvdc
             try
             {
                 values["oauth"] = AccountManager.OauthWithoutPrefix;
-                var response = wc.UploadValues("http://localhost/tvd/authenticate.php", values);
+                var response = await wc.UploadValuesTaskAsync(Properties.Resources.server_base_url + "authenticate.php", values);
 
                 if (!Encoding.Default.GetString(response).Contains("Logged in as"))
                 {
@@ -113,7 +114,7 @@ namespace tvdc
                 values["data"] = data;
                 values["dataType"] = "chatlog";
 
-                response = wc.UploadValues("http://localhost/tvd/upload.php", values);
+                response = await wc.UploadValuesTaskAsync(Properties.Resources.server_base_url + "upload.php", values);
 
                 if (Encoding.Default.GetString(response) != "Upload completed.")
                 {
@@ -126,6 +127,7 @@ namespace tvdc
             } finally
             {
                 wc.Dispose();
+                progWin.Close();
             }
 
         }

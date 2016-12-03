@@ -27,7 +27,7 @@ namespace tvdc
             colors[14] = Color.FromArgb(0, 255, 127);
         }
 
-        public static string getColorByUsername(string name)
+        public static string GetColorByUsername(string name)
         {
             int hash = name.GetHashCode();
             return ColorTranslator.ToHtml(colors[Math.Abs(hash % 14)]);

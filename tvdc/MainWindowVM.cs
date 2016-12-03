@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
@@ -205,8 +206,11 @@ namespace tvdc
             }
         }
 
-        public void shutdown()
+        public async Task Shutdown()
         {
+            ChatlogUploader clu = new ChatlogUploader();
+            await clu.UploadLog(chatEntryList, false);
+
             Application.Current.Shutdown();
         }
 
@@ -228,12 +232,12 @@ namespace tvdc
             {
                 foreach (User u in e.NewItems)
                 {
-                    if (!u.subscribedToBadgeChangedEvent)
+                    if (!u.SubscribedToBadgeChangedEvent)
                     {
                         invoke(() =>
                         {
                             u.BadgeChanged += U_BadgeChanged;
-                            u.subscribedToBadgeChangedEvent = true;
+                            u.SubscribedToBadgeChangedEvent = true;
                         });
                     }
                 }

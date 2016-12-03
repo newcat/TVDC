@@ -122,7 +122,7 @@ namespace pollPlugin
                     {
                         if (voters[e.username].Contains(option) && Properties.Settings.Default.notify)
                         {
-                            host.sendMesssage(string.Format("/w {0} You already voted for {1}.",
+                            host.SendMesssage(string.Format("/w {0} You already voted for {1}.",
                             e.username, option));
                             return;
                         } else
@@ -130,7 +130,7 @@ namespace pollPlugin
                             voters[e.username].Add(option);
                             totalVotes += 1;
                             if (Properties.Settings.Default.notify)
-                                host.sendMesssage(string.Format("/w {0} Thanks for voting! You voted for {1}.",
+                                host.SendMesssage(string.Format("/w {0} Thanks for voting! You voted for {1}.",
                                 e.username, string.Join(", ", voters[e.username].ToArray())));
                         }
                     } else
@@ -138,7 +138,7 @@ namespace pollPlugin
                         pollOptions[voters[e.username][0]].voteCount -= 1;
                         voters[e.username][0] = option;
                         if (Properties.Settings.Default.notify)
-                            host.sendMesssage(string.Format("/w {0} You changed your vote to {1}.",
+                            host.SendMesssage(string.Format("/w {0} You changed your vote to {1}.",
                             e.username, option));
                     }
                 } else
@@ -148,7 +148,7 @@ namespace pollPlugin
                     l.Add(option);
                     voters.Add(e.username, l);
                     if (Properties.Settings.Default.notify)
-                        host.sendMesssage(string.Format("/w {0} Thanks for voting! You voted for {1}.",
+                        host.SendMesssage(string.Format("/w {0} Thanks for voting! You voted for {1}.",
                             e.username, option));
                 }
                 pollOptions[option].voteCount += 1;

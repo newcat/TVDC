@@ -42,9 +42,9 @@ namespace tvdc
         private StreamReader tcpReader;
         private TcpClient tcpClient;
 
-        public bool initialized { get; private set; }
-        public string ip { get; }
-        public int port { get; }
+        public bool Initialized { get; private set; }
+        public string Ip { get; }
+        public int Port { get; }
         public bool IsConnected { get { return tcpClient.Connected; } }
 
         private string oauth;
@@ -77,24 +77,24 @@ namespace tvdc
 
         public IRCClient(string ip, int port, string nick, string oauth, string channel)
         {
-            this.ip = ip;
-            this.port = port;
+            Ip = ip;
+            Port = port;
             this.nick = nick;
             this.oauth = oauth;
             this.channel = channel;
 
-            initialized = false;
+            Initialized = false;
 
             tcpClient = new TcpClient();
             receiveThread = new Thread(new ThreadStart(receive));
         }
 
-        public async void connect()
+        public async void Connect()
         {
 
             try
             {
-                await tcpClient.ConnectAsync(ip, port);
+                await tcpClient.ConnectAsync(Ip, Port);
             } catch (SocketException)
             {
                 ConnectionError?.Invoke(this, new EventArgs());
@@ -120,7 +120,7 @@ namespace tvdc
 
         }
 
-        public void send(string msg)
+        public void Send(string msg)
         {
             if (msg.StartsWith("%"))
             {
@@ -190,7 +190,7 @@ namespace tvdc
                         break;
 
                     case IRC_Commands.RPL_ENDOFNAMES:
-                        initialized = true;
+                        Initialized = true;
                         InitCompleted?.Invoke(this, new EventArgs());
                         break;
 
@@ -274,11 +274,11 @@ namespace tvdc
                 
             }
 
-            disconnect();
+            Disconnect();
 
         }
 
-        public void disconnect()
+        public void Disconnect()
         {
             receiveThread.Abort();
             tcpClient.Close();

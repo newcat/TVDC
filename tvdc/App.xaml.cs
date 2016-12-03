@@ -54,6 +54,7 @@ namespace tvdc
             {
                 MessageBox.Show("Error while logging in. Please try again.", "TVD");
                 Shutdown();
+                return;
             }
 
             if (tvdc.Properties.Settings.Default.channel == "")
@@ -68,6 +69,7 @@ namespace tvdc
             if (tvdc.Properties.Settings.Default.channel == "")
             {
                 Shutdown();
+                return;
             }
 
             mainVM = MainWindowVM.Instance;
@@ -109,7 +111,7 @@ namespace tvdc
                 followerUpdater.Stop();
 
             if (irc != null && irc.IsConnected)
-                irc.disconnect();
+                irc.Disconnect();
 
             if (pluginHelper != null)
                 pluginHelper.End();
@@ -127,14 +129,14 @@ namespace tvdc
             mainVM.chatEntryList_Add(new ChatEntry(ChatEntry.Type.IRC, "Initializing..."));
 
             //Init emoticons
-            if (!await EmoticonManager.initialize())
+            if (!await EmoticonManager.Initialize())
             {
                 mainVM.chatEntryList_Add(new ChatEntry(ChatEntry.Type.ERROR, "Failed to download emoticon list."));
             }
 
             //Load badges and download sub badge
-            Badges.init();
-            if (!await Badges.downloadSubBadge(channel))
+            Badges.Init();
+            if (!await Badges.DownloadSubBadge(channel))
                 mainVM.chatEntryList_Add(new ChatEntry(ChatEntry.Type.ERROR, "Failed to download subscriber badge."));
 
             //Connect to IRC
@@ -168,7 +170,7 @@ namespace tvdc
 
             //Connect
             mainVM.chatEntryList_Add(new ChatEntry(ChatEntry.Type.IRC, "Connecting to IRC..."));
-            irc.connect();
+            irc.Connect();
 
             if (followerUpdater == null)
                 followerUpdater = new FollowerUpdater();
@@ -242,7 +244,7 @@ namespace tvdc
                 mainVM.invoke(() => { u.DisplayName = e.tags["display-name"]; });
 
             if (e.tags.ContainsKey("badges") && e.tags["badges"] != null)
-                mainVM.invoke(() => { u.setBadges(Badges.parseBadgeString(e.tags["badges"])); });
+                mainVM.invoke(() => { u.SetBadges(Badges.ParseBadgeString(e.tags["badges"])); });
 
         }
 
@@ -255,7 +257,7 @@ namespace tvdc
             }
             else
             {
-                color = TwitchColors.getColorByUsername(e.username);
+                color = TwitchColors.GetColorByUsername(e.username);
             }
 
             User u = null;
@@ -265,14 +267,17 @@ namespace tvdc
 
             if (e.tags.ContainsKey("badges") && e.tags["badges"] != null)
             {
-                badges = Badges.parseBadgeString(e.tags["badges"]);
+                badges = Badges.ParseBadgeString(e.tags["badges"]);
                 if (u != null)
-                    mainVM.invoke(() => { u.setBadges(badges); });
+                    mainVM.invoke(() => { u.SetBadges(badges); });
             }
 
             e.tags.Add("text", e.message);
             mainVM.chatEntryList_Add(new ChatEntry(e.username, color, MessageParser.GetParagraphsFromTags(e.tags), badges, e.message));
-            Current.Dispatcher.Invoke(() => ((MainWindow)MainWindow)?.ViewerGraph.AddChatEvent());
+            Current.Dispatcher.Invoke(() => {
+                if (MainWindow != null && MainWindow is MainWindow)
+                    ((MainWindow)MainWindow)?.ViewerGraph.AddChatEvent();
+            });
         }
 
         private void IRC_ModeChanged(object sender, ModeChangedEventArgs e)
@@ -285,7 +290,7 @@ namespace tvdc
 
             if (e.isMod)
             {
-                mainVM.invoke(() => { u.addBadge(Badges.BadgeTypes.MODERATOR); });
+                mainVM.invoke(() => { u.AddBadge(Badges.BadgeTypes.MODERATOR); });
             }
             else
             {
@@ -308,7 +313,7 @@ namespace tvdc
             if (!mainVM.viewerList_ContainsName(e.username))
                 mainVM.viewerList_Add(new User(e.username));
 
-            if (showJoinLeave && irc.initialized)
+            if (showJoinLeave && irc.Initialized)
                 mainVM.chatEntryList_Add(new ChatEntry(ChatEntry.Type.JOIN, "joined", e.username));
 
         }
@@ -339,10 +344,10 @@ namespace tvdc
         public void sendChatMessage(string message)
         {
 
-            irc.send(message);
+            irc.Send(message);
 
             string name = AccountManager.Username;
-            string color = TwitchColors.getColorByUsername(name);
+            string color = TwitchColors.GetColorByUsername(name);
             List<Badges.BadgeTypes> badges = new List<Badges.BadgeTypes>();
 
             User u = mainVM.viewerList_GetUserByName(name);
@@ -362,15 +367,12 @@ namespace tvdc
 
         private void Application_Exit(object sender, ExitEventArgs e)
         {
-            pluginHelper.End();
+            if (pluginHelper != null)
+                pluginHelper.End();
             if (irc != null)
-                irc.disconnect();
+                irc.Disconnect();
             if (followerUpdater != null)
                 followerUpdater.Stop();
-
-            //TODO: Implement upload
-            //ChatlogUploader clu = new ChatlogUploader();
-            //clu.UploadLog(mainVM.chatEntryList, false);
         }
     }
 }

@@ -101,30 +101,30 @@ namespace tvdc
                 NotifyPropertyChanged();
             }
         }
-        public int badgeLevel { get; private set; }
+        public int BadgeLevel { get; private set; }
 
-        public bool updating { get; private set; }
+        public bool Updating { get; private set; }
 
         public delegate void BadgeChangedHandler(object sender, EventArgs e);
         public event BadgeChangedHandler BadgeChanged;
-        public bool subscribedToBadgeChangedEvent { get; set; }
+        public bool SubscribedToBadgeChangedEvent { get; set; }
 
         public User(string name, List<Badges.BadgeTypes> badges = null)
         {
             lock (MainWindowVM.viewerListLock)
             {
                 _name = name;
-                updating = true;
-                Color = TwitchColors.getColorByUsername(name);
+                Updating = true;
+                Color = TwitchColors.GetColorByUsername(name);
 
                 if (badges != null)
                 {
                     Badges = badges;
-                    badgeLevel = getBadgeLevel();
+                    BadgeLevel = getBadgeLevel();
                 } else
                 {
                     Badges = new List<Badges.BadgeTypes>();
-                    badgeLevel = 0;
+                    BadgeLevel = 0;
                 }
             }
 
@@ -132,27 +132,27 @@ namespace tvdc
                 retrieveUserData();
         }
 
-        public void addBadge(Badges.BadgeTypes badge)
+        public void AddBadge(Badges.BadgeTypes badge)
         {
             lock (MainWindowVM.viewerListLock)
             {
                 if (!Badges.Contains(badge))
                 {
                     Badges.Add(badge);
-                    badgeLevel = getBadgeLevel();
+                    BadgeLevel = getBadgeLevel();
                     BadgeChanged?.Invoke(this, new EventArgs());
                 }
             }
         }
 
-        public void setBadges(List<Badges.BadgeTypes> badges)
+        public void SetBadges(List<Badges.BadgeTypes> badges)
         {
             lock (MainWindowVM.viewerListLock)
             {
                 if (!equalBadges(badges))
                 {
                     Badges = badges;
-                    badgeLevel = getBadgeLevel();
+                    BadgeLevel = getBadgeLevel();
                     BadgeChanged?.Invoke(this, new EventArgs());
                 }
             }
@@ -172,18 +172,20 @@ namespace tvdc
             return true;
         }
 
-        public void TryRemoveBadge(Badges.BadgeTypes b)
+        public bool TryRemoveBadge(Badges.BadgeTypes b)
         {
+            bool success;
             lock (MainWindowVM.viewerListLock)
             {
-                bool success = Badges.Remove(b);
+                success = Badges.Remove(b);
 
                 if (success)
                 {
-                    badgeLevel = getBadgeLevel();
+                    BadgeLevel = getBadgeLevel();
                     BadgeChanged?.Invoke(this, new EventArgs());
                 }
             }
+            return success;
         }
 
         private async void retrieveUserData()
@@ -211,7 +213,7 @@ namespace tvdc
             {
                 DisplayName = dict["display_name"].ToString();
                 Id = dict["_id"].ToString();
-                Bio = dict["bio"].ToString();
+                Bio = dict["bio"] != null ? dict["bio"].ToString() : "";
             }
 
             try {
@@ -226,7 +228,7 @@ namespace tvdc
                     lock (MainWindowVM.viewerListLock)
                     {
                         IsFollower = false;
-                        updating = false;
+                        Updating = false;
                     }
                 }
                 return;
@@ -243,14 +245,14 @@ namespace tvdc
                 lock (MainWindowVM.viewerListLock)
                 {
                     IsFollower = true;
-                    updating = false;
+                    Updating = false;
                 }
             } else
             {
                 lock (MainWindowVM.viewerListLock)
                 {
                     IsFollower = false;
-                    updating = false;
+                    Updating = false;
                 }
             }
 
@@ -294,10 +296,10 @@ namespace tvdc
         public int CompareTo(User other)
         {
   
-            if (badgeLevel < other.badgeLevel)
+            if (BadgeLevel < other.BadgeLevel)
             {
                 return 1;
-            } else if (badgeLevel == other.badgeLevel)
+            } else if (BadgeLevel == other.BadgeLevel)
             {
                 return Name.CompareTo(other.Name);
             } else

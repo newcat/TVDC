@@ -120,6 +120,15 @@ namespace tvdc.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to http://87.106.153.72/tvd/.
+        /// </summary>
+        internal static string server_base_url {
+            get {
+                return ResourceManager.GetString("server_base_url", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap staff_alpha {

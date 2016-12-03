@@ -18,16 +18,16 @@ namespace tvdc
     class EmoticonManager
     {
 
-        public static string tempPath = Environment.GetFolderPath(Environment.SpecialFolder.InternetCache) + "\\tvd\\emoticons\\";
+        public static readonly string TempPath = Environment.GetFolderPath(Environment.SpecialFolder.InternetCache) + "\\tvd\\emoticons\\";
         private static Dictionary<int, Emoticon> emoticons = new Dictionary<int, Emoticon>();
         private static Dictionary<string, int> availableEmoticonsForUser = new Dictionary<string, int>();
 
-        public static bool isCached(int id)
+        public static bool IsCached(int id)
         {
-            return File.Exists(tempPath + id.ToString() + ".png");
+            return File.Exists(TempPath + id.ToString() + ".png");
         }
 
-        public static async Task<bool> initialize()
+        public static async Task<bool> Initialize()
         {
 
             emoticons.Clear();
@@ -40,7 +40,7 @@ namespace tvdc
                 Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.InternetCache) + "\\tvd\\emoticons");
 
             //Read all the Emoticons into the Dictionary
-            DirectoryInfo di = new DirectoryInfo(tempPath);
+            DirectoryInfo di = new DirectoryInfo(TempPath);
 
             foreach (FileInfo fi in di.GetFiles("*.png"))
             {
@@ -52,7 +52,7 @@ namespace tvdc
 
         }
 
-        public static Emoticon requestEmoticon(int emoteID)
+        public static Emoticon RequestEmoticon(int emoteID)
         {
 
             if (emoticons.ContainsKey(emoteID))
@@ -67,11 +67,11 @@ namespace tvdc
 
         }
 
-        public static void clearCache()
+        public static void ClearCache()
         {
 
             emoticons.Clear();
-            DirectoryInfo di = new DirectoryInfo(tempPath);
+            DirectoryInfo di = new DirectoryInfo(TempPath);
             foreach (FileInfo f in di.GetFiles())
             {
                 f.Delete();
@@ -79,7 +79,7 @@ namespace tvdc
 
         }
 
-        public static string parseEmoticons(string text)
+        public static string ParseEmoticons(string text)
         {
             List<EmoticonPositionData> emotePositions = new List<EmoticonPositionData>();
             foreach (string s in availableEmoticonsForUser.Keys)

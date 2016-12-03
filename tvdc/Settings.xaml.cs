@@ -63,7 +63,7 @@ namespace tvdc
 
         private void btnClearCache_Click(object sender, RoutedEventArgs e)
         {
-            EmoticonManager.clearCache();
+            EmoticonManager.ClearCache();
             clearedCache = true;
             MessageBox.Show(this, "Cache cleared.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
         }

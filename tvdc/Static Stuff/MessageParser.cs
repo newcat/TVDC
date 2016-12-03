@@ -9,7 +9,7 @@ namespace tvdc
 
         public static List<Paragraph> GetParagraphsFromMessage(string message)
         {
-            string emotes = EmoticonManager.parseEmoticons(message);
+            string emotes = EmoticonManager.ParseEmoticons(message);
             Dictionary<string, string> tags = new Dictionary<string, string>();
             tags.Add("emotes", emotes);
             tags.Add("text", message);

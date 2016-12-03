@@ -171,7 +171,7 @@ namespace giveawayPlugin
                 Application.Current.Dispatcher.Invoke(() => Participants.Add(e.username));
 
                 if (NotifyWhenEntering)
-                    host.sendMesssage(getFormatted(EnterNotificationMessage, e.username));
+                    host.SendMesssage(getFormatted(EnterNotificationMessage, e.username));
             }
         }
 
@@ -222,7 +222,7 @@ namespace giveawayPlugin
             WinnerName = "";
 
             if (StartNotificationMessage != "")
-                host.sendMesssage(getFormatted(StartNotificationMessage, EnterCommandString));
+                host.SendMesssage(getFormatted(StartNotificationMessage, EnterCommandString));
 
         }
 
@@ -237,10 +237,10 @@ namespace giveawayPlugin
 
             if (s == "Chat")
             {
-                host.sendMesssage(getFormatted(NotificationMessage, WinnerName));
+                host.SendMesssage(getFormatted(NotificationMessage, WinnerName));
             } else if (s == "Whisper")
             {
-                host.sendMesssage(string.Format("/w {0} {1}", WinnerName, getFormatted(NotificationMessage, WinnerName)));
+                host.SendMesssage(string.Format("/w {0} {1}", WinnerName, getFormatted(NotificationMessage, WinnerName)));
             }
 
         }

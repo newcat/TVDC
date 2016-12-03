@@ -52,10 +52,10 @@ namespace tvdc
         {
             get
             {
-                Emoticon e = EmoticonManager.requestEmoticon(emoteID);
-                if (e.isLoaded)
+                Emoticon e = EmoticonManager.RequestEmoticon(emoteID);
+                if (e.IsLoaded)
                 {
-                    return e.image;
+                    return e.Image;
                 } else
                 {
                     if (!isSubscribed)
@@ -72,9 +72,9 @@ namespace tvdc
         {
             get
             {
-                Emoticon e = EmoticonManager.requestEmoticon(emoteID);
-                if (e.isLoaded)
-                    return e.width;
+                Emoticon e = EmoticonManager.RequestEmoticon(emoteID);
+                if (e.IsLoaded)
+                    return e.Width;
                 return 0;
             }
         }
@@ -83,9 +83,9 @@ namespace tvdc
         {
             get
             {
-                Emoticon e = EmoticonManager.requestEmoticon(emoteID);
-                if (e.isLoaded)
-                    return e.height;
+                Emoticon e = EmoticonManager.RequestEmoticon(emoteID);
+                if (e.IsLoaded)
+                    return e.Height;
                 return 0;
             }
         }

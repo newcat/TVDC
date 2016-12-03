@@ -72,6 +72,35 @@
                       CommandParameter="{Binding Name}" Foreground="Black"/>
         </ContextMenu>
 
+        <Style TargetType="Image" x:Key="BadgeImageStyle">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding}" Value="{x:Static local:Badges+BadgeTypes.ADMIN}">
+                    <Setter Property="Source" Value="{x:Static local:Badges.Admin}" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding}" Value="{x:Static local:Badges+BadgeTypes.BROADCASTER}">
+                    <Setter Property="Source" Value="{x:Static local:Badges.Broadcaster}" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding}" Value="{x:Static local:Badges+BadgeTypes.GLOBAL_MOD}">
+                    <Setter Property="Source" Value="{x:Static local:Badges.Global_mod}" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding}" Value="{x:Static local:Badges+BadgeTypes.MODERATOR}">
+                    <Setter Property="Source" Value="{x:Static local:Badges.Moderator}" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding}" Value="{x:Static local:Badges+BadgeTypes.STAFF}">
+                    <Setter Property="Source" Value="{x:Static local:Badges.Staff}" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding}" Value="{x:Static local:Badges+BadgeTypes.TURBO}">
+                    <Setter Property="Source" Value="{x:Static local:Badges.Turbo}" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding}" Value="{x:Static local:Badges+BadgeTypes.PREMIUM}">
+                    <Setter Property="Source" Value="{x:Static local:Badges.Premium}" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding}" Value="{x:Static local:Badges+BadgeTypes.SUBSCRIBER}">
+                    <Setter Property="Source" Value="{x:Static local:Badges.Subscriber}" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
         <!-- Control Templates for the chat box -->
         <ControlTemplate x:Key="EmoticonParagraph" TargetType="ListViewItem">
             <Image Source="{Binding ImageSource}" Width="{Binding ImageWidth}" Height="{Binding ImageHeight}" VerticalAlignment="Center"
@@ -122,38 +151,8 @@
                             <Setter Property="Template">
                                 <Setter.Value>
                                     <ControlTemplate TargetType="ListViewItem">
-                                        <Image Width="18" Height="18" Margin="5,0,0,0" SnapsToDevicePixels="True" VerticalAlignment="Center">
-                                            <Image.Style>
-                                                <Style TargetType="Image">
-                                                    <Style.Triggers>
-                                                        <DataTrigger Binding="{Binding}" Value="{x:Static local:Badges+BadgeTypes.ADMIN}">
-                                                            <Setter Property="Source" Value="{x:Static local:Badges.admin}" />
-                                                        </DataTrigger>
-                                                        <DataTrigger Binding="{Binding}" Value="{x:Static local:Badges+BadgeTypes.BROADCASTER}">
-                                                            <Setter Property="Source" Value="{x:Static local:Badges.broadcaster}" />
-                                                        </DataTrigger>
-                                                        <DataTrigger Binding="{Binding}" Value="{x:Static local:Badges+BadgeTypes.GLOBAL_MOD}">
-                                                            <Setter Property="Source" Value="{x:Static local:Badges.global_mod}" />
-                                                        </DataTrigger>
-                                                        <DataTrigger Binding="{Binding}" Value="{x:Static local:Badges+BadgeTypes.MODERATOR}">
-                                                            <Setter Property="Source" Value="{x:Static local:Badges.moderator}" />
-                                                        </DataTrigger>
-                                                        <DataTrigger Binding="{Binding}" Value="{x:Static local:Badges+BadgeTypes.STAFF}">
-                                                            <Setter Property="Source" Value="{x:Static local:Badges.staff}" />
-                                                        </DataTrigger>
-                                                        <DataTrigger Binding="{Binding}" Value="{x:Static local:Badges+BadgeTypes.TURBO}">
-                                                            <Setter Property="Source" Value="{x:Static local:Badges.turbo}" />
-                                                        </DataTrigger>
-                                                        <DataTrigger Binding="{Binding}" Value="{x:Static local:Badges+BadgeTypes.PREMIUM}">
-                                                            <Setter Property="Source" Value="{x:Static local:Badges.premium}" />
-                                                        </DataTrigger>
-                                                        <DataTrigger Binding="{Binding}" Value="{x:Static local:Badges+BadgeTypes.SUBSCRIBER}">
-                                                            <Setter Property="Source" Value="{x:Static local:Badges.subscriber}" />
-                                                        </DataTrigger>
-                                                    </Style.Triggers>
-                                                </Style>
-                                            </Image.Style>
-                                        </Image>
+                                        <Image Width="18" Height="18" Margin="5,0,0,0" SnapsToDevicePixels="True" VerticalAlignment="Center"
+                                               Style="{StaticResource BadgeImageStyle}" />
                                     </ControlTemplate>
                                 </Setter.Value>
                             </Setter>
@@ -259,38 +258,8 @@
                             <Setter Property="Template">
                                 <Setter.Value>
                                     <ControlTemplate TargetType="ListViewItem">
-                                        <Image Width="18" Height="18" Margin="5,0,0,0" SnapsToDevicePixels="True" VerticalAlignment="Center">
-                                            <Image.Style>
-                                                <Style TargetType="Image">
-                                                    <Style.Triggers>
-                                                        <DataTrigger Binding="{Binding}" Value="{x:Static local:Badges+BadgeTypes.ADMIN}">
-                                                            <Setter Property="Source" Value="{x:Static local:Badges.admin}" />
-                                                        </DataTrigger>
-                                                        <DataTrigger Binding="{Binding}" Value="{x:Static local:Badges+BadgeTypes.BROADCASTER}">
-                                                            <Setter Property="Source" Value="{x:Static local:Badges.broadcaster}" />
-                                                        </DataTrigger>
-                                                        <DataTrigger Binding="{Binding}" Value="{x:Static local:Badges+BadgeTypes.GLOBAL_MOD}">
-                                                            <Setter Property="Source" Value="{x:Static local:Badges.global_mod}" />
-                                                        </DataTrigger>
-                                                        <DataTrigger Binding="{Binding}" Value="{x:Static local:Badges+BadgeTypes.MODERATOR}">
-                                                            <Setter Property="Source" Value="{x:Static local:Badges.moderator}" />
-                                                        </DataTrigger>
-                                                        <DataTrigger Binding="{Binding}" Value="{x:Static local:Badges+BadgeTypes.STAFF}">
-                                                            <Setter Property="Source" Value="{x:Static local:Badges.staff}" />
-                                                        </DataTrigger>
-                                                        <DataTrigger Binding="{Binding}" Value="{x:Static local:Badges+BadgeTypes.TURBO}">
-                                                            <Setter Property="Source" Value="{x:Static local:Badges.turbo}" />
-                                                        </DataTrigger>
-                                                        <DataTrigger Binding="{Binding}" Value="{x:Static local:Badges+BadgeTypes.PREMIUM}">
-                                                            <Setter Property="Source" Value="{x:Static local:Badges.premium}" />
-                                                        </DataTrigger>
-                                                        <DataTrigger Binding="{Binding}" Value="{x:Static local:Badges+BadgeTypes.SUBSCRIBER}">
-                                                            <Setter Property="Source" Value="{x:Static local:Badges.subscriber}" />
-                                                        </DataTrigger>
-                                                    </Style.Triggers>
-                                                </Style>
-                                            </Image.Style>
-                                        </Image>
+                                        <Image Width="18" Height="18" Margin="5,0,0,0" SnapsToDevicePixels="True" VerticalAlignment="Center"
+                                            Style="{StaticResource BadgeImageStyle}" />
                                     </ControlTemplate>
                                 </Setter.Value>
                             </Setter>

@@ -243,5 +243,3 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
-
-Resources.resx

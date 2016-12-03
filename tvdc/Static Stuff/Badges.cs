@@ -15,35 +15,35 @@ namespace tvdc
 
         private static bool loaded = false;
 
-        public static bool hasSubscriberBadge { get; private set; }
+        public static bool HasSubscriberBadge { get; private set; }
         
-        public static BitmapImage staff { get; private set; }
-        public static BitmapImage admin { get; private set; }
-        public static BitmapImage global_mod { get; private set; }
-        public static BitmapImage moderator { get; private set; }
-        public static BitmapImage turbo { get; private set; }
-        public static BitmapImage broadcaster { get; private set; }
-        public static BitmapImage subscriber { get; private set; }
-        public static BitmapImage premium { get; private set; }
+        public static BitmapImage Staff { get; private set; }
+        public static BitmapImage Admin { get; private set; }
+        public static BitmapImage Global_mod { get; private set; }
+        public static BitmapImage Moderator { get; private set; }
+        public static BitmapImage Turbo { get; private set; }
+        public static BitmapImage Broadcaster { get; private set; }
+        public static BitmapImage Subscriber { get; private set; }
+        public static BitmapImage Premium { get; private set; }
 
         public enum BadgeTypes
         {
             SUBSCRIBER, TURBO, MODERATOR, BROADCASTER, GLOBAL_MOD, ADMIN, STAFF, PREMIUM
         }
 
-        public static void init()
+        public static void Init()
         {
 
             if (loaded)
                 return;
 
-            staff = convert(Properties.Resources.staff_alpha);
-            admin = convert(Properties.Resources.admin_alpha);
-            global_mod = convert(Properties.Resources.globalmod_alpha);
-            moderator = convert(Properties.Resources.mod_alpha);
-            turbo = convert(Properties.Resources.turbo_alpha);
-            broadcaster = convert(Properties.Resources.broadcaster_alpha);
-            premium = convert(Properties.Resources.premium);
+            Staff = convert(Properties.Resources.staff_alpha);
+            Admin = convert(Properties.Resources.admin_alpha);
+            Global_mod = convert(Properties.Resources.globalmod_alpha);
+            Moderator = convert(Properties.Resources.mod_alpha);
+            Turbo = convert(Properties.Resources.turbo_alpha);
+            Broadcaster = convert(Properties.Resources.broadcaster_alpha);
+            Premium = convert(Properties.Resources.premium);
 
             loaded = true;
 
@@ -64,7 +64,7 @@ namespace tvdc
 
         }
 
-        public static async Task<bool> downloadSubBadge(string channel)
+        public static async Task<bool> DownloadSubBadge(string channel)
         {
             WebClient wc = new WebClient();
             wc.Headers.Add("Client-ID", Properties.Resources.client_id);
@@ -76,7 +76,7 @@ namespace tvdc
                 json = await wc.DownloadStringTaskAsync(string.Format("https://api.twitch.tv/kraken/chat/{0}/badges", channel));
             } catch (WebException)
             {
-                hasSubscriberBadge = false;
+                HasSubscriberBadge = false;
                 return false;
             }
 
@@ -84,7 +84,7 @@ namespace tvdc
 
             if (!mainJO["subscriber"].HasValues)
             {
-                hasSubscriberBadge = false;
+                HasSubscriberBadge = false;
                 return true;
             }
 
@@ -97,26 +97,26 @@ namespace tvdc
                 imgData = await wc.DownloadDataTaskAsync(subBadgeURL);
             } catch (WebException)
             {
-                hasSubscriberBadge = false;
+                HasSubscriberBadge = false;
                 return false;
             }
 
             MemoryStream ms = new MemoryStream(imgData);
             ms.Position = 0;
 
-            subscriber = new BitmapImage();
-            subscriber.BeginInit();
-            subscriber.StreamSource = ms;
-            subscriber.EndInit();
+            Subscriber = new BitmapImage();
+            Subscriber.BeginInit();
+            Subscriber.StreamSource = ms;
+            Subscriber.EndInit();
 
             wc.Dispose();
             imgData = null;
 
-            hasSubscriberBadge = true;
+            HasSubscriberBadge = true;
             return true;
         }
 
-        public static string badgeListToString(List<BadgeTypes> badges)
+        public static string BadgeListToString(List<BadgeTypes> badges)
         {
             string returnString = "";
 
@@ -128,7 +128,7 @@ namespace tvdc
             return returnString.TrimEnd(',');
         }
 
-        public static List<BadgeTypes> parseBadgeString(string bs)
+        public static List<BadgeTypes> ParseBadgeString(string bs)
         {
 
             List<BadgeTypes> returnList = new List<BadgeTypes>();

@@ -94,7 +94,7 @@ namespace tvdc
         private static async Task<bool> downloadUserData()
         {
 
-            if (Oauth == null || Oauth == "")
+            if (_oauth == null || _oauth == "")
                 return false;
 
             LoginWindow lw = new LoginWindow();

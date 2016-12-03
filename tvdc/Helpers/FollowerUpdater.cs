@@ -13,6 +13,7 @@ namespace tvdc
 
         private WebClient followerWC;
         private Timer followerTimer = new Timer(30000);
+        private int failedTries = 0;
 
         private readonly string clientID = Properties.Resources.client_id;
 
@@ -62,13 +63,20 @@ namespace tvdc
             {
                 JObject root = JObject.Parse(resultViewer);
 
-                if (root["stream"].HasValues)
+                if (root["stream"].HasValues && (int)root["stream"]["viewers"] > vm.ViewerCount)
                 {
                     vm.OverriddenViewerCount = (int)root["stream"]["viewers"];
                     vm.OverrideViewerCount = true;
+                    failedTries = 0;
                 } else
                 {
-                    vm.OverrideViewerCount = false;
+                    if (vm.OverrideViewerCount && failedTries >= 3)
+                    {
+                        vm.OverrideViewerCount = false;
+                    } else
+                    {
+                        failedTries++;
+                    }
                 }
             } catch (Exception)
             {

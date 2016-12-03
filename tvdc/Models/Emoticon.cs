@@ -8,11 +8,11 @@ namespace tvdc
     class Emoticon : IDisposable
     {
 
-        public int id { get; private set; }
-        public bool isLoaded { get; private set; }
-        public int width { get; private set; }
-        public int height { get; private set; }
-        public string image { get; private set; }
+        public int Id { get; private set; }
+        public bool IsLoaded { get; private set; }
+        public int Width { get; private set; }
+        public int Height { get; private set; }
+        public string Image { get; private set; }
 
         public delegate void imageDownloadFinishedHandler(object sender, EventArgs e);
         public event imageDownloadFinishedHandler ImageDownloadFinished;
@@ -23,17 +23,17 @@ namespace tvdc
 
         public Emoticon(int id)
         {
-            this.id = id;
+            Id = id;
 
-            if (!EmoticonManager.isCached(id))
+            if (!EmoticonManager.IsCached(id))
             {
                 wc = new WebClient();
                 wc.DownloadFileCompleted += Wc_DownloadFileCompleted;
-                wc.DownloadFileAsync(new Uri(string.Format(baseURL, id.ToString())), EmoticonManager.tempPath + id.ToString() + ".png");
+                wc.DownloadFileAsync(new Uri(string.Format(baseURL, id.ToString())), EmoticonManager.TempPath + id.ToString() + ".png");
             } else
             {
-                isLoaded = true;
-                image = EmoticonManager.tempPath + id.ToString() + ".png";
+                IsLoaded = true;
+                Image = EmoticonManager.TempPath + id.ToString() + ".png";
                 loadDimensions();
             }
         }
@@ -41,28 +41,27 @@ namespace tvdc
         private void Wc_DownloadFileCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
         {
             wc.Dispose();
-            isLoaded = true;
-            image = EmoticonManager.tempPath + id.ToString() + ".png";
+            IsLoaded = true;
+            Image = EmoticonManager.TempPath + Id.ToString() + ".png";
             loadDimensions();
-            if (ImageDownloadFinished != null)
-                ImageDownloadFinished(this, EventArgs.Empty);
+            ImageDownloadFinished?.Invoke(this, EventArgs.Empty);
         }
 
         private void loadDimensions()
         {
             try
             {
-                Image img = Image.FromFile(image);
-                width = img.Width;
-                height = img.Height;
+                Image img = System.Drawing.Image.FromFile(Image);
+                Width = img.Width;
+                Height = img.Height;
                 img.Dispose();
             } catch (OutOfMemoryException)
             {
-                //This normally doesn't happen in normal use, since the img gets
+                //This shouldnt happen in normal use, since the img gets
                 //disposed right away.
-                //It occurs though if the image is broken, so in that case just delete the image
+                //It only occurs if the image is broken, so in that case just delete the image
                 //from cache and continue.
-                File.Delete(image);
+                File.Delete(Image);
             }
         }
 

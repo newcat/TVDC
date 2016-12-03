@@ -99,10 +99,10 @@ namespace tvdc
 
         }
 
-        private void Window_Closed(object sender, EventArgs e)
+        private async void Window_Closed(object sender, EventArgs e)
         {
             viewerGraphTimer.Stop();
-            vm.shutdown();
+            await vm.Shutdown();
         }
 
         private void btnChatBigger_Click(object sender, RoutedEventArgs e)

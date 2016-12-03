@@ -184,9 +184,29 @@ namespace tvdc
             IRC_PrivmsgReceived?.Invoke(this, e);
         }
 
-        public void sendMesssage(string msg)
+        public void SendMesssage(string msg)
         {
-            irc.send(msg);
+            irc.Send(msg);
+        }
+
+        public List<Plugin.Models.User> GetChatters()
+        {
+            var viewerlistCopy = MainWindowVM.Instance.viewerList;
+            var returnList = new List<Plugin.Models.User>();
+            foreach (User u in viewerlistCopy)
+            {
+                returnList.Add(new Plugin.Models.User(u.Name, u.DisplayName, u.Id));
+            }
+            return returnList;
+        }
+
+        public Plugin.Models.User LoggedInAs()
+        {
+            User u = MainWindowVM.Instance.viewerList_GetUserByName(AccountManager.Username);
+            if (u != null)
+                return new Plugin.Models.User(u.Name, u.DisplayName, u.Id);
+            else
+                return new Plugin.Models.User(AccountManager.Username, AccountManager.Username, "");
         }
 
         public class PluginInfo

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using tvdc.EventArguments;
 
 namespace tvdc.Plugin
@@ -63,7 +64,22 @@ namespace tvdc.Plugin
         /// in the normal Twitch-Chatbox)
         /// </summary>
         /// <param name="msg">The message to send</param>
-        void sendMesssage(string msg);
+        void SendMesssage(string msg);
+
+        /// <summary>
+        /// Returns all the users that are logged in to Twitch-Chat.
+        /// If a channel has more than 1,000 viewers, only the moderators will be returned.
+        /// This is due to Twitch not sending information about "normal" users at that amount.
+        /// </summary>
+        /// <returns></returns>
+        List<Models.User> GetChatters();
+
+        /// <summary>
+        /// Will return the user that is currently using the program.
+        /// NOTE: Id may be empty.
+        /// </summary>
+        /// <returns></returns>
+        Models.User LoggedInAs();
 
     }
 }
