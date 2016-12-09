@@ -117,32 +117,17 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="admin_alpha" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\admin_alpha.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="broadcaster_alpha" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\broadcaster-alpha.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="client_id" xml:space="preserve">
     <value>3rxdy8dzlvpysys8fjfle0qqab77aqq</value>
   </data>
-  <data name="globalmod_alpha" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\globalmod-alpha.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="loyalty" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\loyalty.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="mod_alpha" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\mod-alpha.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="premium" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\premium.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="loyalty_hover" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\loyalty_hover.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="server_base_url" xml:space="preserve">
     <value>https://www.twitch-viewer-display.net/tvd/requests/</value>
-  </data>
-  <data name="staff_alpha" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\staff-alpha.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="turbo_alpha" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\turbo-alpha.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

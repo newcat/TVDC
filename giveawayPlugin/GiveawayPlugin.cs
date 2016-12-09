@@ -21,7 +21,7 @@ namespace giveawayPlugin
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public string pluginName { get { return "Giveaway"; } }
+        public string PluginName { get { return "Giveaway"; } }
 
         #region ViewModel Properties
         private string _startNotificationMessage = Properties.Settings.Default.StartNotificationMessage;
@@ -175,14 +175,14 @@ namespace giveawayPlugin
             }
         }
 
-        public ImageSource getMenuIcon()
+        public ImageSource GetMenuIcon()
         {
-            return BmpToImg(Properties.Resources.gift_icon);
+            return BmpToImg(Properties.Resources.giveaway);
         }
 
-        public ImageSource getMenuIconHover()
+        public ImageSource GetMenuIconHover()
         {
-            return BmpToImg(Properties.Resources.gift_icon_hover);
+            return BmpToImg(Properties.Resources.giveaway_hover);
         }
 
         private BitmapImage BmpToImg(System.Drawing.Bitmap bmp)

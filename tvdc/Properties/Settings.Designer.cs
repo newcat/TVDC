@@ -95,5 +95,17 @@ namespace tvdc.Properties {
                 this["upgradeRequired"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public int uploadChatlog {
+            get {
+                return ((int)(this["uploadChatlog"]));
+            }
+            set {
+                this["uploadChatlog"] = value;
+            }
+        }
     }
 }

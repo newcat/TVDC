@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:tvdc"
         mc:Ignorable="d" Background="{StaticResource WindowBackgroundBrush}"
+        Icon="tvd_logo_large.ico"
         Title="Login" Height="209.167" Width="270.834" WindowStartupLocation="CenterScreen">
     <Grid>
 

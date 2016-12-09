@@ -46,6 +46,12 @@ namespace tvdc
         public async Task UploadLog(IEnumerable<ChatEntry> chatEntryList, bool includeJoinLeave)
         {
 
+            if (Properties.Settings.Default.uploadChatlog == 0 ||
+                (Properties.Settings.Default.uploadChatlog == 1 &&
+                MessageBox.Show("Do you want to upload this chatlog?", "Upload chatlog", MessageBoxButton.YesNo) == MessageBoxResult.No)) {
+                return;
+            }
+
             progWin = new ProgressWindow();
             progWin.Title = "Uploading chatlog";
             progWin.IsIndeterminate = true;
@@ -91,14 +97,13 @@ namespace tvdc
             string data = sb.ToString();
 
             //Authenticate
-            progWin.Operation = "Authenticating";
-
-            var values = new NameValueCollection();
+            progWin.Operation = "Authenticating";            
 
             try
             {
-                values["oauth"] = AccountManager.OauthWithoutPrefix;
-                var response = await wc.UploadValuesTaskAsync(Properties.Resources.server_base_url + "authenticate.php", values);
+
+                var response = await wc.DownloadDataTaskAsync(
+                    Properties.Resources.server_base_url + "authenticate.php?oauth=" + AccountManager.OauthWithoutPrefix);
 
                 if (!Encoding.Default.GetString(response).Contains("Logged in as"))
                 {
@@ -110,7 +115,7 @@ namespace tvdc
                 progWin.IsIndeterminate = false;
                 showUploadProgress = true;
 
-                values.Clear();
+                var values = new NameValueCollection();
                 values["data"] = data;
                 values["dataType"] = "chatlog";
 

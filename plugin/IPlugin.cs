@@ -8,19 +8,19 @@ namespace tvdc.Plugin
         /// <summary>
         /// The name will be displayed when hovering above the plugin icon.
         /// </summary>
-        string pluginName { get; }
+        string PluginName { get; }
 
         /// <summary>
         /// The icon that will be displayed in the bar with all the plugin icons (right of the settings icon).
         /// </summary>
         /// <returns>The image to be drawn (Size 28x28)</returns>
-        ImageSource getMenuIcon();
+        ImageSource GetMenuIcon();
 
         /// <summary>
         /// The icon that will be displayed if the user hovers over the menu icon.
         /// </summary>
         /// <returns>The image to be drawn (Size 28x28)</returns>
-        ImageSource getMenuIconHover();
+        ImageSource GetMenuIconHover();
 
         /// <summary>
         /// This function gets called when the icon in the plugin bar gets pressed.

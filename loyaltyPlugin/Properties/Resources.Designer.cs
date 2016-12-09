@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace tvdc.Properties {
+namespace loyaltyPlugin.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace tvdc.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("tvdc.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("loyaltyPlugin.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,26 +61,6 @@ namespace tvdc.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap admin_alpha {
-            get {
-                object obj = ResourceManager.GetObject("admin_alpha", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap broadcaster_alpha {
-            get {
-                object obj = ResourceManager.GetObject("broadcaster_alpha", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 3rxdy8dzlvpysys8fjfle0qqab77aqq.
         /// </summary>
         internal static string client_id {
@@ -92,9 +72,9 @@ namespace tvdc.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap globalmod_alpha {
+        internal static System.Drawing.Bitmap loyalty {
             get {
-                object obj = ResourceManager.GetObject("globalmod_alpha", resourceCulture);
+                object obj = ResourceManager.GetObject("loyalty", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -102,19 +82,9 @@ namespace tvdc.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap mod_alpha {
+        internal static System.Drawing.Bitmap loyalty_hover {
             get {
-                object obj = ResourceManager.GetObject("mod_alpha", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap premium {
-            get {
-                object obj = ResourceManager.GetObject("premium", resourceCulture);
+                object obj = ResourceManager.GetObject("loyalty_hover", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -125,26 +95,6 @@ namespace tvdc.Properties {
         internal static string server_base_url {
             get {
                 return ResourceManager.GetString("server_base_url", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap staff_alpha {
-            get {
-                object obj = ResourceManager.GetObject("staff_alpha", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap turbo_alpha {
-            get {
-                object obj = ResourceManager.GetObject("turbo_alpha", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
             }
         }
     }

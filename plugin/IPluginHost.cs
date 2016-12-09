@@ -81,5 +81,17 @@ namespace tvdc.Plugin
         /// <returns></returns>
         Models.User LoggedInAs();
 
+        /// <summary>
+        /// Will prompt the user to allow access to his oauth.
+        /// </summary>
+        /// <returns>Oauth or null</returns>
+        string RequestOauth(IPlugin plugin);
+
+        /// <summary>
+        /// Returns the name of the current channel.
+        /// </summary>
+        /// <returns></returns>
+        string GetCurrentChannel();
+
     }
 }

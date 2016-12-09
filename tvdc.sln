@@ -8,6 +8,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tvdc", "tvdc\tvdc.csproj", 
 		{8CE76121-E353-4A06-A8E6-2DF560ED2228} = {8CE76121-E353-4A06-A8E6-2DF560ED2228}
 		{B857BA90-2B28-4138-B0D2-27213281EE21} = {B857BA90-2B28-4138-B0D2-27213281EE21}
 		{A3FA37B5-2BB5-40BB-AAA1-2B7A63912235} = {A3FA37B5-2BB5-40BB-AAA1-2B7A63912235}
+		{FCB5A9F4-28AE-40E7-84D3-0F59193E04B7} = {FCB5A9F4-28AE-40E7-84D3-0F59193E04B7}
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pollPlugin", "pollPlugin\pollPlugin.csproj", "{8CE76121-E353-4A06-A8E6-2DF560ED2228}"
@@ -18,6 +19,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "plugin", "plugin\plugin.csproj", "{B857BA90-2B28-4138-B0D2-27213281EE21}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "giveawayPlugin", "giveawayPlugin\giveawayPlugin.csproj", "{A3FA37B5-2BB5-40BB-AAA1-2B7A63912235}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "loyaltyPlugin", "loyaltyPlugin\loyaltyPlugin.csproj", "{FCB5A9F4-28AE-40E7-84D3-0F59193E04B7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +44,10 @@ Global
 		{A3FA37B5-2BB5-40BB-AAA1-2B7A63912235}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A3FA37B5-2BB5-40BB-AAA1-2B7A63912235}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A3FA37B5-2BB5-40BB-AAA1-2B7A63912235}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FCB5A9F4-28AE-40E7-84D3-0F59193E04B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCB5A9F4-28AE-40E7-84D3-0F59193E04B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FCB5A9F4-28AE-40E7-84D3-0F59193E04B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCB5A9F4-28AE-40E7-84D3-0F59193E04B7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

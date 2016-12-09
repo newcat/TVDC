@@ -40,17 +40,17 @@ namespace pollPlugin
             this.host = host;
         }
 
-        public string pluginName
+        public string PluginName
         {
             get { return "Poll Plugin"; }
         }
 
-        public ImageSource getMenuIcon()
+        public ImageSource GetMenuIcon()
         {
             return BmpToImg(Properties.Resources.btn);
         }
 
-        public ImageSource getMenuIconHover() {
+        public ImageSource GetMenuIconHover() {
             return BmpToImg(Properties.Resources.btn_hover);
         }
 

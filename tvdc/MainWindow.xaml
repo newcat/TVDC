@@ -7,7 +7,7 @@
     xmlns:ed="http://schemas.microsoft.com/expression/2010/drawing"
     x:Class="tvdc.MainWindow"
     Title="Twitch Viewer Display" Height="434" Width="850"
-    Icon="Resources/Twitch-tv-logo.png"
+    Icon="tvd_logo_large.ico"
     Background="{StaticResource WindowBackgroundBrush}"
     MinWidth="650" MinHeight="300" Closed="Window_Closed" WindowStartupLocation="CenterScreen">
 
@@ -62,7 +62,7 @@
         </ContextMenu>
 
         <ContextMenu x:Key="UserContextMenuViewerList">
-            <MenuItem Header="{Binding Name}" IsEnabled="False" OverridesDefaultStyle="True" FontWeight="Bold"
+            <MenuItem Header="{Binding DisplayName}" IsEnabled="False" OverridesDefaultStyle="True" FontWeight="Bold"
                       Style="{StaticResource UserContextMenuNameHeaderStyle}"/>
             <MenuItem Header="Mod" Command="{Binding CmdMod, Source={x:Static local:MainWindowVM.Instance}}"
                       CommandParameter="{Binding Name}" Foreground="Black" />
@@ -108,8 +108,8 @@
         </ControlTemplate>
 
         <ControlTemplate x:Key="TextParagraph" TargetType="ListViewItem">
-            <TextBlock Text="{Binding Text}" Background="Transparent" VerticalAlignment="Center" TextWrapping="Wrap"
-                       MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListView}}}">
+            <TextBlock Text="{Binding Text}" Background="{x:Null}" VerticalAlignment="Center"
+                       TextWrapping="Wrap" IsHitTestVisible="False">
                 <TextBlock.Style>
                     <Style TargetType="TextBlock">
                         <Setter Property="Foreground" Value="White" />
@@ -138,7 +138,8 @@
 
                 <!--Badges-->
                 <ListView ItemsSource="{Binding Badges}" Background="Transparent" BorderBrush="{x:Null}" Margin="0"
-                          ScrollViewer.VerticalScrollBarVisibility="Disabled" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                          ScrollViewer.VerticalScrollBarVisibility="Disabled" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                          IsHitTestVisible="False">
 
                     <ListView.ItemsPanel>
                         <ItemsPanelTemplate>
@@ -161,12 +162,13 @@
 
                 </ListView>
 
-                <TextBlock Background="Transparent" Text="{Binding Username}" Foreground="{Binding Color}" FontWeight="Bold"
+                <TextBlock Background="{x:Null}" Text="{Binding Username}" Foreground="{Binding Color}" FontWeight="Bold"
                            Margin="5,5,0,5" VerticalAlignment="Center" ContextMenu="{StaticResource UserContextMenu}"
                            Cursor="Hand" Style="{x:Null}" />
 
                 <ListView Foreground="{Binding Color}" ItemsSource="{Binding Paragraphs}" Margin="5,0,0,0" Focusable="False" BorderThickness="0"
-                          ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled" Background="Transparent">
+                          ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled" Background="Transparent"
+                          IsHitTestVisible="False">
 
                     <ListView.ItemsPanel>
                         <ItemsPanelTemplate>
@@ -245,7 +247,8 @@
             <StackPanel Orientation="Horizontal" Background="{x:Null}">
                 <!--Badges-->
                 <ListView ItemsSource="{Binding Badges}" Background="Transparent" BorderBrush="{x:Null}" Margin="0"
-                          ScrollViewer.VerticalScrollBarVisibility="Disabled" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                          ScrollViewer.VerticalScrollBarVisibility="Disabled" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                          IsHitTestVisible="False">
 
                     <ListView.ItemsPanel>
                         <ItemsPanelTemplate>
@@ -445,7 +448,7 @@
 
             <ListView.ItemTemplate>
                 <ItemContainerTemplate>
-                    <Image Tag="{Binding name}" MouseLeftButtonDown="Image_MouseLeftButtonDown" Width="28" Height="28" Stretch="None" Cursor="Hand" Focusable="False">
+                    <Image Tag="{Binding name}" MouseLeftButtonDown="Image_MouseLeftButtonDown" Width="28" Height="28" Stretch="Fill" Cursor="Hand" Focusable="False">
                         <Image.Style>
                             <Style TargetType="Image">
                                 <Setter Property="Source" Value="{Binding imageSource}" />

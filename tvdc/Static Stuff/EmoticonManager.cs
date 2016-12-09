@@ -10,6 +10,7 @@ using System.Text.RegularExpressions;
 using System.Net.Http;
 using System.Windows;
 using System.Net;
+using System.Diagnostics;
 
 namespace tvdc
 {
@@ -40,14 +41,18 @@ namespace tvdc
                 Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.InternetCache) + "\\tvd\\emoticons");
 
             //Read all the Emoticons into the Dictionary
-            DirectoryInfo di = new DirectoryInfo(TempPath);
-
-            foreach (FileInfo fi in di.GetFiles("*.png"))
+            await Task.Run(() =>
             {
-                int eID = int.Parse(Path.GetFileNameWithoutExtension(fi.Name));
-                emoticons.Add(eID, new Emoticon(eID));
-            }
+                DirectoryInfo di = new DirectoryInfo(TempPath);
 
+                foreach (FileInfo fi in di.GetFiles("*.png"))
+                {
+                    int eID = int.Parse(Path.GetFileNameWithoutExtension(fi.Name));
+                    emoticons.Add(eID, new Emoticon(eID));
+                }
+            });
+
+            Debug.WriteLine("Downloading user emoticon list");
             return await downloadUserEmoticonList();
 
         }
@@ -74,7 +79,13 @@ namespace tvdc
             DirectoryInfo di = new DirectoryInfo(TempPath);
             foreach (FileInfo f in di.GetFiles())
             {
-                f.Delete();
+                try
+                {
+                    f.Delete();
+                } catch (IOException)
+                {
+                    Debug.WriteLine("Clear Cache: Couldnt delete " + f.Name);
+                }
             }
 
         }

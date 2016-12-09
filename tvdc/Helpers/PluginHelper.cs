@@ -68,12 +68,12 @@ namespace tvdc
                         {
                             try {
                                 IPlugin plugin = (IPlugin)Activator.CreateInstance(t);
-                                if (!pluginExists(plugin.pluginName))
+                                if (!pluginExists(plugin.PluginName))
                                 {
                                     plugins.Add(plugin);
                                 } else
                                 {
-                                    MessageBox.Show("Plugin already loaded: " + plugin.pluginName);
+                                    MessageBox.Show("Plugin already loaded: " + plugin.PluginName);
                                 }
                             } catch (Exception e)
                             {
@@ -119,7 +119,7 @@ namespace tvdc
         {
             foreach (IPlugin p in plugins)
             {
-                if (p.pluginName == pluginName)
+                if (p.PluginName == pluginName)
                     return p;
             }
             return null;
@@ -131,9 +131,9 @@ namespace tvdc
             foreach (IPlugin p in plugins)
             {
                 piList.Add(new PluginInfo() {
-                    name = p.pluginName,
-                    imageSource = p.getMenuIcon(),
-                    imageSourceHover = p.getMenuIconHover()
+                    name = p.PluginName,
+                    imageSource = p.GetMenuIcon(),
+                    imageSourceHover = p.GetMenuIconHover()
                 });
             }
             return piList;
@@ -207,6 +207,25 @@ namespace tvdc
                 return new Plugin.Models.User(u.Name, u.DisplayName, u.Id);
             else
                 return new Plugin.Models.User(AccountManager.Username, AccountManager.Username, "");
+        }
+
+        public string RequestOauth(IPlugin plugin)
+        {
+
+            if (MessageBox.Show("The plugin " + plugin.PluginName + " requests access to your oauth. Grant access?",
+                "Oauth access", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                return AccountManager.OauthWithoutPrefix;
+            } else
+            {
+                return null;
+            }
+
+        }
+
+        public string GetCurrentChannel()
+        {
+            return Properties.Settings.Default.channel;
         }
 
         public class PluginInfo

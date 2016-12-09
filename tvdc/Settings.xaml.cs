@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Controls;
 
 namespace tvdc
 {
@@ -9,6 +10,7 @@ namespace tvdc
     {
 
         private bool clearedCache = false;
+        private int oldState = 0;
 
         public Settings()
         {
@@ -23,6 +25,11 @@ namespace tvdc
                 btnLogout.IsEnabled = true;
                 lblUsername.Text = "Currently logged in as: " + AccountManager.Username;
             }
+
+            cbChatlogAlways.IsChecked = Properties.Settings.Default.uploadChatlog == 2;
+            cbChatlogAsk.IsChecked = Properties.Settings.Default.uploadChatlog == 1;
+            cbChatlogNever.IsChecked = Properties.Settings.Default.uploadChatlog == 0;
+            oldState = Properties.Settings.Default.uploadChatlog;
 
         }
 
@@ -45,6 +52,19 @@ namespace tvdc
             } else if (channel.StartsWith("http://www.twitch.tv/"))
             {
                 channel = channel.Substring(21);
+            }
+
+            if (cbChatlogAlways.IsChecked == true)
+            {
+                Properties.Settings.Default.uploadChatlog = 2;
+            }
+            else if (cbChatlogAsk.IsChecked == true)
+            {
+                Properties.Settings.Default.uploadChatlog = 1;
+            }
+            else if (cbChatlogNever.IsChecked == true)
+            {
+                Properties.Settings.Default.uploadChatlog = 0;
             }
 
             Properties.Settings.Default.channel = channel;
@@ -81,6 +101,38 @@ namespace tvdc
             Properties.Settings.Default.Save();
             System.Diagnostics.Process.Start(Application.ResourceAssembly.Location);
             Application.Current.Shutdown();
+        }
+
+        private void cbChatlog_Checked(object sender, RoutedEventArgs e)
+        {
+
+            if (cbChatlogAlways.IsChecked == true && oldState != 2)
+            {
+                cbChatlogAsk.IsChecked = false;
+                cbChatlogNever.IsChecked = false;
+                oldState = 2;
+            } else if (cbChatlogAsk.IsChecked == true && oldState != 1)
+            {
+                cbChatlogAlways.IsChecked = false;
+                cbChatlogNever.IsChecked = false;
+                oldState = 1;
+            } else if (cbChatlogNever.IsChecked == true && oldState != 0)
+            {
+                cbChatlogAlways.IsChecked = false;
+                cbChatlogAsk.IsChecked = false;
+                oldState = 0;
+            }
+
+        }
+
+        private void cbChatlog_Unchecked(object sender, RoutedEventArgs e)
+        {
+
+            if (cbChatlogAlways.IsChecked == false && cbChatlogAsk.IsChecked == false && cbChatlogNever.IsChecked == false)
+            {
+                ((CheckBox)sender).IsChecked = true;
+            }                
+
         }
     }
 }

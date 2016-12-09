@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Diagnostics;
 using tvdc.EventArguments;
 
 namespace tvdc
@@ -105,6 +106,7 @@ namespace tvdc
         public async Task init()
         {
 
+            Debug.WriteLine("Initializing");
             mainVM.Initialized = false;
 
             if (followerUpdater != null)
@@ -119,6 +121,7 @@ namespace tvdc
             mainVM.chatEntryList_Clear();
             mainVM.viewerList_Clear();
             mainVM.FollowerCount = 0;
+            mainVM.OverrideViewerCount = false;
 
             channel = tvdc.Properties.Settings.Default.channel;
             debug = tvdc.Properties.Settings.Default.debug;
@@ -127,17 +130,6 @@ namespace tvdc
             mainVM.enableSorting = false;
 
             mainVM.chatEntryList_Add(new ChatEntry(ChatEntry.Type.IRC, "Initializing..."));
-
-            //Init emoticons
-            if (!await EmoticonManager.Initialize())
-            {
-                mainVM.chatEntryList_Add(new ChatEntry(ChatEntry.Type.ERROR, "Failed to download emoticon list."));
-            }
-
-            //Load badges and download sub badge
-            Badges.Init();
-            if (!await Badges.DownloadSubBadge(channel))
-                mainVM.chatEntryList_Add(new ChatEntry(ChatEntry.Type.ERROR, "Failed to download subscriber badge."));
 
             //Connect to IRC
             irc = new IRCClient("irc.twitch.tv", 6667, AccountManager.Username, AccountManager.Oauth, channel);
@@ -155,10 +147,26 @@ namespace tvdc
             irc.InitCompleted += Irc_InitCompleted;
 
             //Load plugins
+            Debug.WriteLine("Loading plugins");
             mainVM.chatEntryList_Add(new ChatEntry(ChatEntry.Type.IRC, "Loading plugins..."));
             pluginHelper = new PluginHelper(irc);
             pluginHelper.LoadPlugins();
             mainVM.PluginInfos = pluginHelper.PluginInfoList;
+
+            //Init emoticons
+            Debug.WriteLine("Init emoticons");
+            mainVM.chatEntryList_Add(new ChatEntry(ChatEntry.Type.IRC, "Initializing emoticon system..."));
+            if (!await EmoticonManager.Initialize())
+            {
+                mainVM.chatEntryList_Add(new ChatEntry(ChatEntry.Type.ERROR, "Failed to download emoticon list."));
+            }
+
+            //Load badges and download sub badge
+            Debug.WriteLine("Init badges");
+            Badges.Init();
+            Debug.WriteLine("Downloading sub badge");
+            if (!await Badges.DownloadSubBadge(channel))
+                mainVM.chatEntryList_Add(new ChatEntry(ChatEntry.Type.ERROR, "Failed to download subscriber badge."));
 
             if (debug)
             {
@@ -169,6 +177,7 @@ namespace tvdc
             }
 
             //Connect
+            Debug.WriteLine("Connecting");
             mainVM.chatEntryList_Add(new ChatEntry(ChatEntry.Type.IRC, "Connecting to IRC..."));
             irc.Connect();
 
@@ -180,6 +189,7 @@ namespace tvdc
             mainVM.Initialized = true;
             ((MainWindow)MainWindow).initCompleted();
 
+            Debug.WriteLine("Searching for updates");
             UpdateWindow uw = new UpdateWindow(true);
             await uw.SearchForUpdates();
 

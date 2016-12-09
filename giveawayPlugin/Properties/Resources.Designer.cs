@@ -63,9 +63,9 @@ namespace giveawayPlugin.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap gift_icon {
+        internal static System.Drawing.Bitmap giveaway {
             get {
-                object obj = ResourceManager.GetObject("gift_icon", resourceCulture);
+                object obj = ResourceManager.GetObject("giveaway", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace giveawayPlugin.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap gift_icon_hover {
+        internal static System.Drawing.Bitmap giveaway_hover {
             get {
-                object obj = ResourceManager.GetObject("gift_icon_hover", resourceCulture);
+                object obj = ResourceManager.GetObject("giveaway_hover", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

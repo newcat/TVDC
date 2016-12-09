@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:tvdc"
-        mc:Ignorable="d" Background="{StaticResource WindowBackgroundBrush}"
+        mc:Ignorable="d" Background="{StaticResource WindowBackgroundBrush}" Icon="tvd_logo_large.ico"
         Title="{Binding WindowTitle}" Height="200" Width="270" WindowStartupLocation="CenterScreen">
     <Grid>
 

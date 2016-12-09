@@ -31,7 +31,7 @@ namespace tvdc
             }
         }
 
-        private bool _overrideViewerCount = true;
+        private bool _overrideViewerCount = false;
         public bool OverrideViewerCount
         {
             get { return _overrideViewerCount; }
