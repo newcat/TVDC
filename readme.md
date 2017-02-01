@@ -22,4 +22,4 @@ If you want to write a plugin, there's a how-to [here](Plugin-Documentation/).
 For better performance Twitch caches all the events like joining and leaving and only sends them to the client every 10 seconds to 2 minutes, depending on the servers load.
 
 ##### Why does this program display a different viewer count than the Twitch-site?
-At the moment, this program only shows the amount of users who are logged in to the chat. Also, if a stream hast over 1,000 viewers, Twitch will only send the names of the mods.
+At the moment, this program only shows the amount of users who are logged in to the chat. Also, if a stream has over 1,000 viewers, Twitch will only send the names of the mods.
