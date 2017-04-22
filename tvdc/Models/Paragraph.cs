@@ -52,7 +52,7 @@ namespace tvdc
         {
             get
             {
-                Emoticon e = EmoticonManager.RequestEmoticon(emoteID);
+                Emoticon e = EmoticonManager.RequestEmoticon(EmoteID);
                 if (e.IsLoaded)
                 {
                     return e.Image;
@@ -72,7 +72,7 @@ namespace tvdc
         {
             get
             {
-                Emoticon e = EmoticonManager.RequestEmoticon(emoteID);
+                Emoticon e = EmoticonManager.RequestEmoticon(EmoteID);
                 if (e.IsLoaded)
                     return e.Width;
                 return 0;
@@ -83,7 +83,7 @@ namespace tvdc
         {
             get
             {
-                Emoticon e = EmoticonManager.RequestEmoticon(emoteID);
+                Emoticon e = EmoticonManager.RequestEmoticon(EmoteID);
                 if (e.IsLoaded)
                     return e.Height;
                 return 0;
@@ -112,12 +112,12 @@ namespace tvdc
 
         public RelayCommand cmdUrlClicked { get; private set; }
 
-        private int emoteID;
+        public int EmoteID { get; private set; }
         private bool isSubscribed = false;
 
         public Paragraph(int emoteID)
         {
-            this.emoteID = emoteID;
+            EmoteID = emoteID;
             IsImage = true;
         }
 

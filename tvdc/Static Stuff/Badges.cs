@@ -67,6 +67,7 @@ namespace tvdc
         public static async Task<bool> DownloadSubBadge(string channel)
         {
             WebClient wc = new WebClient();
+            wc.Encoding = System.Text.Encoding.UTF8;
             wc.Headers.Add("Client-ID", Properties.Resources.client_id);
 
             string json;

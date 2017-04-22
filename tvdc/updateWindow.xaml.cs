@@ -35,6 +35,7 @@ namespace tvdc
             this.silent = silent;
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1060:MovePInvokesToNativeMethodsClass")]
         [DllImport("user32")]
         internal static extern bool EnableWindow(IntPtr hwnd, bool bEnable);
 

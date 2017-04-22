@@ -7,19 +7,21 @@ namespace tvdc
     public class MessageParser
     {
 
-        public static List<Paragraph> GetParagraphsFromMessage(string message)
+        public static List<Paragraph> GetParagraphsFromMessage(string message, out bool isAction)
         {
             string emotes = EmoticonManager.ParseEmoticons(message);
             Dictionary<string, string> tags = new Dictionary<string, string>();
             tags.Add("emotes", emotes);
             tags.Add("text", message);
-            return GetParagraphsFromTags(tags);
+            return GetParagraphsFromTags(tags, out isAction);
         }
 
-        public static List<Paragraph> GetParagraphsFromTags(Dictionary<string, string> tags)
+        public static List<Paragraph> GetParagraphsFromTags(Dictionary<string, string> tags, out bool isAction)
         {
 
+
             List<Paragraph> p = new List<Paragraph>();
+            isAction = false;
 
             if (tags.Count == 1 && tags.ContainsKey("text") && tags["text"] != null)
             {
@@ -27,7 +29,6 @@ namespace tvdc
                 return p;
             }
 
-            bool isAction = false;
             if (tags.ContainsKey("text") && tags["text"] != null && tags["text"].StartsWith("\u0001ACTION"))
             {
                 isAction = true;

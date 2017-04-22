@@ -28,6 +28,7 @@ namespace tvdc
             if (!EmoticonManager.IsCached(id))
             {
                 wc = new WebClient();
+                wc.Encoding = System.Text.Encoding.UTF8;
                 wc.DownloadFileCompleted += Wc_DownloadFileCompleted;
                 wc.DownloadFileAsync(new Uri(string.Format(baseURL, id.ToString())), EmoticonManager.TempPath + id.ToString() + ".png");
             } else

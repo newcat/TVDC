@@ -209,7 +209,7 @@ namespace tvdc
         public async Task Shutdown()
         {
             ChatlogUploader clu = new ChatlogUploader();
-            await clu.UploadLog(chatEntryList, false);
+            await clu.UploadLog(chatEntryList, Graph.history, false);
 
             Application.Current.Shutdown();
         }

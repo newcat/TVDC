@@ -152,6 +152,7 @@ namespace tvdc
             using (WebClient wc = new WebClient())
             {
 
+                wc.Encoding = System.Text.Encoding.UTF8;
                 wc.Headers.Add("Client-ID", Properties.Resources.client_id);
 
                 try

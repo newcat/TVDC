@@ -106,6 +106,13 @@ namespace tvdc
                     }
                 }
 
+                if (Properties.Settings.Default.channel == u.Name && !u.IsFollower)
+                {
+                    //pretend the broadcaster to be a follower, as requested by ManuelSoftware
+                    follower++;
+                    nonFollower--;
+                }
+
             }
 
             if (total < follower + nonFollower)

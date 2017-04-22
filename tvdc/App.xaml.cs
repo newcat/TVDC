@@ -212,6 +212,7 @@ namespace tvdc
                     if (ce.Username.ToLower() == e.username)
                     {
                         removeList.Add(ce);
+                        ce.OriginalMessage = "<message deleted>";
                     }
                 }
 
@@ -283,7 +284,12 @@ namespace tvdc
             }
 
             e.tags.Add("text", e.message);
-            mainVM.chatEntryList_Add(new ChatEntry(e.username, color, MessageParser.GetParagraphsFromTags(e.tags), badges, e.message));
+
+            bool isAction = false;
+            ChatEntry ce = new ChatEntry(e.username, color, MessageParser.GetParagraphsFromTags(e.tags, out isAction), badges, e.message);
+            ce.IsAction = isAction;
+
+            mainVM.chatEntryList_Add(ce);
             Current.Dispatcher.Invoke(() => {
                 if (MainWindow != null && MainWindow is MainWindow)
                     ((MainWindow)MainWindow)?.ViewerGraph.AddChatEvent();
@@ -369,7 +375,10 @@ namespace tvdc
                 badges = u.Badges;
             }
 
-            mainVM.chatEntryList_Add(new ChatEntry(name, color, MessageParser.GetParagraphsFromMessage(message), badges, message));
+            bool isAction = false;
+            ChatEntry ce = new ChatEntry(name, color, MessageParser.GetParagraphsFromMessage(message, out isAction), badges, message);
+            ce.IsAction = isAction;
+            mainVM.chatEntryList_Add(ce);
 
         }
 

@@ -49,7 +49,7 @@ namespace tvdc
         private int maxValueViewers = 0;
         private int maxValueChatFreq = 0;
 
-        private List<HistoryStop> history = new List<HistoryStop>();
+        public static List<HistoryStop> history = new List<HistoryStop>();
         private CultureInfo iC = CultureInfo.InvariantCulture;
         private Queue<DateTime> chatTimes = new Queue<DateTime>();
 
@@ -100,6 +100,7 @@ namespace tvdc
         public void reset()
         {
             history = new List<HistoryStop>();
+            chatTimes.Clear();
             maxValueViewers = 10;
             maxValueChatFreq = 1;
         }
@@ -310,7 +311,7 @@ namespace tvdc
             return chatTimes.Count * (60 / chatFreqSampleLength);
         }
 
-        private class HistoryStop
+        public class HistoryStop
         {
 
             /// <summary>

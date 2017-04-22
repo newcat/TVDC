@@ -11,6 +11,7 @@ namespace AttachedCommandBehavior
     /// <summary>
     /// Defines the command behavior binding
     /// </summary>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1063:ImplementIDisposableCorrectly")]
     public class CommandBehaviorBinding : IDisposable
     {
         #region Properties
@@ -73,6 +74,7 @@ namespace AttachedCommandBehavior
         /// <summary>
         /// Unregisters the EventHandler from the Event
         /// </summary>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1063:ImplementIDisposableCorrectly")]
         public void Dispose()
         {
             if (!disposed)

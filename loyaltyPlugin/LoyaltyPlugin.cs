@@ -14,7 +14,7 @@ using tvdc.Plugin.Models;
 
 namespace loyaltyPlugin
 {
-    class LoyaltyPlugin : IPlugin
+    class LoyaltyPlugin : IPlugin, IDisposable
     {
 
         private IPluginHost host;
@@ -42,6 +42,7 @@ namespace loyaltyPlugin
                     return;
 
                 wc = new WebClientEx();
+                wc.Encoding = Encoding.UTF8;
 
                 timer = new Timer(60000);
                 timer.AutoReset = true;
@@ -177,6 +178,30 @@ namespace loyaltyPlugin
                 return request;
             }
         }
+
+        #region IDisposable Support
+        private bool disposedValue = false; // To detect redundant calls
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposedValue)
+            {
+                if (disposing)
+                {
+                    if (wc != null) wc.Dispose();
+                    if (timer != null) timer.Dispose();
+                }
+
+                host = null;
+                disposedValue = true;
+            }
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+        }
+        #endregion
 
     }
 }

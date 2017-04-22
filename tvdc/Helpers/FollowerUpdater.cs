@@ -8,7 +8,7 @@ using System;
 
 namespace tvdc
 {
-    class FollowerUpdater
+    class FollowerUpdater : IDisposable
     {
 
         private WebClient followerWC;
@@ -20,6 +20,7 @@ namespace tvdc
         public FollowerUpdater()
         {
             followerWC = new WebClient();
+            followerWC.Encoding = System.Text.Encoding.UTF8;
             followerTimer.Elapsed += FollowerTimer_Elapsed;
             followerTimer.Start();
         }
@@ -95,6 +96,34 @@ namespace tvdc
         {
             followerTimer.Stop();
         }
+
+        #region IDisposable Support
+        private bool disposedValue = false; // To detect redundant calls
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposedValue)
+            {
+                if (disposing)
+                {
+
+                    if (followerTimer != null)
+                        followerTimer.Dispose();
+
+                    if (followerWC != null)
+                        followerWC.Dispose();
+
+                }
+
+                disposedValue = true;
+            }
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+        }
+        #endregion
 
     }
 }

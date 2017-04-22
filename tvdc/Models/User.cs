@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Net;
 using System.Web.Script.Serialization;
-using System.Windows;
+using System.Text;
 
 namespace tvdc
 {
@@ -192,6 +192,7 @@ namespace tvdc
         {
 
             WebClient wr = new WebClient();
+            wr.Encoding = Encoding.UTF8;
             string json = "";
 
             //TODO: Update to Twitch API Version 5

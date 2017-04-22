@@ -11,13 +11,14 @@ namespace tvdc
 
     //TODO: Add support for cheering
     //TODO: Maybe problems with the plugins (either plugin.dll [unlikely] or the pollplugin)
-    //TODO: Not able to scroll while hovering over a chat message
-    //TODO: Style/fix context menu
+    //TODO: Style/fix context menu & tooltips
+    //TODO: When switching the channel, the sub badge sometimes doesnt get switched
+    //TODO: Progressbar in chatlog uploader maxes out at 50%
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window, IDisposable
     {
 
         ScrollViewer eventListSV;
@@ -114,6 +115,30 @@ namespace tvdc
         {
             vm.ChatSize -= 2;
         }
+
+        #region IDisposable Support
+        private bool disposedValue = false; // To detect redundant calls
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposedValue)
+            {
+                if (disposing)
+                {
+                    if (viewerGraphTimer != null) viewerGraphTimer.Dispose();
+                }
+
+                vm = null;
+                eventListSV = null;
+                disposedValue = true;
+            }
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+        }
+        #endregion
 
     }
 }

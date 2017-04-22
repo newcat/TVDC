@@ -1,7 +1,7 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
-using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,9 +9,10 @@ using System.Windows;
 
 namespace tvdc
 {
-    class ChatlogUploader
+    class ChatlogUploader : IDisposable
     {
 
+        //============== THIS IS THE OLD FORMAT (DEPRECATED) ==============
         //Chatlog format:
         //Start of file: v01
         //For each chat event (fields separated by | (chr(124))):
@@ -23,6 +24,9 @@ namespace tvdc
             //Text
             //CR LF
 
+        //============== NEW FORMAT ===================
+        // see example_chatlog.clog
+
         private readonly string[] sizes = { "B", "KB", "MB", "GB" };
         
         private WebClientEx wc = new WebClientEx();
@@ -32,18 +36,19 @@ namespace tvdc
         public ChatlogUploader()
         {
             wc.UploadProgressChanged += Wc_UploadProgressChanged;
+            wc.Encoding = Encoding.UTF8;
         }
 
         private void Wc_UploadProgressChanged(object sender, UploadProgressChangedEventArgs e)
         {
             if (progWin != null && showUploadProgress)
             {
-                progWin.ProgressValue = e.ProgressPercentage;
+                progWin.ProgressValue = (int)(100 * e.BytesSent / (double)e.TotalBytesToSend);
                 progWin.ProgressDescription = string.Format("Uploaded {0} of {1}", toHumanReadable(e.BytesSent), toHumanReadable(e.TotalBytesToSend));
             }
         }
 
-        public async Task UploadLog(IEnumerable<ChatEntry> chatEntryList, bool includeJoinLeave)
+        public async Task UploadLog(IEnumerable<ChatEntry> chatEntryList, IList<Graph.HistoryStop> history, bool includeJoinLeave)
         {
 
             if (Properties.Settings.Default.uploadChatlog == 0 ||
@@ -59,42 +64,70 @@ namespace tvdc
 
             //build the data
             progWin.Operation = "Building chatlog";
-            StringBuilder sb = new StringBuilder();
-            sb.AppendLine("v01");
 
+            //TODO: Timestamp
+            long timestamp = 0;
+            if (history.Count > 0)
+                timestamp = toUnix(history[0].timestamp);
+
+            JArray viewerCount = new JArray();
+            JArray chatFreq = new JArray();
+            foreach (Graph.HistoryStop hs in history)
+            {
+                viewerCount.Add(hs.count);
+                chatFreq.Add(hs.freq);
+            }
+
+            JArray chat = new JArray();
             foreach (ChatEntry ce in chatEntryList)
             {
                 switch (ce.EventType)
                 {
                     case ChatEntry.Type.CHAT:
-                        sb.AppendFormat("C|{0}|{1}|{2}|{3}|{4}", toUnix(ce.Timestamp), Badges.BadgeListToString(ce.Badges),
-                            ce.Color, ce.Username, ce.OriginalMessage);
-                        sb.AppendLine();
+                        chat.Add(new JObject(
+                            new JProperty("type", ce.IsAction ? "me" : "chat"),
+                            new JProperty("timestamp", toUnix(ce.Timestamp)),
+                            new JProperty("badges", Badges.BadgeListToString(ce.Badges)),
+                            new JProperty("color", ce.Color),
+                            new JProperty("username", ce.Username),
+                            new JProperty("message", buildMessage(ce.Paragraphs))
+                        ));
                         break;
                     case ChatEntry.Type.IRC:
-                        sb.AppendFormat("I|{0}||||{1}", toUnix(ce.Timestamp), ce.Text);
-                        sb.AppendLine();
+                        chat.Add(new JObject(
+                            new JProperty("type", "irc"),
+                            new JProperty("timestamp", toUnix(ce.Timestamp)),
+                            new JProperty("message", ce.Text)
+                        ));
                         break;
                     case ChatEntry.Type.JOIN:
-                        if (includeJoinLeave)
-                        {
-                            sb.AppendFormat("J|{0}|||{1}|", toUnix(ce.Timestamp), ce.Username);
-                            sb.AppendLine();
-                        }
+                        chat.Add(new JObject(
+                            new JProperty("type", "join"),
+                            new JProperty("timestamp", toUnix(ce.Timestamp)),
+                            new JProperty("user", ce.Username)
+                        ));
                         break;
                     case ChatEntry.Type.PART:
-                        if (includeJoinLeave)
-                        {
-                            sb.AppendFormat("P|{0}|||{1}|", toUnix(ce.Timestamp), ce.Username);
-                            sb.AppendLine();
-                        }
-                        break;
-                    default:
+                        chat.Add(new JObject(
+                            new JProperty("type", "part"),
+                            new JProperty("timestamp", toUnix(ce.Timestamp)),
+                            new JProperty("user", ce.Username)
+                        ));
                         break;
                 }
             }
 
-            string data = sb.ToString();
+
+            JObject root = new JObject(
+                new JProperty("version", 2),
+                new JProperty("channel", Properties.Settings.Default.channel),
+                new JProperty("timestamp", timestamp), //TODO
+                new JProperty("viewerCount", viewerCount),
+                new JProperty("chatFreq", chatFreq),
+                new JProperty("chat", chat)
+            );
+
+            string data = root.ToString();
 
             //Authenticate
             progWin.Operation = "Authenticating";            
@@ -118,6 +151,7 @@ namespace tvdc
                 var values = new NameValueCollection();
                 values["data"] = data;
                 values["dataType"] = "chatlog";
+                values["channel"] = Properties.Settings.Default.channel;
 
                 response = await wc.UploadValuesTaskAsync(Properties.Resources.server_base_url + "upload.php", values);
 
@@ -152,6 +186,34 @@ namespace tvdc
             return string.Format("{0:0.##} {1}", bytes, sizes[order]);
         }
 
+        private string buildMessage(List<Paragraph> paragraphs)
+        {
+
+            StringBuilder sb = new StringBuilder();
+
+            foreach (Paragraph p in paragraphs)
+            {
+
+                if (p.IsImage)
+                {
+                    sb.Append("\u0001");
+                    sb.Append(p.EmoteID);
+                    sb.Append("\u0003");
+                } else if (p.IsURL)
+                {
+                    sb.Append("\u0002");
+                    sb.Append(p.Text);
+                    sb.Append("\u0003");
+                } else
+                {
+                    sb.Append(p.Text);
+                }
+            }
+
+            return sb.ToString();
+
+        }
+
         private class WebClientEx : WebClient
         {
             private CookieContainer _cookieContainer = new CookieContainer();
@@ -166,6 +228,29 @@ namespace tvdc
                 return request;
             }
         }
+
+        #region IDisposable Support
+        private bool disposedValue = false; // To detect redundant calls
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposedValue)
+            {
+                if (disposing)
+                {
+                    if (wc != null) wc.Dispose();
+                }
+
+                progWin = null;
+                disposedValue = true;
+            }
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+        }
+        #endregion
 
     }
 }

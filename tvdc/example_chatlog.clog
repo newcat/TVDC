@@ -1,0 +1,3129 @@
+{
+  "version": 2,
+  "channel": "eulcs1",
+  "timestamp": 1492365954,
+  "viewerCount": [
+    105048,
+    105048,
+    105048,
+    105048,
+    105048,
+    105048,
+    105048,
+    105048,
+    105048,
+    105048,
+    105048,
+    105048,
+    105048,
+    105048,
+    105048,
+    105048,
+    105048,
+    105048,
+    105048,
+    105048,
+    105048,
+    105048,
+    105048,
+    105048,
+    105048,
+    105048,
+    105048,
+    105048,
+    105048,
+    105048,
+    105048,
+    105311,
+    105311,
+    105311,
+    105311,
+    105311,
+    105311,
+    105311,
+    105311,
+    105311,
+    105311,
+    105311,
+    105311,
+    105311,
+    105311,
+    105311,
+    105311,
+    105311,
+    105311,
+    105311,
+    105311,
+    105311,
+    105311,
+    105311,
+    105311,
+    105311,
+    105311,
+    105311,
+    105311,
+    105311,
+    105311,
+    105564,
+    105564,
+    105564,
+    105564,
+    105564,
+    105564,
+    105564,
+    105564,
+    105564,
+    105564,
+    105564,
+    105564,
+    105564,
+    105564,
+    105564,
+    105564,
+    105564,
+    105564,
+    105564,
+    105564,
+    105564,
+    105564,
+    105564,
+    105564,
+    105564,
+    105564,
+    105564,
+    105564,
+    105564,
+    105564,
+    105564,
+    105564,
+    105564,
+    105564,
+    105564,
+    105564
+  ],
+  "chatFreq": [
+    0,
+    12,
+    36,
+    66,
+    108,
+    138,
+    192,
+    246,
+    264,
+    294,
+    312,
+    318,
+    300,
+    282,
+    288,
+    282,
+    246,
+    210,
+    210,
+    198,
+    210,
+    228,
+    246,
+    240,
+    198,
+    186,
+    180,
+    186,
+    198,
+    216,
+    198,
+    180,
+    174,
+    186,
+    210,
+    216,
+    216,
+    204,
+    192,
+    180,
+    198,
+    216,
+    210,
+    204,
+    186,
+    186,
+    198,
+    210,
+    198,
+    198,
+    192,
+    198,
+    198,
+    204,
+    216,
+    204,
+    210,
+    204,
+    222,
+    222,
+    210,
+    198,
+    216,
+    228,
+    228,
+    246,
+    228,
+    216,
+    204,
+    204,
+    210,
+    210,
+    192,
+    192,
+    192,
+    198,
+    222,
+    234,
+    240,
+    234,
+    240,
+    228,
+    240,
+    234,
+    234,
+    216,
+    216,
+    240,
+    264,
+    264,
+    258,
+    270,
+    252,
+    246,
+    258,
+    258,
+    246
+  ],
+  "chat": [
+    {
+      "type": "irc",
+      "timestamp": 1492365952,
+      "message": "Initializing..."
+    },
+    {
+      "type": "irc",
+      "timestamp": 1492365952,
+      "message": "Loading plugins..."
+    },
+    {
+      "type": "irc",
+      "timestamp": 1492365952,
+      "message": "Initializing emoticon system..."
+    },
+    {
+      "type": "irc",
+      "timestamp": 1492365954,
+      "message": "Connecting to IRC..."
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365955,
+      "badges": "",
+      "color": "#FF69B4",
+      "username": "Partytron",
+      "message": "der de das ja "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365955,
+      "badges": "",
+      "color": "#D2691E",
+      "username": "lassegm",
+      "message": "Mods  \u000152\u0003  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003 hehehehe "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365955,
+      "badges": "",
+      "color": "#9ACD32",
+      "username": "chinchillaelectrician",
+      "message": "EU ARROW LUL "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365956,
+      "badges": "",
+      "color": "#9ACD32",
+      "username": "TheGreatKage",
+      "message": "\u00011904\u0003  \u000133\u0003  \u000134\u0003  \u000188\u0003  \u000186\u0003  \u0001360\u0003  \u00013792\u0003  \u000138436\u0003  \u000155338\u0003  \u0001114836\u0003  \u0001120232\u0003  \u0001142140\u0003  \u0001160403\u0003  \u0001160403\u0003  \u0001160403\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365956,
+      "badges": "",
+      "color": "#FF69B4",
+      "username": "olso4p",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003  \u000152\u0003  \u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365956,
+      "badges": "",
+      "color": "#5F9EA0",
+      "username": "d1askone",
+      "message": "\u000128087\u0003  \u000128087\u0003  \u000128087\u0003  \u000128087\u0003  \u000128087\u0003  \u000128087\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365956,
+      "badges": "",
+      "color": "#00FF7F",
+      "username": "kmbnksck",
+      "message": ":  \u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003 . .2 "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365956,
+      "badges": "",
+      "color": "#5F9EA0",
+      "username": "RuleFive_SuperVlin",
+      "message": "888  \u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365957,
+      "badges": "",
+      "color": "#008000",
+      "username": "Niallator18",
+      "message": "im der die dan "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365957,
+      "badges": "premium",
+      "color": "#8A2BE2",
+      "username": "datmuhq",
+      "message": "DER DIE DAS JA LUL "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365957,
+      "badges": "",
+      "color": "#00FF00",
+      "username": "boostedarise",
+      "message": "Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003 -gg "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365958,
+      "badges": "",
+      "color": "#1E90FF",
+      "username": "nescafe372",
+      "message": "der faker "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365958,
+      "badges": "",
+      "color": "#FF0000",
+      "username": "lyndonveid",
+      "message": "EU ULT LUL "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365958,
+      "badges": "",
+      "color": "#DAA520",
+      "username": "GRiMMYduncan",
+      "message": "DAS "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365958,
+      "badges": "",
+      "color": "#0000FF",
+      "username": "For4level",
+      "message": "HANS SAMLUL "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365958,
+      "badges": "",
+      "color": "#DAA520",
+      "username": "deasher33",
+      "message": "DER GUTE RATSCHLAG VON DEFICIO HER "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365958,
+      "badges": "premium",
+      "color": "#9ACD32",
+      "username": "d1sr3g4rd",
+      "message": "Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365958,
+      "badges": "premium",
+      "color": "#8A2BE2",
+      "username": "ccy1619",
+      "message": "<message deleted>"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365958,
+      "badges": "",
+      "color": "#FF69B4",
+      "username": "remes12",
+      "message": "DAS FAKER  \u0001111700\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365959,
+      "badges": "",
+      "color": "#FF0000",
+      "username": "DruidNaona",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365959,
+      "badges": "",
+      "color": "#1E90FF",
+      "username": "otnisuthunder",
+      "message": "NA ARROW "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365959,
+      "badges": "",
+      "color": "#B22222",
+      "username": "shirobuuu",
+      "message": "5  \u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003 XDD "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365959,
+      "badges": "",
+      "color": "#8A2BE2",
+      "username": "joooomes",
+      "message": "VAC "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365959,
+      "badges": "premium",
+      "color": "#CC00CC",
+      "username": "swsledwards",
+      "message": "EU SPECTATORS CANT SEE DRAGONS "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365959,
+      "badges": "premium",
+      "color": "#0011CC",
+      "username": "haji194",
+      "message": "LUL "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365959,
+      "badges": "",
+      "color": "#9ACD32",
+      "username": "lolello",
+      "message": "holy sht its a reblion!! "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365960,
+      "badges": "",
+      "color": "#FF4500",
+      "username": "anonuuu",
+      "message": "LUL "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365960,
+      "badges": "",
+      "color": "#FF0000",
+      "username": "Grzechooo",
+      "message": "NA ARROW LUL "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365960,
+      "badges": "",
+      "color": "#008000",
+      "username": "ImSoBroken1",
+      "message": "DER FAKER  \u0001354\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365960,
+      "badges": "premium",
+      "color": "#00CCA7",
+      "username": "baconlad6",
+      "message": "ASHE  \u0001354\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365960,
+      "badges": "",
+      "color": "#FF69B4",
+      "username": "fallszero",
+      "message": "\u000152\u0003 Mods  \u000152\u0003  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003 . SPAM OP "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365960,
+      "badges": "",
+      "color": "#1E90FF",
+      "username": "Silverjake7",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003 . "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365960,
+      "badges": "",
+      "color": "#FF0000",
+      "username": "Vo__Hi__Yo",
+      "message": "haHAA "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365960,
+      "badges": "",
+      "color": "#FF0000",
+      "username": "nasodnokun",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365961,
+      "badges": "",
+      "color": "#0000FF",
+      "username": "BlueVersion2YT",
+      "message": "Mods  \u000152\u0003  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365961,
+      "badges": "",
+      "color": "#00FF00",
+      "username": "fylie",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003 ,. "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365961,
+      "badges": "",
+      "color": "#212121",
+      "username": "んアイフハヘイソムー",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003 se7 "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365961,
+      "badges": "",
+      "color": "#2E8B57",
+      "username": "JohnDouge",
+      "message": "<message deleted>"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365961,
+      "badges": "",
+      "color": "#D2691E",
+      "username": "you_will_know_pain",
+      "message": "🔍 🤔 LOOKING FOR NA WORLDS WINS 🤔 🔍 "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365961,
+      "badges": "turbo",
+      "color": "#00FF7F",
+      "username": "korean2na",
+      "message": "DER DIE DAS YAHHHHH "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365961,
+      "badges": "",
+      "color": "#FF0000",
+      "username": "Zcorecrash",
+      "message": "<message deleted>"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365961,
+      "badges": "",
+      "color": "#FF0000",
+      "username": "4nosen85",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365962,
+      "badges": "",
+      "color": "#FF0000",
+      "username": "stiblee",
+      "message": "VAC "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365962,
+      "badges": "",
+      "color": "#5F9EA0",
+      "username": "RuleFive_SuperVlin",
+      "message": "999  \u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365963,
+      "badges": "",
+      "color": "#FF0000",
+      "username": "geovannykbul",
+      "message": "STOOOOOOOOOPPPPP "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365963,
+      "badges": "",
+      "color": "#9ACD32",
+      "username": "Hailhelix123",
+      "message": "LEBLANC SO MUCH DAMAGE LUL "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365963,
+      "badges": "",
+      "color": "#B22222",
+      "username": "chesi32",
+      "message": "\u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365963,
+      "badges": "",
+      "color": "#FF0000",
+      "username": "Zigzera",
+      "message": "Epic bantz "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365963,
+      "badges": "",
+      "color": "#00FF7F",
+      "username": "badonkaboots55",
+      "message": "these skillshots  \u000158765\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365963,
+      "badges": "",
+      "color": "#D2691E",
+      "username": "iliasElkor",
+      "message": "VAC  \u000188\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365964,
+      "badges": "premium",
+      "color": "#9ACD32",
+      "username": "d1sr3g4rd",
+      "message": "Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365964,
+      "badges": "",
+      "color": "#B22222",
+      "username": "ShadowBruno",
+      "message": "PLZ UOL END THIS I CANT WATCH EU LCS ANYMORE MY EYES BLEEDIN  \u000158765\u0003  \u000158765\u0003  \u000158765\u0003  \u000158765\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365965,
+      "badges": "premium",
+      "color": "#1BB18C",
+      "username": "Milliam777",
+      "message": "📞 \u000122639\u0003e Hello Mods? Ban chat please � \u000122639\u0003ge 22 "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365965,
+      "badges": "",
+      "color": "#2E8B57",
+      "username": "grimroww",
+      "message": "📞 \u0001354\u0003d Mods? \u0001354\u0003d 📞 "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365965,
+      "badges": "",
+      "color": "#D2691E",
+      "username": "lassegm",
+      "message": "Mods  \u000152\u0003  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003 hehehehe "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365966,
+      "badges": "",
+      "color": "#FF0000",
+      "username": "4nosen85",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All SMOrc1 "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365967,
+      "badges": "premium",
+      "color": "#1E90FF",
+      "username": "SuperMauMau",
+      "message": "DIE FAKER  \u000125\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365967,
+      "badges": "",
+      "color": "#00FF00",
+      "username": "MaskedSilver",
+      "message": "Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365967,
+      "badges": "",
+      "color": "#FF0000",
+      "username": "Zcorecrash",
+      "message": "<message deleted>"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365968,
+      "badges": "premium",
+      "color": "#8A2BE2",
+      "username": "ccy1619",
+      "message": "<message deleted>"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365968,
+      "badges": "",
+      "color": "#FF0000",
+      "username": "danakabrianakajames",
+      "message": "0/0/5  \u000188\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365968,
+      "badges": "",
+      "color": "#00FF00",
+      "username": "fylie",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365968,
+      "badges": "premium",
+      "color": "#CC00CC",
+      "username": "swsledwards",
+      "message": "MISFITS HAVE 2 DRAGONS "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365968,
+      "badges": "",
+      "color": "#5F9EA0",
+      "username": "Klexo",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 cant  \u000152\u0003 ban  \u000152\u0003 us  \u000152\u0003 all "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365968,
+      "badges": "",
+      "color": "#212121",
+      "username": "んアイフハヘイソムー",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365968,
+      "badges": "premium",
+      "color": "#1E90FF",
+      "username": "SmithyQ",
+      "message": "DAS FAKER "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365969,
+      "badges": "",
+      "color": "#B22222",
+      "username": "andreask91",
+      "message": "DOTA > LOL  \u0001160404\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365969,
+      "badges": "",
+      "color": "#5F9EA0",
+      "username": "RuleFive_SuperVlin",
+      "message": "000  \u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365969,
+      "badges": "",
+      "color": "#0000FF",
+      "username": "Coenieboss",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365969,
+      "badges": "",
+      "color": "#B22222",
+      "username": "Vaicke",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003 a "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365970,
+      "badges": "",
+      "color": "#1E90FF",
+      "username": "mlg_noscoper",
+      "message": "\u00013792\u0003 ME JIHAD  \u00013792\u0003 ME SPAM  \u00013792\u0003 MOD SWEDISH  \u00013792\u0003 IF BAN  \u00013792\u0003 731 "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365970,
+      "badges": "",
+      "color": "#FF69B4",
+      "username": "olso4p",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365970,
+      "badges": "",
+      "color": "#FF69B4",
+      "username": "fallszero",
+      "message": "\u000152\u0003 Mods  \u000152\u0003  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003 . OP SPAM "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365971,
+      "badges": "",
+      "color": "#0000FF",
+      "username": "9kpluzz",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003 . . 0m "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365971,
+      "badges": "",
+      "color": "#008000",
+      "username": "MordecaiXLII",
+      "message": "<message deleted>"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365971,
+      "badges": "",
+      "color": "#008000",
+      "username": "Xxpectations",
+      "message": "muh chat experience  \u000186\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365972,
+      "badges": "",
+      "color": "#FF0000",
+      "username": "Never_iucky",
+      "message": "TEMPOSTORM "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365972,
+      "badges": "",
+      "color": "#DAA520",
+      "username": "GRiMMYduncan",
+      "message": "DASFKER "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365972,
+      "badges": "",
+      "color": "#2E8B57",
+      "username": "eminemcollector",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365972,
+      "badges": "",
+      "color": "#2E8B57",
+      "username": "JohnDouge",
+      "message": "<message deleted>"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365973,
+      "badges": "premium",
+      "color": "#9ACD32",
+      "username": "d1sr3g4rd",
+      "message": "Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365973,
+      "badges": "",
+      "color": "#0000FF",
+      "username": "ShyranuAkaOtaron",
+      "message": "DAS BOOT "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365974,
+      "badges": "",
+      "color": "#D2691E",
+      "username": "tszkit911",
+      "message": "DEUTSCH ÜBER ALLES "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365974,
+      "badges": "",
+      "color": "#008000",
+      "username": "Superleo1810",
+      "message": "DER = MALE, DIE = FEMALE ITS NOT THAT HARD "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365974,
+      "badges": "",
+      "color": "#0000FF",
+      "username": "thecorgiwrangler",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003 s "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365974,
+      "badges": "",
+      "color": "#0000FF",
+      "username": "tricarlos",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365974,
+      "badges": "",
+      "color": "#B22222",
+      "username": "shirobuuu",
+      "message": "5  \u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003 Í "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365974,
+      "badges": "",
+      "color": "#FF7F50",
+      "username": "rimana16",
+      "message": "scripts "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365974,
+      "badges": "",
+      "color": "#00FF7F",
+      "username": "dasilf",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365975,
+      "badges": "",
+      "color": "#008000",
+      "username": "TehSuparman",
+      "message": "reverse sweep?? "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365975,
+      "badges": "",
+      "color": "#0000FF",
+      "username": "MatthewGuaravita",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003 . . "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365975,
+      "badges": "",
+      "color": "#1E90FF",
+      "username": "silvur17",
+      "message": "Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365975,
+      "badges": "",
+      "color": "#5F9EA0",
+      "username": "Crryptix",
+      "message": "Das Auto  \u000125\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365976,
+      "badges": "premium",
+      "color": "#CC00CC",
+      "username": "swsledwards",
+      "message": "EU SPECTATORS CANT SEE *** "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365976,
+      "badges": "",
+      "color": "#00FF00",
+      "username": "fylie",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003 . "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365976,
+      "badges": "",
+      "color": "#D2691E",
+      "username": "you_will_know_pain",
+      "message": "🔍 🤔 LOOKING FOR NA WORLD WINS 🤔 🔍 "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365976,
+      "badges": "",
+      "color": "#FF69B4",
+      "username": "fallszero",
+      "message": "\u000152\u0003 Mods  \u000152\u0003  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003 . DIE "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365977,
+      "badges": "",
+      "color": "#2E8B57",
+      "username": "mitzagamer123",
+      "message": "1/5/1 RUMBLE LUL "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365978,
+      "badges": "",
+      "color": "#5F9EA0",
+      "username": "higgsrocha",
+      "message": "DE FAKER "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365979,
+      "badges": "",
+      "color": "#FF69B4",
+      "username": "olso4p",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003 1 "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365979,
+      "badges": "",
+      "color": "#FF0000",
+      "username": "4nosen85",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365980,
+      "badges": "premium",
+      "color": "#8A2BE2",
+      "username": "ccy1619",
+      "message": "<message deleted>"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365980,
+      "badges": "",
+      "color": "#1E90FF",
+      "username": "Potittos",
+      "message": "📞 \u0001354\u0003d Exileh? MSF here keep building protobelt pls \u0001354\u0003d 📞 "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365981,
+      "badges": "premium",
+      "color": "#9ACD32",
+      "username": "d1sr3g4rd",
+      "message": "Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365981,
+      "badges": "",
+      "color": "#B22222",
+      "username": "sloanjf",
+      "message": "\u000152\u0003 Mods  \u000152\u0003  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003 . OP SPAM "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365981,
+      "badges": "",
+      "color": "#FF0000",
+      "username": "DruidNaona",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All SMOrc... "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365981,
+      "badges": "",
+      "color": "#FF0000",
+      "username": "mixcoooo",
+      "message": "CHAT  \u000128087\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365981,
+      "badges": "",
+      "color": "#1E90FF",
+      "username": "mlg_noscoper",
+      "message": "\u00013792\u0003 ME JIHAD  \u00013792\u0003 ME SPAM  \u00013792\u0003 MOD SWEDISH  \u00013792\u0003 IF BAN  \u00013792\u0003 865 "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365982,
+      "badges": "",
+      "color": "#FF69B4",
+      "username": "fallszero",
+      "message": "\u000152\u0003 Mods  \u000152\u0003  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003 . BIBLETHUMP "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365982,
+      "badges": "",
+      "color": "#1E90FF",
+      "username": "Mochi_Umai",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365982,
+      "badges": "",
+      "color": "#00FF00",
+      "username": "fylie",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365982,
+      "badges": "",
+      "color": "#212121",
+      "username": "んアイフハヘイソムー",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003 se7 "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365983,
+      "badges": "premium",
+      "color": "#0011CC",
+      "username": "haji194",
+      "message": "mods  \u000186\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365983,
+      "badges": "",
+      "color": "#1E90FF",
+      "username": "Eldar_Warlock",
+      "message": "📞 \u000122639\u0003e Hello Mods? Ban chat please � \u000122639\u0003ge "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365983,
+      "badges": "",
+      "color": "#FF0000",
+      "username": "darecky90",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All SMOrc1SMOrc Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All SMOrc1 lol "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365983,
+      "badges": "",
+      "color": "#2E8B57",
+      "username": "Maaaajki",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365983,
+      "badges": "",
+      "color": "#8A2BE2",
+      "username": "MRUCZEG1",
+      "message": "LB linch bane 🤔 "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365983,
+      "badges": "",
+      "color": "#FF4500",
+      "username": "fabriciofes",
+      "message": "Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365984,
+      "badges": "",
+      "color": "#B22222",
+      "username": "shirobuuu",
+      "message": "5  \u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003 *** "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365984,
+      "badges": "premium",
+      "color": "#1BB18C",
+      "username": "Milliam777",
+      "message": "📞 \u000122639\u0003e Hello Mods? Ban chat please � \u000122639\u0003ge "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365985,
+      "badges": "",
+      "color": "#0000FF",
+      "username": "sonofbmw",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365985,
+      "badges": "",
+      "color": "#FF69B4",
+      "username": "FeelsJinxedMan",
+      "message": "GOOD JOB MODS BroBalt "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365985,
+      "badges": "premium",
+      "color": "#DAA520",
+      "username": "carsco",
+      "message": "Chat  \u000158765\u0003 PLEASE "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365986,
+      "badges": "",
+      "color": "#FF0000",
+      "username": "l0rdizn0gk00neune",
+      "message": "\u000134\u0003 BAN THE SPAMMERS  \u000134\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365986,
+      "badges": "",
+      "color": "#FF69B4",
+      "username": "fallszero",
+      "message": "\u000152\u0003 Mods  \u000152\u0003  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003 . LEGGO "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365986,
+      "badges": "",
+      "color": "#2E8B57",
+      "username": "JohnDouge",
+      "message": "<message deleted>"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365987,
+      "badges": "",
+      "color": "#DAA520",
+      "username": "l3wdahri",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003  \u000152\u0003 l "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365987,
+      "badges": "",
+      "color": "#FF4500",
+      "username": "anonuuu",
+      "message": "@andreask91, ?  \u00014057\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365987,
+      "badges": "",
+      "color": "#FF0000",
+      "username": "58baris",
+      "message": "000  \u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365987,
+      "badges": "",
+      "color": "#FF4500",
+      "username": "Azurio12",
+      "message": "they have 2 *** mountains stupid observecontrolers "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365988,
+      "badges": "",
+      "color": "#5F9EA0",
+      "username": "d1askone",
+      "message": "\u000128087\u0003  \u000128087\u0003  \u000128087\u0003  \u000128087\u0003  \u000128087\u0003  \u000128087\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365988,
+      "badges": "",
+      "color": "#FF69B4",
+      "username": "remes12",
+      "message": "MEIN FAKER  \u0001111700\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365988,
+      "badges": "",
+      "color": "#FF0000",
+      "username": "guilhermao_do_caminhao",
+      "message": "<message deleted>"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365988,
+      "badges": "premium",
+      "color": "#0000FF",
+      "username": "Vulcan_Prime",
+      "message": "EU chat is *** cancer "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365988,
+      "badges": "",
+      "color": "#212121",
+      "username": "んアイフハヘイソムー",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365989,
+      "badges": "",
+      "color": "#00FF00",
+      "username": "fylie",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003 , "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365989,
+      "badges": "",
+      "color": "#0000FF",
+      "username": "Jaypim",
+      "message": "der die das wieso welshalb warum ist deficio dumm? "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365989,
+      "badges": "",
+      "color": "#2E8B57",
+      "username": "hirta_best_island",
+      "message": "NA ARROW LUL "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365990,
+      "badges": "",
+      "color": "#FF69B4",
+      "username": "furlockholmesbunny",
+      "message": "<message deleted>"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365991,
+      "badges": "premium",
+      "color": "#9ACD32",
+      "username": "d1sr3g4rd",
+      "message": "Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365991,
+      "badges": "premium",
+      "color": "#1E90FF",
+      "username": "SmithyQ",
+      "message": "GJ MODS  \u000125\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365991,
+      "badges": "",
+      "color": "#FF0000",
+      "username": "roundkickgg",
+      "message": "DER DAS DIE REICHT LINKS "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365992,
+      "badges": "",
+      "color": "#1E90FF",
+      "username": "RainbowCrash1069",
+      "message": "<message deleted>"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365992,
+      "badges": "",
+      "color": "#FF69B4",
+      "username": "FeelsJinxedMan",
+      "message": "GOOD JOB MODS BroBalt "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365993,
+      "badges": "",
+      "color": "#DAA520",
+      "username": "GRiMMYduncan",
+      "message": "\u0001123171\u0003  \u0001123171\u0003  \u0001123171\u0003  \u0001123171\u0003  \u0001123171\u0003  \u0001123171\u0003  \u0001123171\u0003  \u0001123171\u0003  \u0001123171\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365993,
+      "badges": "premium",
+      "color": "#CC00CC",
+      "username": "swsledwards",
+      "message": "GIVE MISFITS BOTH THEIR DRAGONS "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365993,
+      "badges": "",
+      "color": "#FF69B4",
+      "username": "fallszero",
+      "message": "\u000152\u0003 Mods  \u000152\u0003  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003 . LOLUU "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365993,
+      "badges": "",
+      "color": "#B22222",
+      "username": "shirobuuu",
+      "message": "5  \u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003 DXX "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365993,
+      "badges": "",
+      "color": "#FF0000",
+      "username": "mixcoooo",
+      "message": "MODS LUL "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365994,
+      "badges": "",
+      "color": "#0000FF",
+      "username": "thecorgiwrangler",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003 a "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365994,
+      "badges": "",
+      "color": "#0000FF",
+      "username": "BlueVersion2YT",
+      "message": "Mods  \u000152\u0003  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365994,
+      "badges": "",
+      "color": "#1E90FF",
+      "username": "oscarmtz88",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365994,
+      "badges": "",
+      "color": "#FF69B4",
+      "username": "olso4p",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365994,
+      "badges": "",
+      "color": "#1E90FF",
+      "username": "mlg_noscoper",
+      "message": "\u00013792\u0003 ME JIHAD  \u00013792\u0003 ME SPAM  \u00013792\u0003 MOD SWEDISH  \u00013792\u0003 IF BAN  \u00013792\u0003 4379 "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365995,
+      "badges": "",
+      "color": "#000000",
+      "username": "JovaniGiovane",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365995,
+      "badges": "",
+      "color": "#FF69B4",
+      "username": "Godtiergiraffe",
+      "message": "DDOS? "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365995,
+      "badges": "",
+      "color": "#FF4500",
+      "username": "remilia_is_trap",
+      "message": "Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365995,
+      "badges": "",
+      "color": "#00FF00",
+      "username": "fylie",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365995,
+      "badges": "",
+      "color": "#8A2BE2",
+      "username": "kappamkc",
+      "message": "\u000152\u0003 Mods  \u000152\u0003  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003 . LEGGO "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365995,
+      "badges": "",
+      "color": "#FF69B4",
+      "username": "OpieOP_WutFace",
+      "message": "Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365996,
+      "badges": "",
+      "color": "#1E90FF",
+      "username": "Eldar_Warlock",
+      "message": "x 📞 \u000122639\u0003e Hello Mods? Ban chat please � \u000122639\u0003ge "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365997,
+      "badges": "",
+      "color": "#2E8B57",
+      "username": "eminemcollector",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365997,
+      "badges": "premium",
+      "color": "#9ACD32",
+      "username": "d1sr3g4rd",
+      "message": "Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365998,
+      "badges": "",
+      "color": "#212121",
+      "username": "んアイフハヘイソムー",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003 se7 "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365998,
+      "badges": "",
+      "color": "#FF0000",
+      "username": "nasodnokun",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365998,
+      "badges": "",
+      "color": "#0000FF",
+      "username": "9kpluzz",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003 . . 0 "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365999,
+      "badges": "",
+      "color": "#2E8B57",
+      "username": "ivandrak93",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492365999,
+      "badges": "",
+      "color": "#2E8B57",
+      "username": "Debannage",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366000,
+      "badges": "",
+      "color": "#FF0000",
+      "username": "58baris",
+      "message": "000  \u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366000,
+      "badges": "",
+      "color": "#DAA520",
+      "username": "ThatOneArchezz",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366000,
+      "badges": "",
+      "color": "#00FF7F",
+      "username": "しひし",
+      "message": "\u000128087\u0003 MODS  \u000128087\u0003 CAN  \u000128087\u0003 BAN  \u000128087\u0003 US  \u000128087\u0003 ALL  \u000128087\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366000,
+      "badges": "",
+      "color": "#FF69B4",
+      "username": "FeelsJinxedMan",
+      "message": "GOOD JOB MODS BroBalt "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366000,
+      "badges": "",
+      "color": "#FF69B4",
+      "username": "fallszero",
+      "message": "\u000152\u0003 Mods  \u000152\u0003  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003 . LULLU "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366000,
+      "badges": "",
+      "color": "#FF0000",
+      "username": "darecky90",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All SMOrc1?? "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366001,
+      "badges": "",
+      "color": "#2E8B57",
+      "username": "JohnDouge",
+      "message": "<message deleted>"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366001,
+      "badges": "turbo",
+      "color": "#0000FF",
+      "username": "AgentM007",
+      "message": "\u000128087\u0003 MODS  \u000128087\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366002,
+      "badges": "",
+      "color": "#FF0000",
+      "username": "l0rdizn0gk00neune",
+      "message": "\u000134\u0003 BAN THE SPAMMERS  \u000134\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366003,
+      "badges": "",
+      "color": "#0000FF",
+      "username": "MatthewGuaravita",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003 . . "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366003,
+      "badges": "",
+      "color": "#00FF00",
+      "username": "fylie",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003 . "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366003,
+      "badges": "",
+      "color": "#8A2BE2",
+      "username": "DiamondMarw",
+      "message": "das faker würden nur spasten sagen "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366003,
+      "badges": "",
+      "color": "#FF0000",
+      "username": "kkamigod",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366003,
+      "badges": "premium",
+      "color": "#1BB18C",
+      "username": "Milliam777",
+      "message": "📞 \u000122639\u0003e Hello Mods? Ban chat please � \u000122639\u0003ge "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366003,
+      "badges": "",
+      "color": "#FF7F50",
+      "username": "compucrazy",
+      "message": "\\  \u000190076\u0003 / STINKY CHEESE \\  \u000190076\u0003 / "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366004,
+      "badges": "",
+      "color": "#9ACD32",
+      "username": "kwintinofatguy",
+      "message": ": 5  \u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003 NARNIAAAA "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366004,
+      "badges": "",
+      "color": "#B22222",
+      "username": "shirobuuu",
+      "message": "5  \u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003 HELLO MODS "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366005,
+      "badges": "",
+      "color": "#0000FF",
+      "username": "thecorgiwrangler",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003 q "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366005,
+      "badges": "",
+      "color": "#212121",
+      "username": "んアイフハヘイソムー",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366005,
+      "badges": "",
+      "color": "#B22222",
+      "username": "chesi32",
+      "message": "\u0001160401\u0003  \u0001160404\u0003  \u0001160400\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366005,
+      "badges": "",
+      "color": "#1E90FF",
+      "username": "mlg_noscoper",
+      "message": "\u00013792\u0003 ME JIHAD  \u00013792\u0003 ME SPAM  \u00013792\u0003 MOD SWEDISH  \u00013792\u0003 IF BAN  \u00013792\u0003 4502 "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366005,
+      "badges": "premium",
+      "color": "#8A2BE2",
+      "username": "shardffs",
+      "message": "\u0001163076\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366005,
+      "badges": "",
+      "color": "#8A2BE2",
+      "username": "SmadixD",
+      "message": "@rakanation that kennen is so rakan wannabe dud "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366005,
+      "badges": "premium",
+      "color": "#9ACD32",
+      "username": "d1sr3g4rd",
+      "message": "Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366006,
+      "badges": "",
+      "color": "#1E90FF",
+      "username": "RainbowCrash1069",
+      "message": "<message deleted>"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366006,
+      "badges": "",
+      "color": "#000000",
+      "username": "JovaniGiovane",
+      "message": ":  \u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366007,
+      "badges": "",
+      "color": "#DAA520",
+      "username": "Flinggo",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366007,
+      "badges": "premium",
+      "color": "#1E90FF",
+      "username": "kyloreni",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366007,
+      "badges": "",
+      "color": "#D2691E",
+      "username": "lassegm",
+      "message": "Mods  \u000152\u0003  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003 hehehehe "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366008,
+      "badges": "",
+      "color": "#FF69B4",
+      "username": "olso4p",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003 1 "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366008,
+      "badges": "",
+      "color": "#0000FF",
+      "username": "BlueVersion2YT",
+      "message": "\u00013792\u0003 ME JIHAD  \u00013792\u0003 ME SPAM  \u00013792\u0003 MOD SWEDISH  \u00013792\u0003 IF BAN  \u00013792\u0003 4379 "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366008,
+      "badges": "",
+      "color": "#FF0000",
+      "username": "58baris",
+      "message": "000  \u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366008,
+      "badges": "",
+      "color": "#FF7F50",
+      "username": "ivanzhang27",
+      "message": "Mods  \u000152\u0003  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366009,
+      "badges": "",
+      "color": "#1E90FF",
+      "username": "ipickflowers",
+      "message": "EU MODS LUL "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366010,
+      "badges": "",
+      "color": "#FF0000",
+      "username": "DruidNaona",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366010,
+      "badges": "",
+      "color": "#8A2BE2",
+      "username": "FilleMC",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366010,
+      "badges": "",
+      "color": "#9ACD32",
+      "username": "lolello",
+      "message": "STOP IT CHAT "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366010,
+      "badges": "",
+      "color": "#FF69B4",
+      "username": "fallszero",
+      "message": "\u000152\u0003 Mods  \u000152\u0003  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003 . LUL "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366010,
+      "badges": "",
+      "color": "#212121",
+      "username": "んアイフハヘイソムー",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003 se7 "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366011,
+      "badges": "",
+      "color": "#FF69B4",
+      "username": "FeelsJinxedMan",
+      "message": "GOOD JOB MODS BroBalt "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366011,
+      "badges": "premium",
+      "color": "#FF0000",
+      "username": "greypowervan",
+      "message": "@bananazreo, "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366011,
+      "badges": "",
+      "color": "#5F9EA0",
+      "username": "d1askone",
+      "message": "\u000128087\u0003  \u000128087\u0003  \u000128087\u0003  \u000128087\u0003  \u000128087\u0003  \u000128087\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366012,
+      "badges": "",
+      "color": "#2E8B57",
+      "username": "JohnDouge",
+      "message": "<message deleted>"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366012,
+      "badges": "",
+      "color": "#1E90FF",
+      "username": "RainbowCrash1069",
+      "message": "<message deleted>"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366012,
+      "badges": "premium",
+      "color": "#B22222",
+      "username": "Sixty_Nein",
+      "message": "Nein Nein "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366012,
+      "badges": "",
+      "color": "#8A2BE2",
+      "username": "Zochalke",
+      "message": "Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366013,
+      "badges": "",
+      "color": "#9ACD32",
+      "username": "pigcowhybrid",
+      "message": "MODS  \u000158765\u0003 PLEASE  \u000128087\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366013,
+      "badges": "",
+      "color": "#FF0000",
+      "username": "kkamigod",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003 . . "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366013,
+      "badges": "",
+      "color": "#0000FF",
+      "username": "MatthewGuaravita",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003 . . 12 "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366013,
+      "badges": "",
+      "color": "#00FF00",
+      "username": "fylie",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366014,
+      "badges": "",
+      "color": "#FF69B4",
+      "username": "OpieOP_WutFace",
+      "message": "Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003 . "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366014,
+      "badges": "",
+      "color": "#5F9EA0",
+      "username": "thenewhumanine",
+      "message": "\u000186\u0003 MODS  \u000186\u0003 SAVE  \u000186\u0003 MY  \u000186\u0003 CHAT  \u000186\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366015,
+      "badges": "",
+      "color": "#1E90FF",
+      "username": "p8900402",
+      "message": "100K viewer chat but not MOD  \u0001354\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366015,
+      "badges": "premium",
+      "color": "#8B1AF4",
+      "username": "OP_Brian",
+      "message": "Wow nice baron "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366015,
+      "badges": "",
+      "color": "#FF4500",
+      "username": "izzydamvp",
+      "message": "CANCER MODS "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366015,
+      "badges": "",
+      "color": "#212121",
+      "username": "んアイフハヘイソムー",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366015,
+      "badges": "",
+      "color": "#1E90FF",
+      "username": "oscarmtz88",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003 i "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366015,
+      "badges": "",
+      "color": "#2E8B57",
+      "username": "bashermansfriend",
+      "message": "\u000186\u0003 MY CHAT EXPERIENCE  \u000186\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366015,
+      "badges": "",
+      "color": "#FF0000",
+      "username": "58baris",
+      "message": "000  \u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366016,
+      "badges": "premium",
+      "color": "#9ACD32",
+      "username": "d1sr3g4rd",
+      "message": "Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366016,
+      "badges": "",
+      "color": "#0000FF",
+      "username": "BlueVersion2YT",
+      "message": "\u00013792\u0003 ME JIHAD  \u00013792\u0003 ME SPAM  \u00013792\u0003 MOD SWEDISH  \u00013792\u0003 IF BAN  \u00013792\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366016,
+      "badges": "",
+      "color": "#8A2BE2",
+      "username": "FilleMC",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366016,
+      "badges": "premium",
+      "color": "#CC00CC",
+      "username": "swsledwards",
+      "message": "WHERE IS MISFITS SECOND DRAGON? "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366017,
+      "badges": "",
+      "color": "#0000FF",
+      "username": "9kpluzz",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003 . . 02 "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366017,
+      "badges": "",
+      "color": "#9ACD32",
+      "username": "Kalofinx",
+      "message": "EU MODS LUL "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366017,
+      "badges": "",
+      "color": "#1E90FF",
+      "username": "mlg_noscoper",
+      "message": "\u00013792\u0003 ME JIHAD  \u00013792\u0003 ME SPAM  \u00013792\u0003 MOD SWEDISH  \u00013792\u0003 IF BAN  \u00013792\u0003 4508 "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366017,
+      "badges": "",
+      "color": "#B22222",
+      "username": "imaonoobs",
+      "message": "EU BARON  \u0001360\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366018,
+      "badges": "",
+      "color": "#0000FF",
+      "username": "thecorgiwrangler",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003 h "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366018,
+      "badges": "",
+      "color": "#008000",
+      "username": "MordecaiXLII",
+      "message": "<message deleted>"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366018,
+      "badges": "",
+      "color": "#FF69B4",
+      "username": "olso4p",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366018,
+      "badges": "premium",
+      "color": "#1E90FF",
+      "username": "kyloreni",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003 . "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366018,
+      "badges": "",
+      "color": "#FF69B4",
+      "username": "fallszero",
+      "message": "\u000152\u0003 Mods  \u000152\u0003  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003 . SPAM "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366019,
+      "badges": "",
+      "color": "#1E90FF",
+      "username": "Eldar_Warlock",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366019,
+      "badges": "",
+      "color": "#FF69B4",
+      "username": "FeelsJinxedMan",
+      "message": "GOOD JOB MODS BroBalt "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366019,
+      "badges": "",
+      "color": "#00FF00",
+      "username": "fylie",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003 . "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366020,
+      "badges": "",
+      "color": "#B22222",
+      "username": "chesi32",
+      "message": "mods ?  \u000128087\u0003  \u000128087\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366020,
+      "badges": "",
+      "color": "#0000FF",
+      "username": "bouras2",
+      "message": "\u000188\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366021,
+      "badges": "",
+      "color": "#FF69B4",
+      "username": "tontamara",
+      "message": "so many idiots... "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366022,
+      "badges": "",
+      "color": "#8A2BE2",
+      "username": "skelaton001",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366022,
+      "badges": "",
+      "color": "#0000FF",
+      "username": "thuut",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003 xDxD "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366023,
+      "badges": "",
+      "color": "#FF69B4",
+      "username": "OpieOP_WutFace",
+      "message": "Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003 .. "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366023,
+      "badges": "",
+      "color": "#FF0000",
+      "username": "sttorm200",
+      "message": "MODS  \u000184608\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366023,
+      "badges": "premium",
+      "color": "#1BB18C",
+      "username": "Milliam777",
+      "message": "📞 \u000122639\u0003e Hello Mods? Ban chat please � \u000122639\u0003ge "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366023,
+      "badges": "",
+      "color": "#0000FF",
+      "username": "MatthewGuaravita",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003 . . "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366024,
+      "badges": "",
+      "color": "#FF0000",
+      "username": "58baris",
+      "message": "000  \u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366024,
+      "badges": "",
+      "color": "#008000",
+      "username": "Ooppp29",
+      "message": "Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366024,
+      "badges": "",
+      "color": "#1E90FF",
+      "username": "xBraskAx",
+      "message": "Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366025,
+      "badges": "",
+      "color": "#00FF00",
+      "username": "fylie",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366025,
+      "badges": "",
+      "color": "#DAA520",
+      "username": "Bambouxd",
+      "message": "LUL "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366025,
+      "badges": "",
+      "color": "#FF69B4",
+      "username": "fallszero",
+      "message": "\u000152\u0003 Mods  \u000152\u0003  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003 .MOD BYE "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366025,
+      "badges": "",
+      "color": "#B22222",
+      "username": "world303",
+      "message": "LUL "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366025,
+      "badges": "",
+      "color": "#1E90FF",
+      "username": "Orokusakii",
+      "message": "MODS  \u000158765\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366026,
+      "badges": "premium",
+      "color": "#7427E7",
+      "username": "SoogoSuyi",
+      "message": "🤔 "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366026,
+      "badges": "premium",
+      "color": "#00FF26",
+      "username": "Ruvim555",
+      "message": "LUL "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366027,
+      "badges": "",
+      "color": "#0000FF",
+      "username": "BlueVersion2YT",
+      "message": "\u00013792\u0003 ME JIHAD  \u00013792\u0003 ME SPAM  \u00013792\u0003 MOD SWEDISH  \u00013792\u0003 IF BAN  \u00013792\u0003 4379 "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366027,
+      "badges": "",
+      "color": "#00FF00",
+      "username": "Legend__NL",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003 . "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366027,
+      "badges": "",
+      "color": "#2E8B57",
+      "username": "JohnDouge",
+      "message": "<message deleted>"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366027,
+      "badges": "",
+      "color": "#FF69B4",
+      "username": "FeelsJinxedMan",
+      "message": "GOOD JOB MODS BroBalt "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366027,
+      "badges": "",
+      "color": "#5F9EA0",
+      "username": "StanBerendsen",
+      "message": "IDIOTS "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366028,
+      "badges": "premium",
+      "color": "#1E90FF",
+      "username": "kyloreni",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003 . . "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366028,
+      "badges": "",
+      "color": "#FF0000",
+      "username": "kkamigod",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003 ,. "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366028,
+      "badges": "",
+      "color": "#9ACD32",
+      "username": "youthgg",
+      "message": "AYYYY LMAO "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366028,
+      "badges": "",
+      "color": "#FF69B4",
+      "username": "philipecaos2",
+      "message": "DOUBRIOLIFT "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366029,
+      "badges": "",
+      "color": "#FF69B4",
+      "username": "heymaath",
+      "message": "\u000128087\u0003  \u000128087\u0003  \u000128087\u0003  \u000128087\u0003  \u000128087\u0003  \u000128087\u0003  \u000128087\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366029,
+      "badges": "",
+      "color": "#1E90FF",
+      "username": "mlg_noscoper",
+      "message": "\u00013792\u0003 ME JIHAD  \u00013792\u0003 ME SPAM  \u00013792\u0003 MOD SWEDISH  \u00013792\u0003 IF BAN  \u00013792\u0003 4513 "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366029,
+      "badges": "premium",
+      "color": "#FF69B4",
+      "username": "Maxed_Down",
+      "message": "\u0001147385\u0003  \u0001147385\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366029,
+      "badges": "",
+      "color": "#FF0000",
+      "username": "nasodnokun",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366029,
+      "badges": "",
+      "color": "#9ACD32",
+      "username": "lolello",
+      "message": "\u000136\u0003  \u000136\u0003  \u000136\u0003  \u000136\u0003  \u000136\u0003  \u000136\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366029,
+      "badges": "",
+      "color": "#FF69B4",
+      "username": "OpieOP_WutFace",
+      "message": "Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366030,
+      "badges": "",
+      "color": "#2E8B57",
+      "username": "thewellnessteam",
+      "message": "PYRA CANT EVEN TALK LUL "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366030,
+      "badges": "",
+      "color": "#FF69B4",
+      "username": "fallszero",
+      "message": "\u000152\u0003 Mods  \u000152\u0003  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003 . HAHA IM 12 "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366030,
+      "badges": "",
+      "color": "#DAA520",
+      "username": "wankenstein201",
+      "message": "LUL "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366030,
+      "badges": "",
+      "color": "#0000FF",
+      "username": "bluepeak7247",
+      "message": "WHERE ARE THE MODS WHEN YOU NEED THEM  \u000158765\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366030,
+      "badges": "",
+      "color": "#0000FF",
+      "username": "MatthewGuaravita",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003 . .5 "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366031,
+      "badges": "",
+      "color": "#0000FF",
+      "username": "Jaypim",
+      "message": "LUL "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366031,
+      "badges": "",
+      "color": "#00FF00",
+      "username": "fylie",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003 . "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366031,
+      "badges": "",
+      "color": "#0000FF",
+      "username": "Akari38",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366032,
+      "badges": "",
+      "color": "#1E90FF",
+      "username": "Eldar_Warlock",
+      "message": "h  \u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366032,
+      "badges": "",
+      "color": "#FF4500",
+      "username": "Shaddox27",
+      "message": "\u000169\u0003  \u000169\u0003  \u000169\u0003  \u000169\u0003  \u000169\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366032,
+      "badges": "",
+      "color": "#212121",
+      "username": "んアイフハヘイソムー",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366033,
+      "badges": "",
+      "color": "#FF69B4",
+      "username": "olso4p",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003 1 "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366033,
+      "badges": "",
+      "color": "#008000",
+      "username": "gamenum3",
+      "message": "LUL "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366033,
+      "badges": "",
+      "color": "#8A2BE2",
+      "username": "Mcflurry166",
+      "message": "\u000184608\u0003  \u000184608\u0003  \u000184608\u0003  \u000184608\u0003  \u000184608\u0003  \u000184608\u0003  \u000184608\u0003  \u000184608\u0003  \u000184608\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366033,
+      "badges": "",
+      "color": "#0000FF",
+      "username": "NishikinoHappy",
+      "message": "Nerf botrk i get penta with ad Janna "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366033,
+      "badges": "",
+      "color": "#FFFF00",
+      "username": "OUTOUS",
+      "message": "LUL "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366034,
+      "badges": "",
+      "color": "#000000",
+      "username": "JovaniGiovane",
+      "message": ":  \u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All SMOrc:  \u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366034,
+      "badges": "premium",
+      "color": "#CC00CC",
+      "username": "swsledwards",
+      "message": "GIVE MISFITS THEIR SECOND DRGAON "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366035,
+      "badges": "",
+      "color": "#9ACD32",
+      "username": "Lockedcamera1995",
+      "message": "fight hoes "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366035,
+      "badges": "",
+      "color": "#FF69B4",
+      "username": "terenoth",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003 khhj "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366035,
+      "badges": "",
+      "color": "#FF69B4",
+      "username": "cykablyatdimitri",
+      "message": "LUL "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366035,
+      "badges": "",
+      "color": "#9ACD32",
+      "username": "kwintinofatguy",
+      "message": "woooo : 5  \u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366035,
+      "badges": "",
+      "color": "#0000FF",
+      "username": "bt1250000",
+      "message": "CHAT GENOCIDE  \u000186\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366036,
+      "badges": "",
+      "color": "#FF0000",
+      "username": "yerDza",
+      "message": "FIGHT FIGHT FIGHT FIGHT "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366036,
+      "badges": "",
+      "color": "#00FF00",
+      "username": "fylie",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366036,
+      "badges": "",
+      "color": "#0000FF",
+      "username": "Jaypim",
+      "message": "EU CHAT "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366037,
+      "badges": "",
+      "color": "#FF69B4",
+      "username": "Anneforth",
+      "message": "LUL "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366037,
+      "badges": "",
+      "color": "#9ACD32",
+      "username": "youthgg",
+      "message": "YET "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366037,
+      "badges": "",
+      "color": "#0000FF",
+      "username": "spittsylol",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366037,
+      "badges": "",
+      "color": "#008000",
+      "username": "weedwizard_420",
+      "message": "YET "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366037,
+      "badges": "premium",
+      "color": "#DAA520",
+      "username": "carsco",
+      "message": "REWORKED OHMWRECKER "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366038,
+      "badges": "",
+      "color": "#2E8B57",
+      "username": "fourhundredtwentyfanboy",
+      "message": "11  \u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366038,
+      "badges": "",
+      "color": "#0000FF",
+      "username": "MatthewGuaravita",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003 . .5 "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366039,
+      "badges": "",
+      "color": "#0000FF",
+      "username": "senxinxu",
+      "message": "@MODS "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366039,
+      "badges": "",
+      "color": "#FF0000",
+      "username": "ChrissStriKes",
+      "message": "Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366039,
+      "badges": "",
+      "color": "#8A2BE2",
+      "username": "gracejacky",
+      "message": "are they arguing  \u000184608\u0003  \u000184608\u0003  \u000184608\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366039,
+      "badges": "",
+      "color": "#9ACD32",
+      "username": "CronosRC",
+      "message": "🤔🤔 "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366039,
+      "badges": "",
+      "color": "#D2691E",
+      "username": "yeah_cool_and_now_shut_up",
+      "message": "WTF CHASTER "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366040,
+      "badges": "",
+      "color": "#DAA520",
+      "username": "ionpath",
+      "message": "📞 \u000122639\u0003e Mods? Chat here. Everything's good, don'r worry. � \u000122639\u0003ge "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366040,
+      "badges": "",
+      "color": "#8A2BE2",
+      "username": "max8967",
+      "message": "Purge Incoming FeelsGoodMan "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366040,
+      "badges": "",
+      "color": "#1E90FF",
+      "username": "Rozenpt",
+      "message": "noooooo "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366041,
+      "badges": "",
+      "color": "#212121",
+      "username": "んアイフハヘイソムー",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003  \u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366041,
+      "badges": "premium",
+      "color": "#8A2BE2",
+      "username": "ccy1619",
+      "message": "<message deleted>"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366041,
+      "badges": "",
+      "color": "#0000FF",
+      "username": "clbanks",
+      "message": "Mods  \u000152\u0003  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366041,
+      "badges": "",
+      "color": "#D2691E",
+      "username": "you_will_know_pain",
+      "message": "🔍 🤔 LOOKING FOR NA WORLDS WINS 🤔 🔍 "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366041,
+      "badges": "",
+      "color": "#DAA520",
+      "username": "Kubetzko",
+      "message": "spoiler "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366041,
+      "badges": "",
+      "color": "#1E90FF",
+      "username": "mlg_noscoper",
+      "message": "\u00013792\u0003 ME JIHAD  \u00013792\u0003 ME SPAM  \u00013792\u0003 MOD SWEDISH  \u00013792\u0003 IF BAN  \u00013792\u0003 5319 "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366041,
+      "badges": "",
+      "color": "#FF0000",
+      "username": "kkamigod",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003 xd "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366041,
+      "badges": "",
+      "color": "#FF69B4",
+      "username": "FeelsJinxedMan",
+      "message": "GOOD JOB MODS BroBalt "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366042,
+      "badges": "",
+      "color": "#FF4500",
+      "username": "Lukanni",
+      "message": "DEFICIO IS RIGHT "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366042,
+      "badges": "premium",
+      "color": "#1E90FF",
+      "username": "kyloreni",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003 . "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366042,
+      "badges": "premium",
+      "color": "#190B0B",
+      "username": "NardFtw",
+      "message": "NOOOOO "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366042,
+      "badges": "",
+      "color": "#2E8B57",
+      "username": "anilyy",
+      "message": "TOO MANY COOCKS "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366042,
+      "badges": "",
+      "color": "#0000FF",
+      "username": "BlueVersion2YT",
+      "message": "\u00013792\u0003 ME JIHAD  \u00013792\u0003 ME SPAM  \u00013792\u0003 MOD SWEDISH  \u00013792\u0003 IF BAN  \u00013792\u0003 437 "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366042,
+      "badges": "turbo",
+      "color": "#BE00CC",
+      "username": "Bylom",
+      "message": "5  \u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003  \u00011902\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366043,
+      "badges": "",
+      "color": "#1E90FF",
+      "username": "Mochi_Umai",
+      "message": "LEAKED "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366043,
+      "badges": "premium",
+      "color": "#DAA520",
+      "username": "TachyonicPack",
+      "message": "\u0001163077\u0003  \u0001163077\u0003  \u0001163077\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366043,
+      "badges": "",
+      "color": "#9ACD32",
+      "username": "DEM58",
+      "message": "STOP FIGHTING  \u000186\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366043,
+      "badges": "",
+      "color": "#2E8B57",
+      "username": "fourhundredtwentyfanboy",
+      "message": "11  \u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366044,
+      "badges": "",
+      "color": "#2E8B57",
+      "username": "ivandrak93",
+      "message": "LEAKED "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366044,
+      "badges": "",
+      "color": "#8A2BE2",
+      "username": "roborache1",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366045,
+      "badges": "",
+      "color": "#2E8B57",
+      "username": "NiiKo492",
+      "message": "Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366045,
+      "badges": "",
+      "color": "#0000FF",
+      "username": "KookieKlepto",
+      "message": "someone pm me runescape code?  \u0001112291\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366045,
+      "badges": "turbo",
+      "color": "#00CC00",
+      "username": "Middragoon",
+      "message": "LUL "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366045,
+      "badges": "",
+      "color": "#D2691E",
+      "username": "MilicodMacve",
+      "message": "the dodge "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366045,
+      "badges": "",
+      "color": "#2E8B57",
+      "username": "JohnDouge",
+      "message": "<message deleted>"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366046,
+      "badges": "",
+      "color": "#FF7F50",
+      "username": "bilkegaming",
+      "message": "BAN THEM MODS PLS  \u000186\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366046,
+      "badges": "",
+      "color": "#0000FF",
+      "username": "MatthewGuaravita",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003 . .6 "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366047,
+      "badges": "",
+      "color": "#FF0000",
+      "username": "nasodnokun",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366047,
+      "badges": "",
+      "color": "#B22222",
+      "username": "ESTEpo",
+      "message": "the power of the golden  \u000125\u0003 can pelse you  \u000125\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366047,
+      "badges": "",
+      "color": "#0000FF",
+      "username": "tricarlos",
+      "message": "PBO "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366048,
+      "badges": "",
+      "color": "#0000FF",
+      "username": "BlueVersion2YT",
+      "message": "\u00013792\u0003 ME JIHAD  \u00013792\u0003 ME SPAM  \u00013792\u0003 MOD SWEDISH  \u00013792\u0003 IF BAN  \u00013792\u0003 4379 "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366048,
+      "badges": "",
+      "color": "#8A2BE2",
+      "username": "Zochalke",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366048,
+      "badges": "",
+      "color": "#FF7F50",
+      "username": "eddyinbeastmod",
+      "message": "SAMUX  \u00019\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366048,
+      "badges": "",
+      "color": "#FF69B4",
+      "username": "philipecaos2",
+      "message": "hi dobriolift "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366048,
+      "badges": "",
+      "color": "#FF0000",
+      "username": "Jubaaah",
+      "message": "LEAKED "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366049,
+      "badges": "",
+      "color": "#8A2BE2",
+      "username": "Crezimurat",
+      "message": "drop kapa oç "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366049,
+      "badges": "premium",
+      "color": "#8A2BE2",
+      "username": "ccy1619",
+      "message": "<message deleted>"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366049,
+      "badges": "premium",
+      "color": "#1BB18C",
+      "username": "Milliam777",
+      "message": "📞 \u000122639\u0003e Hello Mods? Ban chat please � \u000122639\u0003ge "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366049,
+      "badges": "",
+      "color": "#1E90FF",
+      "username": "Eldar_Warlock",
+      "message": "k  \u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366050,
+      "badges": "",
+      "color": "#2E8B57",
+      "username": "NiiKo492",
+      "message": "Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366050,
+      "badges": "",
+      "color": "#FF0000",
+      "username": "LateGameHero",
+      "message": "\u00018\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366051,
+      "badges": "",
+      "color": "#FF0000",
+      "username": "AvianOfKonoha",
+      "message": "\u0001120232\u0003 CHAT you know what to do  \u0001120232\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366051,
+      "badges": "",
+      "color": "#9ACD32",
+      "username": "CronosRC",
+      "message": "\u000152\u0003  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003"
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366052,
+      "badges": "",
+      "color": "#008000",
+      "username": "knazz0",
+      "message": "Flash LUL "
+    },
+    {
+      "type": "chat",
+      "timestamp": 1492366052,
+      "badges": "premium",
+      "color": "#A8B319",
+      "username": "vozzzzy",
+      "message": "\u000152\u0003 Mods  \u000152\u0003 Cant  \u000152\u0003 Ban  \u000152\u0003 Us  \u000152\u0003 All  \u000152\u0003 . "
+    }
+  ]
+}

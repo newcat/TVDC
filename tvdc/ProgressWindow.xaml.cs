@@ -68,7 +68,7 @@ namespace tvdc
             get { return _progressValue; }
             set
             {
-                _progressValue = Math.Max(100, Math.Min(0, value));
+                _progressValue = Math.Max(0, Math.Min(100, value));
                 NotifyPropertyChanged();
             }
         }

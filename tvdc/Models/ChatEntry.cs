@@ -91,11 +91,8 @@ namespace tvdc
             }
         }
 
-        private string _originalMessage = "";
-        public string OriginalMessage
-        {
-            get { return _originalMessage; }
-        }
+        public string OriginalMessage { get; set; }
+        public bool IsAction { get; set; }
 
         private DateTime _timestamp = DateTime.Now;
         public DateTime Timestamp
@@ -125,14 +122,17 @@ namespace tvdc
         }
 
         //Constructor for chat entries
-        public ChatEntry(string username, string color, List<Paragraph> paragraphs, List<Badges.BadgeTypes> badges, string originalMessage)
+        public ChatEntry(string username, string color,
+            List<Paragraph> paragraphs, List<Badges.BadgeTypes> badges,
+            string originalMessage, bool isAction = false)
         {
             EventType = Type.CHAT;
             Username = username;
             Color = color;
             Paragraphs = paragraphs;
             Badges = badges;
-            _originalMessage = originalMessage;
+            OriginalMessage = originalMessage;
+            IsAction = isAction;
         }
 
     }
