@@ -1,5 +1,7 @@
 # Twitch Viewer Display
 
+![Screenshot](https://www.twitch-viewer-display.net/tvd/images/tvdc4.png)
+
 You are a streamer? You want a flexible tool to watch your chat, manage your viewers easily and have cool options like doing polls and giveaways directly in the chat?
 Then this program is for you!
 
@@ -10,7 +12,7 @@ Then this program is for you!
 * Live follower count
 * Displays the amount of follower vs. non-follower in your chat
 * Easily mod, unmod or timeout a user with a simple right click on their name
-* Huge customization possible with plugins. Currently included is a plugin for polls, a plugin for giveaways will follow
+* Huge customization possible with plugins. Currently included are plugins for polls, giveaways and loyalty
 * Stay up to date with a simple auto-updater - no need for manual downloads.
 * Sleek design
 
