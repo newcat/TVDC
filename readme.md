@@ -1,6 +1,9 @@
 # Twitch Viewer Display
 
-![Screenshot](https://www.twitch-viewer-display.net/tvd/images/tvdc4.png)
+## NOTE
+This project is no longer supported but feel free to fork and use it (or parts of it) in your own project(s).
+
+---
 
 You are a streamer? You want a flexible tool to watch your chat, manage your viewers easily and have cool options like doing polls and giveaways directly in the chat?
 Then this program is for you!
